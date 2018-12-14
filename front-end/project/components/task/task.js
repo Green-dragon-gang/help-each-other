@@ -4,13 +4,21 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    innerText: {
+    title: {
       type: String,
-      value: 'hello word',
+      value: 'Loading...'
     },
     pictureUrl: {
       type: String,
-      value: 'https://pic2.zhimg.com/v2-688c1cdaf74350d8c6aea7145aa1084c_1200x500.jpg'
+      value: 'https://pic2.zhimg.com/v2-688c1cdaf74350d8c6aea7145aa1084c_1200x500.jpg' // no pic
+    },
+    account: {
+      type: Number,
+      value: -1
+    },
+    username: {
+      type: String,
+      value: 'Nobody'
     }
   },
 
@@ -18,9 +26,6 @@ Component({
    * 组件的初始数据
    */
   data: {
-    loaded:false,
-    title:null,
-    username:null,
   },
 
   /**

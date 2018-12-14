@@ -1,1 +1,35 @@
 /* components/task/task.wxss */
+
+.img {
+  width: 100%;
+}
+
+.container {
+  border-radius: 10rpx;
+  overflow: hidden;
+  background:yellow;
+}
+
+.textview {
+  margin-left: 15rpx;
+  margin-right: 15rpx;
+}
+
+.title {
+  font-family: monospace;
+  font-size: 1.2em;
+}
+
+.titlecontainer{
+  margin-bottom: 10rpx;
+}
+
+.username {
+  float: left;
+  font-size: 0.75em;
+}
+
+.account {
+  float: right;
+  font-size: 0.75em;
+}

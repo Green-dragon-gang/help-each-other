@@ -1,3 +1,15 @@
 <!--components/task/task.wxml-->
-<view wx:if="{{loaded}}"> {{innerText}} </view>
-<text wx:else>loading...</text>
+<view class='container'>
+  <image class='img' mode='widthFix' src='{{pictureUrl}}'></image>
+  <view class='textview'>
+    <view class='titlecontainer'>
+      <text class='title'>{{title}}\n</text>
+    </view>
+    <view>
+      <text class='username'>{{username}}</text>
+    </view>
+    <view>
+      <text class='account'>{{account}}</text>
+    </view>
+  </view>
+</view>
