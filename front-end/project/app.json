@@ -1,0 +1,41 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/person/person",
+    "pages/task_detail/task_detail",
+    "pages/task_submit/task_submit",
+    "pages/focus_task/focus_task",
+    "pages/rcv_task/rcv_task"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "HelpEO",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/rcv_task/rcv_task",
+        "text": "已接任务"
+      },
+      {
+        "pagePath": "pages/task_submit/task_submit",
+        "text": "发布任务"
+      },
+      {
+        "pagePath": "pages/focus_task/focus_task",
+        "text": "关注任务"
+      },
+      {
+        "pagePath": "pages/person/person",
+        "text": "个人"
+      }
+    ]
+  }
+}
