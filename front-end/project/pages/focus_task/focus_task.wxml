@@ -1,2 +1,20 @@
 <!--pages/focus_task/focus_task.wxml-->
-<text>pages/focus_task/focus_task.wxml</text>
+<text>focus_task.wxml (to delete)</text>
+<view class="container">
+  <view class='task-column'>
+
+    <task></task>
+    <task title="带饭" account="3" username="boc" pictureUrl="http://img.qdaily.com/uploads/201711171322025EeK9MozQs2YNtwr.jpg-WebpWebW640"></task>
+    <task></task>
+    <task></task>
+    <task></task>
+  </view>
+  <view class='task-column'>
+    <task></task>
+    <task></task>
+    <task></task>
+    <task></task>
+    <task></task>
+  </view>
+
+</view>

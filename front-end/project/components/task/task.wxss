@@ -47,4 +47,5 @@
   float: right;
   font-size: 0.75em;
   overflow: hidden;
+  margin-right: 10rpx;
 }

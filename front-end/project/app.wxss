@@ -1,10 +1,17 @@
 /**app.wxss**/
-/* .container {
-  height: 100%;
+
+page {
+  background-color: #f1f1f1;
+  font-family: "Microsoft YaHei";
+}
+
+.task-column {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  padding: 200rpx 0;
-  box-sizing: border-box;
-}  */
+  flex-flow: column;
+  padding: 10rpx 0;
+  width: 50%;
+}
+
+task {
+  padding: 10rpx;
+}

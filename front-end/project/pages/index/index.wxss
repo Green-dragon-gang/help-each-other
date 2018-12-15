@@ -1,16 +1,47 @@
 /**index.wxss**/
-page {
-  background-color: #F1F1F1;
-}
 
-.container{
-  padding: 10rpx;
+.container {
+  margin-top: 70rpx;
+  overflow: hidden;
   display: flex;
-  /* flex-direction: column; */
-  flex-wrap: wrap;
+  flex-flow: row;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
 }
 
-.task {
-  padding: 10rpx;
-  width: 47%;
+.filter-column {
+  z-index: 1;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  height: 70rpx;
+
+  display: flex;
+  flex-flow: row unwrap;
+  justify-content: space-around;
+  align-items: center;
+
+  background-color: white;
+
+  transition: top 0.7s;
+}
+
+.filter-tag {
+  font-size: 1.0em;
+  color: #676767;
+  width: 100%;
+  text-align: center;
+}
+
+/* Standard syntax */
+@keyframes column-up {
+  0%   {top:0px;}
+  100% {top:-70px;}
+}
+
+@keyframes column-down {
+  0%   {top:70px;}
+  100% {top:0px;}
 }

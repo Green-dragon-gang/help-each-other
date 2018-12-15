@@ -1,11 +1,11 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/person/person",
-    "pages/task_detail/task_detail",
     "pages/task_submit/task_submit",
-    "pages/focus_task/focus_task",
+    "pages/person/person",
+    "pages/focus_task/focus_task", 
+    "pages/logs/logs",
+    "pages/task_detail/task_detail",
     "pages/rcv_task/rcv_task"
   ],
   "window": {
@@ -18,24 +18,31 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "Home"
+        "text": "Home",
+        "iconPath": "/img/home-us.png",
+        "selectedIconPath": "/img/home-s.png"
       },
       {
         "pagePath": "pages/rcv_task/rcv_task",
-        "text": "Received"
-      },
-      {
-        "pagePath": "pages/task_submit/task_submit",
-        "text": "+"
+        "text": "Accepted",
+        "iconPath": "/img/clipboard-us.png",
+        "selectedIconPath": "/img/clipboard-s.png"
       },
       {
         "pagePath": "pages/focus_task/focus_task",
-        "text": "Follow"
+        "text": "Follow",
+        "iconPath": "/img/friendTask-us.png",
+        "selectedIconPath": "/img/friendTask-s.png"
       },
       {
         "pagePath": "pages/person/person",
-        "text": "Me"
+        "text": "Me",
+        "iconPath": "/img/person-us.png",
+        "selectedIconPath": "/img/person-s.png"
       }
-    ]
+    ],
+    "borderStyle": "white",
+    "color": "#CCCCCC",
+    "selectedColor": "#000000"
   }
 }

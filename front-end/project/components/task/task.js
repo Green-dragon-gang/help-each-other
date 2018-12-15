@@ -10,11 +10,11 @@ Component({
     },
     pictureUrl: {
       type: String,
-      value: 'https://pic2.zhimg.com/v2-688c1cdaf74350d8c6aea7145aa1084c_1200x500.jpg' // no pic
+      value: '/img/cj.jpg' // no pic
     },
     account: {
       type: Number,
-      value: 100
+      value: 10
     },
     username: {
       type: String,
