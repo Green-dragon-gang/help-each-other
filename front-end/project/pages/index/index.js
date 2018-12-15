@@ -9,8 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    lastPos: 0,
-    filterTop: '0rpx'
+    filterTop: '0rpx',
+    addBottom: '30rpx'
   },
 
   /**
@@ -46,18 +46,26 @@ Page({
         // hide filter
         console.log('hide filter');
         this.setData({
-          filterTop: '-70rpx'
+          filterTop: '-70rpx',
+          addBottom: '-100rpx'
         })
       } else if (delta < 0 && this.data.filterTop == '-70rpx') {
         // show filter
         console.log('show filter');
         this.setData({
-          filterTop: '0rpx'
+          filterTop: '0rpx',
+          addBottom: '30rpx'
         })
       }
     }
 
 
   },
+
+  onUploadBtnClick: function() {
+    wx.navigateTo({
+      url: '/pages/upload_task/upload_task',
+    })
+  }
 
 })

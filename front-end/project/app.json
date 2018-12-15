@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/task_submit/task_submit",
+    "pages/upload_task/upload_task",
     "pages/person/person",
     "pages/focus_task/focus_task", 
     "pages/logs/logs",

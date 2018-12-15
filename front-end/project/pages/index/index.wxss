@@ -10,6 +10,17 @@
   align-content: flex-start;
 }
 
+.uploadBtn {
+  z-index: 1;
+  position: fixed;
+  right: 50rpx;
+  bottom: 30rpx;
+  height: 100rpx;
+  width: 100rpx;
+
+  transition: bottom 0.7s;
+}
+
 .filter-column {
   z-index: 1;
   position: fixed;

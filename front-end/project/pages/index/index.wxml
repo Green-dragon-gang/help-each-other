@@ -24,3 +24,5 @@
   </view>
 
 </view>
+
+<image class='uploadBtn' src='/img/plus.png' style='bottom:{{addBottom}}' bindtap='onUploadBtnClick'></image>
