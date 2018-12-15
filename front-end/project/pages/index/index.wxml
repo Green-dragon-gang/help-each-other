@@ -12,7 +12,16 @@
     <text class="user-motto">{{motto}}</text>
   </view>
 </view> -->
-
-<view>
-  <task></task>
+<view class="container">
+  <task class='task'></task>
+  <task class='task'></task>
+  <task class='task'></task>
+  <task class='task'></task>
+  <task class='task'></task>
+  <task class='task'></task>
+  <task class='task'></task>
+  <task class='task'></task>
+  <task class='task'></task>
+  <task class='task'></task>
+  <task class='task' title="带饭" account="3" pictureUrl="http://img.qdaily.com/uploads/201711171322025EeK9MozQs2YNtwr.jpg-WebpWebW640"></task>
 </view>

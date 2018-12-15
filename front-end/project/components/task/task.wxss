@@ -1,35 +1,50 @@
 /* components/task/task.wxss */
 
+.container {
+  border-radius: 10rpx;
+  overflow: hidden;
+  background: white;
+}
+
 .img {
   width: 100%;
 }
 
-.container {
-  border-radius: 10rpx;
-  overflow: hidden;
-  background:yellow;
+.textview {
+  font-family: "Microsoft YaHei";
+  padding-left: 20rpx;
+  padding-right: 20rpx;
 }
 
-.textview {
-  margin-left: 15rpx;
-  margin-right: 15rpx;
+.firstRow {
+  margin-bottom: 10rpx;
+  width: 100%;
+}
+
+.secondRow {
+  height: 50rpx;
 }
 
 .title {
-  font-family: monospace;
-  font-size: 1.2em;
-}
-
-.titlecontainer{
-  margin-bottom: 10rpx;
+  font-size: 1.0em;
+  font-weight: bold;
 }
 
 .username {
   float: left;
   font-size: 0.75em;
+  width: 60%;
+  overflow: hidden;
+}
+
+.icon {
+  width: 25rpx;
+  height: 25rpx;
+  margin: 0 10rpx;
 }
 
 .account {
   float: right;
   font-size: 0.75em;
+  overflow: hidden;
 }

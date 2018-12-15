@@ -2,14 +2,18 @@
 <view class='container'>
   <image class='img' mode='widthFix' src='{{pictureUrl}}'></image>
   <view class='textview'>
-    <view class='titlecontainer'>
-      <text class='title'>{{title}}\n</text>
+    <view class='firstRow'>
+      <text class='title'>{{title}}</text>
     </view>
-    <view>
-      <text class='username'>{{username}}</text>
-    </view>
-    <view>
-      <text class='account'>{{account}}</text>
+    <view class='secondRow'>
+      <view class='username'>
+        <image class='icon' src='/img/boss.png'></image>
+        <text>{{username}}</text>
+      </view>
+      <view class='account'>
+        <image class='icon' src='/img/coin.png'></image>
+        <text>{{account}}</text>
+      </view>
     </view>
   </view>
 </view>

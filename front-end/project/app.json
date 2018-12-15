@@ -18,23 +18,23 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页"
+        "text": "Home"
       },
       {
         "pagePath": "pages/rcv_task/rcv_task",
-        "text": "已接任务"
+        "text": "Received"
       },
       {
         "pagePath": "pages/task_submit/task_submit",
-        "text": "发布任务"
+        "text": "+"
       },
       {
         "pagePath": "pages/focus_task/focus_task",
-        "text": "关注任务"
+        "text": "Follow"
       },
       {
         "pagePath": "pages/person/person",
-        "text": "个人信息"
+        "text": "Me"
       }
     ]
   }

@@ -6,7 +6,7 @@ Component({
   properties: {
     title: {
       type: String,
-      value: 'Loading...'
+      value: '代练' // 'Loading...'
     },
     pictureUrl: {
       type: String,
@@ -14,11 +14,11 @@ Component({
     },
     account: {
       type: Number,
-      value: -1
+      value: 100
     },
     username: {
       type: String,
-      value: 'Nobody'
+      value: '无名氏'
     }
   },
 
