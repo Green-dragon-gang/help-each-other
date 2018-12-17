@@ -10,22 +10,19 @@
   align-content: flex-start;
 }
 
-.filter-column {
+.filter-row {
   z-index: 1;
   position: fixed;
   right: 0;
   left: 0;
   top: 0;
   height: 70rpx;
-
   display: flex;
   flex-flow: row unwrap;
   justify-content: space-around;
   align-items: center;
-
   background-color: white;
-  border-bottom: solid #bbbbbb 0.8rpx;
-
+  border-bottom: solid #bbb 0.8rpx;
   transition: top 0.7s;
 }
 
@@ -44,18 +41,15 @@
   position: fixed;
   right: 30rpx;
   bottom: 20rpx;
-
   height: 60rpx;
   width: 230rpx;
   padding: 20rpx 30rpx;
   border-radius: 30px;
-  background-color: #cccccc;
-  
+  background-color: #ccc;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-around;
   align-items: center;
-
   transition: bottom 0.7s;
 }
 

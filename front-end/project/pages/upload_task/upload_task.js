@@ -1,6 +1,6 @@
 Page({
   data: {
-    imgUrl: '/img/imgAdd.png',
+    imgUrl: '/img/uploadTask/imgAdd.png',
     title: '',
     date: '',
     address: '',

@@ -7,7 +7,7 @@ Component({
     },
     pictureUrl: {
       type: String,
-      value: '/img/cj.jpg' // no pic
+      value: '/img/test/cj.jpg' // no pic
     },
     account: {
       type: Number,

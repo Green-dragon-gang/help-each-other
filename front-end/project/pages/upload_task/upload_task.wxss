@@ -34,6 +34,6 @@ textarea {
   color: white;
 }
 
-#cancelBtn {
-  margin-top: 20rpx;
+#releaseBtn::after {
+  border: none;
 }

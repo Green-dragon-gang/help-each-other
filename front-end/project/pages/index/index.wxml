@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<view class='filter-column' style='top:{{filterTop}}'>
+<view class='filter-row' style='top:{{filterTop}}'>
   <text wx:if="{{filter == filterState.default}}" class='filter-tag filter-focus' bindtap='filterDefaultClick'>默认排序</text>
   <text wx:else class='filter-tag' bindtap='filterDefaultClick'>默认排序</text>
 
@@ -19,16 +19,15 @@
 <view class="container">
   <view class='task-column'>
     <task></task>
-    <task title="带饭" account="3" username="boc" pictureUrl="/img/bd.png"></task>
+    <task title="带饭" account="3" username="boc" pictureUrl="/img/test/bd.png"></task>
   </view>
   <view class='task-column'>
     <task></task>
     <task></task>
   </view>
-
 </view>
 
 <view class='uploadView' style='bottom:{{addBottom}}' bindtap='onUploadBtnClick'>
-  <image src='/img/uploadTask.png' class='uploadImg'></image>
+  <image src='/img/home/uploadTask.png' class='uploadImg'></image>
   <text class='uploadText'>发布任务</text>
 </view>

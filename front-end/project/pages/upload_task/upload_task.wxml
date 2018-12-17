@@ -21,7 +21,6 @@
       <image class='uploadImg' src='{{imgUrl}}' bindtap='chooseImg' mode='aspectFill'></image>
     </view>
     <button id='releaseBtn' bindtap='release'>发布</button>
-    <button id='cancelBtn' bindtap='cancel'>取消</button>
   </form>
 
 </view>

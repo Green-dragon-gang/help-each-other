@@ -19,26 +19,26 @@
       {
         "pagePath": "pages/index/index",
         "text": "Home",
-        "iconPath": "/img/home-us.png",
-        "selectedIconPath": "/img/home-s.png"
+        "iconPath": "/img/tabbar/home-us.png",
+        "selectedIconPath": "/img/tabbar/home-s.png"
       },
       {
         "pagePath": "pages/accepted_task/accepted_task",
         "text": "Accepted",
-        "iconPath": "/img/clipboard-us.png",
-        "selectedIconPath": "/img/clipboard-s.png"
+        "iconPath": "/img/tabbar/clipboard-us.png",
+        "selectedIconPath": "/img/tabbar/clipboard-s.png"
       },
       {
         "pagePath": "pages/focus_task/focus_task",
         "text": "Follow",
-        "iconPath": "/img/friendTask-us.png",
-        "selectedIconPath": "/img/friendTask-s.png"
+        "iconPath": "/img/tabbar/friendTask-us.png",
+        "selectedIconPath": "/img/tabbar/friendTask-s.png"
       },
       {
         "pagePath": "pages/person/person",
         "text": "Me",
-        "iconPath": "/img/person-us.png",
-        "selectedIconPath": "/img/person-s.png"
+        "iconPath": "/img/tabbar/person-us.png",
+        "selectedIconPath": "/img/tabbar/person-s.png"
       }
     ],
     "borderStyle": "white",
