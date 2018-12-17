@@ -1,7 +1,62 @@
-<!--pages/person.wxml-->
-<text>{{userInfo.nickName}}\n</text>
-<text>性别 <text wx:if="{{userInfo.gender==1}}">男</text>
-<text wx:else>女</text>\n</text>
-<text>{{userInfo.country}}\n</text>
-<text>{{userInfo.province}}\n</text>
-<text>{{userInfo.language}}\n</text>
+
+
+<!-- <text>照淘宝啥的抄的设计，待付款什么的，内容方面的有需要的话开个会讨论一下放什么吧，再改</text> -->
+
+<view class="container">
+
+  <view class="userinfo">
+    <view class="userinfo-avatar" background-size="cover">
+      <open-data  type="userAvatarUrl"></open-data>
+    </view>
+    
+    <view class="userinfo-nickname">
+      <open-data type="userNickName"></open-data>
+    </view>
+  </view>
+
+  <view class="separate"></view>
+
+  <view class="order" catchtap="toOrder">
+    <text class="myorder-text">我的订单</text>
+    <text class="myorderlook-text">查看全部订单</text>
+  </view>
+  <view class="line"></view>
+
+  <view class="navs">
+    <block wx:for-items="{{orderItems}}" wx:key="name">
+      <view class="nav-item" catchtap="toOrder" data-type="{{item.name}}" data-typeid="{{item.typeId}}">
+        <image src="{{item.imageurl}}" class="nav-image" />
+        <text>{{item.name}}</text>
+      </view>
+    </block>
+  </view>
+
+  <view class="separate"></view>
+  <view class="person-list">
+    <view class="list-item">
+      <image class="item-image" src="../../img/person/ic_collection.png"></image>
+      <text class="item-text">我的收藏</text>
+    </view>
+    <view class="person-line"></view>
+    <view class="list-item">
+      <image class="item-image" src="../../img/person/icon_share_home.png"></image>
+      <text class="item-text">收货地址</text>
+    </view>
+    <view class="person-line"></view>
+    <view class="list-item">
+      <image class="item-image" src="../../img/person/ic_more_cache.png"></image>
+      <text class="item-text">售后记录</text>
+    </view>
+    <view class="person-line"></view>
+    <view class="list-item">
+      <image class="item-image" src="../../img/person/icon_classify.png"></image>
+      <text class="item-text">我的评价</text>
+    </view>
+    <view class="person-line"></view>
+    <view class="list-item">
+      <image class="item-image" src="../../img/person/ic_more_move.png"></image>
+      <text class="item-text">推广邀请</text>
+    </view>
+  </view>
+  <view class="separate"></view>
+</view>
