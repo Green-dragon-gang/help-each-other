@@ -1,8 +1,9 @@
 <!--index.wxml-->
 <view class='filter-column' style='top:{{filterTop}}'>
+  <text class='filter-tag'>默认排序</text>
   <text class='filter-tag'>赏金</text>
-  <text class='filter-tag'>离我最近</text>
-  <text class='filter-tag'>完成时间</text>
+  <text class='filter-tag'>距离</text>
+  <text class='filter-tag'>时间</text>
   <!-- <text class='filter-tag'>标签</text> -->
 </view>
 

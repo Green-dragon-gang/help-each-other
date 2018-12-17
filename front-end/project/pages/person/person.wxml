@@ -1,7 +1,7 @@
 <!--pages/person.wxml-->
 <text>{{userInfo.nickName}}\n</text>
-<text>性别 <text wx:if="{{userInfo.gender==1}}">男</text>
-<text wx:else>女</text>\n</text>
+<text><text wx:if="{{userInfo.gender==1}}">性别 男\n</text>
+<text wx:if="{{userInfo.gender==2}}">性别 女\n</text></text>
 <text>{{userInfo.country}}\n</text>
 <text>{{userInfo.province}}\n</text>
 <text>{{userInfo.language}}\n</text>

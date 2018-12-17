@@ -17,11 +17,15 @@
   left: 0;
   top: 0;
   height: 70rpx;
+
   display: flex;
   flex-flow: row unwrap;
   justify-content: space-around;
   align-items: center;
+
   background-color: white;
+  border-bottom: solid #bbbbbb 0.8rpx;
+
   transition: top 0.7s;
 }
 

@@ -17,7 +17,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    
   },
 
   /**
@@ -48,7 +48,7 @@ Page({
         // hide filter
         console.log('hide filter');
         this.setData({
-          filterTop: '-70rpx',
+          filterTop: '-72rpx',
           addBottom: '-100rpx'
         })
       } else if (delta < 0 && this.hide) {
