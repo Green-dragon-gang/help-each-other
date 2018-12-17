@@ -1,1 +1,56 @@
 /* pages/task_detail/task_detail.wxss */
+.img {
+  width: 100%
+}
+
+.textView {
+  font-family: "Microsoft YaHei";
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  background: white;
+  margin-bottom: 10px;
+}
+
+.smallTextView {
+  font-family: "Microsoft YaHei";
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  font-size: small;
+}
+
+.title {
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.icon {
+  width: 25rpx;
+  height: 25rpx;
+  margin: 0 10rpx;
+}
+
+.followButton {
+  float: right;
+  line-height: normal;
+  width: 100px;
+  height: 26px;
+  overflow: hidden;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.enabledButton {
+  margin-top: 10px;
+  background: greenyellow;
+}
+
+.disabledButton {
+  margin-top: 10px;
+  background: gray
+}
