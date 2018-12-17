@@ -1,25 +1,14 @@
-// pages/task_submit/task_submit.js
-
-// const QQMapWX = require('../../libs/qqmap-wx-jssdk.min.js');
-// var qqmapsdk;
-
 Page({
-
   data: {
-    imgUrl: '/img/imgAdd.png',
+    imgUrl: '/img/uploadTask/imgAdd.png',
     title: '',
     date: '',
     address: '',
-    locationDetail: {
-
-    },
     money: 0,
+
+    latitude: -1,
+    longitude: -1,
   },
-
-
-  // var demo = new QQMapWX({
-  //   key: '开发密钥（key）' // 必填
-  // });
 
   bindTimeChange: function(e) {
     console.log('date change:', e.detail.value)
@@ -62,9 +51,11 @@ Page({
     let that = this;
     wx.chooseLocation({
       success: function(res) {
-        console.log(res);
+        console.log('location changed:', res);
         that.setData({
-          address: res.address
+          address: res.address,
+          latitude: res.latitude,
+          longitude: res.longitude,
         })
       }
     });

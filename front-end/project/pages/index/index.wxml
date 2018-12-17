@@ -1,25 +1,33 @@
 <!--index.wxml-->
-<view class='filter-column' style='top:{{filterTop}}'>
-  <text class='filter-tag'>默认排序</text>
-  <text class='filter-tag'>赏金</text>
-  <text class='filter-tag'>距离</text>
-  <text class='filter-tag'>时间</text>
-  <!-- <text class='filter-tag'>标签</text> -->
+<view class='filter-row' style='top:{{filterTop}}'>
+  <text wx:if="{{filter == filterState.default}}" class='filter-tag filter-focus' bindtap='filterDefaultClick'>默认排序</text>
+  <text wx:else class='filter-tag' bindtap='filterDefaultClick'>默认排序</text>
+
+  <text wx:if="{{filter == filterState.moneyup}}" class='filter-tag filter-focus' bindtap='filterMoneyClick'>赏金↑</text>
+  <text wx:elif="{{filter == filterState.moneydown}}" class='filter-tag filter-focus' bindtap='filterMoneyClick'>赏金↓</text>
+  <text wx:else class='filter-tag' bindtap='filterMoneyClick'>赏金</text>
+
+  <text wx:if="{{filter == filterState.distanceup}}" class='filter-tag filter-focus' bindtap='filterDistanceClick'>距离↑</text>
+  <text wx:elif="{{filter == filterState.distancedown}}" class='filter-tag filter-focus' bindtap='filterDistanceClick'>距离↓</text>
+  <text wx:else class='filter-tag' bindtap='filterDistanceClick'>距离</text>
+
+  <text wx:if="{{filter == filterState.timeup}}" class='filter-tag filter-focus' bindtap='filterTimeClick'>时间↑</text>
+  <text wx:elif="{{filter == filterState.timedown}}" class='filter-tag filter-focus' bindtap='filterTimeClick'>时间↓</text>
+  <text wx:else class='filter-tag' bindtap='filterTimeClick'>时间</text>
 </view>
 
 <view class="container">
   <view class='task-column'>
     <task></task>
-    <task title="带饭" account="3" username="boc" pictureUrl="/img/bd.png"></task>
+    <task title="带饭" account="3" username="boc" pictureUrl="/img/test/bd.png"></task>
   </view>
   <view class='task-column'>
     <task></task>
     <task></task>
   </view>
-
 </view>
 
 <view class='uploadView' style='bottom:{{addBottom}}' bindtap='onUploadBtnClick'>
-  <image src='/img/uploadTask.png' class='uploadImg'></image>
+  <image src='/img/home/uploadTask.png' class='uploadImg'></image>
   <text class='uploadText'>发布任务</text>
 </view>

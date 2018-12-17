@@ -5,7 +5,33 @@ const app = getApp()
 Page({
   data: {
     userInfo: {},
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    orderItems: [
+      {
+        typeId: 0,
+        name: '待付款',
+        url: 'bill',
+        imageurl: '../../img/person/fukuan.png',
+      },
+      {
+        typeId: 1,
+        name: '待发货',
+        url: 'bill',
+        imageurl: '../../img/person/fahuo.png',
+      },
+      {
+        typeId: 2,
+        name: '待收货',
+        url: 'bill',
+        imageurl: '../../img/person/shouhuo.png'
+      },
+      {
+        typeId: 3,
+        name: '待评价',
+        url: 'bill',
+        imageurl: '../../img/person/pingjia.png'
+      }
+    ],
   },
 
   onLoad: function() {
