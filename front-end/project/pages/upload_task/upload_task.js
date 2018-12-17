@@ -1,44 +1,45 @@
 // pages/task_submit/task_submit.js
 
-const QQMapWX = require('../../libs/qqmap-wx-jssdk.min.js');
-var qqmapsdk;
+// const QQMapWX = require('../../libs/qqmap-wx-jssdk.min.js');
+// var qqmapsdk;
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-    imgUrl: '/img/imgAdd.png'
+    imgUrl: '/img/imgAdd.png',
+    title: '',
+    date: '',
+    address: '',
+    locationDetail: {
+
+    },
+    money: 0,
   },
 
-  onLoad: function() {
-    qqmapsdk = new QQMapWX({
-      key: 'TDCBZ-T4HCJ-BJ7FR-FWXWT-OEZRT-DVBBF'
+
+  // var demo = new QQMapWX({
+  //   key: '开发密钥（key）' // 必填
+  // });
+
+  bindTimeChange: function(e) {
+    console.log('date change:', e.detail.value)
+    this.setData({
+      date: e.detail.value
     })
   },
 
-  onShow: function() {
-    wx.getLocation({
-      success: function(res) {
-        console.log(res);
-        qqmapsdk.reverseGeocoder({
-          location: {
-            latitude: res.latitude,
-            longitude: res.longitude
-          },
-          success: function(res) {
-            console.log(res);
-          },
-          fail: function(res) {
-            console.log(res);
-          },
-          complete: function(res) {
-            console.log(res);
-          }
-        })
-      },
-    })
+  bindTitleChange: function(e) {
+    console.log('title change:', e.detail.value)
+    this.setData({
+      title: e.detail.value
+    });
+  },
+
+  bindMoneyChange: function(e) {
+    console.log('money change:', e.detail.value)
+    this.setData({
+      money: e.detail.value
+    });
   },
 
   chooseImg: function() {
@@ -57,13 +58,32 @@ Page({
     })
   },
 
-  getLocation: function() {
+  chooseLocation: function() {
+    let that = this;
+    wx.chooseLocation({
+      success: function(res) {
+        console.log(res);
+        that.setData({
+          address: res.address
+        })
+      }
+    });
+  },
 
+  release: function() {
+    wx.navigateBack({
+      delta: 1
+    })
+
+    // 发布
+
+    // 发布成功 进入任务详情页面
   },
 
   cancel: function() {
     wx.navigateBack({
       delta: 1
     })
-  }
+  },
+
 })
