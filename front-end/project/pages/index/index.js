@@ -5,13 +5,70 @@ const app = getApp()
 
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     filterTop: '0rpx',
-    addBottom: '30rpx'
+    addBottom: '30rpx',
+    filterState: Object.freeze({
+      "default": 1,
+      "moneyup": 2,
+      "moneydown": 3,
+      "distanceup": 4,
+      "distancedown": 5,
+      "timeup": 6,
+      "timedown": 7,
+    }),
+    filter: 1
   },
+
+  //====================================
+  // methods to handle filter click
+  //====================================
+  filterDefaultClick: function() {
+    console.log('default');
+    this.setData({
+      filter: this.data.filterState.default
+    })
+  },
+
+  filterMoneyClick: function() {
+    console.log('money');
+    if (this.data.filter == this.data.filterState.moneyup)
+      this.setData({
+        filter: this.data.filterState.moneydown
+      });
+    else
+      this.setData({
+        filter: this.data.filterState.moneyup
+      });
+  },
+
+  filterDistanceClick: function() {
+    console.log('distance');
+    if (this.data.filter == this.data.filterState.distanceup)
+      this.setData({
+        filter: this.data.filterState.distancedown
+      });
+    else
+      this.setData({
+        filter: this.data.filterState.distanceup
+      });
+  },
+
+  filterTimeClick: function() {
+    console.log('time');
+    if (this.data.filter == this.data.filterState.timeup)
+      this.setData({
+        filter: this.data.filterState.timedown
+      });
+    else
+      this.setData({
+        filter: this.data.filterState.timeup
+      });
+  },
+  //====================================
+  // end
+  //====================================
+
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
@@ -28,6 +85,7 @@ Page({
     console.log('reach bottom');
   },
 
+  // handle hiding and showing event for filter and add-button during scrolling 
   lastPos: 0,
   thred: 50,
   topShow: 50,

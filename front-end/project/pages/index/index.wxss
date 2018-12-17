@@ -32,8 +32,11 @@
 .filter-tag {
   font-size: 1.0em;
   color: #676767;
-  width: 100%;
-  text-align: center;
+}
+
+.filter-focus {
+  font-weight: bold;
+  color: #555;
 }
 
 .uploadView {
