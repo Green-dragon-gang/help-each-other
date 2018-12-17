@@ -34,6 +34,8 @@ Page({
     ],
   },
 
+
+
   onLoad: function() {
     if (app.globalData.userInfo) {
       this.setData({
@@ -69,5 +71,10 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+  toOrder: function () {
+    wx.switchTab({
+      url: '/pages/accepted_task/accepted_task',
+    })
+  },
 })

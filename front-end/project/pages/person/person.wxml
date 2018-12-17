@@ -1,7 +1,4 @@
-<!-- <text>照淘宝啥的抄的设计，待付款什么的，内容方面的有需要的话开个会讨论一下放什么吧，再改</text> -->
-
 <view class="container">
-
   <view class="userinfo">
     <view class="userinfo-avatar" background-size="cover">
       <open-data  type="userAvatarUrl"></open-data>
@@ -12,9 +9,10 @@
     </view>
   </view>
 
-  <view class="separate"></view>
+  <view class="separate">
+  </view>
 
-  <view class="order" catchtap="toOrder">
+  <view class="order" bindtap="toOrder">
     <text class="myorder-text">我的订单</text>
     <text class="myorderlook-text">查看全部订单</text>
   </view>
