@@ -1,5 +1,5 @@
 <!--components/task/task.wxml-->
-<view class='container'>
+<view class='container' bindtap='click'>
   <image class='img' mode='widthFix' src='{{pictureUrl}}'></image>
   <view class='textview'>
     <view class='firstRow'>

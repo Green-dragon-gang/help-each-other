@@ -14,13 +14,6 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-    
-  },
-
-  /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
@@ -37,23 +30,22 @@ Page({
 
   lastPos: 0,
   thred: 50,
+  topShow: 50,
   hide: false,
   onPageScroll: function(o) {
     let newPos = o.scrollTop;
     let delta = newPos - this.lastPos
     if (delta > this.thred || delta < -this.thred) {
       this.lastPos = newPos;
-      if (delta > 0 && !this.hide) {
+      if (!this.hide && newPos > this.topShow && delta > 0) { // hide filter
         this.hide = true;
-        // hide filter
         console.log('hide filter');
         this.setData({
           filterTop: '-72rpx',
           addBottom: '-100rpx'
         })
-      } else if (delta < 0 && this.hide) {
+      } else if (this.hide && (newPos <= this.topShow || delta < 0)) { // show filter
         this.hide = false;
-        // show filter
         console.log('show filter');
         this.setData({
           filterTop: '0rpx',
