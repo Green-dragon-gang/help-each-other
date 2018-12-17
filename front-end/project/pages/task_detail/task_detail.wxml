@@ -1,2 +1,43 @@
 <!--pages/task_detail/task_detail.wxml-->
-<text>任务详情</text>
+<view>
+  <image class='img' mode='widthFix' src='{{task.picture}}'></image>
+  <view>
+    <text class='title'>{{task.title}}</text>
+  </view>
+  <view class='textView'>
+    <view>
+      <image class='icon' src='{{task.sender_avatar}}'></image>
+      <text>{{task.sender_name}}</text>
+      <button class='followButton' bindtap='follow'>{{isFollow ? '已关注' : '关注ta'}}</button>
+    </view>  
+  </view>
+  <view class='textView'>
+    <text class='label'>任务详情:  </text>
+    <text>{{task.content}}</text>
+  </view>
+  <view class='textView'>
+    <text class='label'>赏金:  </text>
+    <image class='icon' src='/img/coin.png'></image>
+    <text>{{task.reward}}</text>
+  </view>
+  <view class='smallTextView'>
+    <text class='label'>地点:  </text>
+    <text>{{task.location}}</text>
+  </view>
+  <view class='smallTextView'>
+    <text class='label'>开始时间:  </text>
+    <text>{{task.start_time}}</text>
+  </view>
+  <view class='smallTextView'>
+    <text class='label'>结束时间:  </text>
+    <text>{{task.end_time}}</text>
+  </view>
+  <view class='smallTextView'>
+    <text class='label'>标签:  </text>
+    <text>{{tagString}}</text>
+  </view>
+  <view>
+    <button class="{{task.status === 0 ? 'enabledButton' : 'disabledButton'}}" bindtap="acceptTask">{{statusString}}</button>
+  </view>
+</view>
+
