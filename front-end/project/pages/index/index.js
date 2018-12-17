@@ -37,19 +37,22 @@ Page({
 
   lastPos: 0,
   thred: 50,
+  hide: false,
   onPageScroll: function(o) {
     let newPos = o.scrollTop;
     let delta = newPos - this.lastPos
     if (delta > this.thred || delta < -this.thred) {
       this.lastPos = newPos;
-      if (delta > 0 && this.data.filterTop == '0rpx') {
+      if (delta > 0 && !this.hide) {
+        this.hide = true;
         // hide filter
         console.log('hide filter');
         this.setData({
           filterTop: '-70rpx',
           addBottom: '-100rpx'
         })
-      } else if (delta < 0 && this.data.filterTop == '-70rpx') {
+      } else if (delta < 0 && this.hide) {
+        this.hide = false;
         // show filter
         console.log('show filter');
         this.setData({
@@ -58,8 +61,6 @@ Page({
         })
       }
     }
-
-
   },
 
   onUploadBtnClick: function() {

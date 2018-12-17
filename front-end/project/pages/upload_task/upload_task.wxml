@@ -1,2 +1,22 @@
 <!--pages/task_submit/task_submit.wxml-->
-<text>发布任务</text>
+<!-- <text>发布任务</text> -->
+
+<view id='container'>
+  <form>
+    <input class='input' placeholder='标题' type='text' confirm-type='done'></input>
+    <input class='input' placeholder='地点' type='text' confirm-type='done' disabled='true'></input>
+    <input class='input' placeholder='时间' type='text' confirm-type='done'></input>
+    <input class='input' placeholder='赏金' type='digit' confirm-type='done'></input>
+
+    <textarea placeholder='任务详情' confirm-type='done'></textarea>
+
+    <input class='input' placeholder='标签（选填）' type='text' confirm-type='done'></input>
+    <input class='input' placeholder='期望接单人（选填）' type='text' confirm-type='done'></input>
+    <view id='imgView'>
+      <image class='uploadImg' src='{{imgUrl}}' bindtap='chooseImg' mode='aspectFill'></image>
+    </view>
+    <button id='releaseBtn'>发布</button>
+    <button id='cancelBtn' bindtap='cancel'>取消</button>
+  </form>
+
+</view>

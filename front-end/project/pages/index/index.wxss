@@ -10,17 +10,6 @@
   align-content: flex-start;
 }
 
-.uploadBtn {
-  z-index: 1;
-  position: fixed;
-  right: 50rpx;
-  bottom: 30rpx;
-  height: 100rpx;
-  width: 100rpx;
-
-  transition: bottom 0.7s;
-}
-
 .filter-column {
   z-index: 1;
   position: fixed;
@@ -28,14 +17,11 @@
   left: 0;
   top: 0;
   height: 70rpx;
-
   display: flex;
   flex-flow: row unwrap;
   justify-content: space-around;
   align-items: center;
-
   background-color: white;
-
   transition: top 0.7s;
 }
 
@@ -46,13 +32,33 @@
   text-align: center;
 }
 
-/* Standard syntax */
-@keyframes column-up {
-  0%   {top:0px;}
-  100% {top:-70px;}
+.uploadView {
+  z-index: 1;
+  position: fixed;
+  right: 30rpx;
+  bottom: 20rpx;
+
+  height: 60rpx;
+  width: 230rpx;
+  padding: 20rpx 30rpx;
+  border-radius: 30px;
+  background-color: #cccccc;
+  
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+
+  transition: bottom 0.7s;
 }
 
-@keyframes column-down {
-  0%   {top:70px;}
-  100% {top:0px;}
+.uploadImg {
+  height: 45rpx;
+  width: 45rpx;
+}
+
+.uploadText {
+  font-size: 1.1em;
+  color: white;
+  font-weight: 500;
 }

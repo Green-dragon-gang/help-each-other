@@ -8,21 +8,17 @@
 
 <view class="container">
   <view class='task-column'>
-
     <task></task>
     <task title="带饭" account="3" username="boc" pictureUrl="/img/bd.png"></task>
-    <task></task>
-    <task></task>
-    <task></task>
   </view>
   <view class='task-column'>
-    <task></task>
-    <task></task>
-    <task></task>
     <task></task>
     <task></task>
   </view>
 
 </view>
 
-<image class='uploadBtn' src='/img/plus.png' style='bottom:{{addBottom}}' bindtap='onUploadBtnClick'></image>
+<view class='uploadView' style='bottom:{{addBottom}}' bindtap='onUploadBtnClick'>
+  <image src='/img/uploadTask.png' class='uploadImg'></image>
+  <text class='uploadText'>发布任务</text>
+</view>
