@@ -1,6 +1,6 @@
 <!--pages/friends/friends.wxml-->
 <view class='container'>
-  <view wx:for="{{friends}}" wx:for-item='friend' class='friendView'>
+  <view wx:for="{{friends}}" wx:for-item='friend' wx:key="name" class='friendView'>
     <image class='friendImg' src='{{friend.avatarUrl}}'></image>
     <text>{{friend.name}}</text>
   </view>

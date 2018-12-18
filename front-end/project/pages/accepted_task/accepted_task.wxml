@@ -1,2 +1,9 @@
 <!--pages/rcv_task/rcv_task.wxml-->
-<text>已接任务</text>
+
+<view id='container'>
+  <view wx:for='{{tasks}}' wx:key='task_id' class='task'>
+    <text class='title'>{{item.title}}</text>
+    <image src='{{item.sender_avatar}}' class='avatar'></image>
+    <text class='sender_name'>{{item.sender_name}}</text>
+  </view>
+</view>
