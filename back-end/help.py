@@ -180,7 +180,7 @@ def get_self_info(user_name):
         db.save_user(user_name)
     res = db.find_user(user_name)
     db.close_db()
-    return str(res)
+    return str(res[0])
 
 
 @app.route("/help/addTask", methods=['POST'])
@@ -220,7 +220,7 @@ def get_friends(user_name):
     db = Database()
     res = db.get_friends(user_name)
     db.close_db()
-    return res
+    return str(res)
 
 
 @app.route("/help/getTasks")
@@ -228,7 +228,7 @@ def get_tasks():
     db = Database()
     res = db.get_tasks()
     db.close_db()
-    return res
+    return str(res)
 
 
 @app.route("/help/getTaskById/<task_id>")
@@ -236,7 +236,7 @@ def get_task_by_id(task_id):
     db = Database()
     res = db.get_task_by_id(task_id)
     db.close_db()
-    return res
+    return str(res[0])
 
 
 @app.route("/help/getTasksBySender/<sender_name>")
@@ -244,7 +244,7 @@ def get_tasks_by_sender(sender_name):
     db = Database()
     res = db.get_task_by_sender(sender_name)
     db.close_db()
-    return res
+    return str(res)
 
 
 @app.route("/help/getTasksByReceiver/<receiver_name>")
@@ -259,7 +259,7 @@ def get_tasks_by_receiver(receiver_name):
         for result in task_ids:
             res.append(get_task_by_id(result['task_id']))
         db.close_db()
-        return res
+        return str(res)
 
 
 @app.route("/help/deleteTask", methods=['POST'])
@@ -341,7 +341,7 @@ def get_comment(task_id):
     db = Database()
     res = db.find_comment(task_id)
     db.close_db()
-    return res
+    return str(res)
 
 
 @app.route("/help/getTaskWithoutComment/<user_name>")
@@ -363,7 +363,7 @@ def get_task_without_comment(user_name):
         res = []
         for task_id in need_comment:
             res.append(db.get_task_by_id(task_id))
-        return res
+        return str(res)
 
 
 @app.route("/help/getMessage/<user_name>")
@@ -371,7 +371,7 @@ def get_message(user_name):
     db = Database()
     res = db.find_message(user_name)
     db.close_db()
-    return res
+    return str(res)
 
 
 @app.route("/help/readMessage", methods=['POST'])
@@ -423,7 +423,7 @@ def get_receiver(task_id):
     if not res:
         return '{\'receiver_name\': \'null\'}'
     else:
-        return res
+        return str(res[0])
 
 
 @app.route("/help/isFollow/<user_name>/<follow_name>")
