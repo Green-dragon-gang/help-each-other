@@ -49,7 +49,6 @@ Page({
     wx.request({
       url: url,
       method: "GET",
-      dataType: "json",
       success: res => {
         let data = JSON.parse(res.data.replace(/'/g, "\"")); // ok => res.data
         that.setData({
