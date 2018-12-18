@@ -40,12 +40,15 @@
     <text class='label'>任务状态:  </text>
     <text>{{statusString}}</text>
   </view>
-  <form wx:if="{{task.status === 2 && task.sender_name === this.app.globalData.userInfo.nickName}}">
+  <form wx:if="{{task.status === 2 /*&& task.sender_name === this.app.globalData.userInfo.nickName*/}}" bindsubmit='comment'>
     <view class='section_title'>输入您的评论</view>
     <input name="input" placeholder="输入您的评论" />
+    <view class="btn-area">
+      <button form-type="submit">提交</button>
+    </view>
   </form>
   <view>
-    <button class="{{buttonEnabled ? 'enabledButton' : 'disabledButton'}}" bindtap="getTask">{{buttonLabel}}</button>
+  <button wx:if="{{task.status !== 2 || task.sender_name !== this.app.globalData.userInfo.nickName}}" class="{{buttonEnabled ? 'enabledButton' : 'disabledButton'}}" bindtap="getTask">{{buttonLabel}}</button>
   </view>
 </view>
 

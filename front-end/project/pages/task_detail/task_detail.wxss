@@ -54,3 +54,7 @@
   margin-top: 10px;
   background: gray
 }
+
+input {
+  background: white
+}
