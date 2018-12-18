@@ -1,3 +1,5 @@
+const app = getApp();
+
 Page({
   data: {
     imgUrl: '/img/uploadTask/imgAdd.png',
@@ -12,7 +14,6 @@ Page({
   },
 
   onShow: function() {
-    console.log('show');
     this.setData({
       show: true
     })
@@ -35,6 +36,7 @@ Page({
     this.setData({
       time: e.detail.value
     })
+    console.log()
   },
 
   bindTitleChange: function(e) {
@@ -82,35 +84,59 @@ Page({
   },
 
   release: function() {
-    // 发布
+    let that = this;
+    if (this.data.imgUrl != '/img/uploadTask/imgAdd.png') {
+      wx.uploadFile({
+        url: 'http://129.204.29.200:8080/help/uploadPicture',
+        filePath: this.data.imgUrl,
+        name: 'picture',
+        success: function(res) {
+          console.log("Upload picture succesfully!", res);
+          let imgUrl = JSON.parse(res.data).url;
+          that.uploadTask(imgUrl);
+        }
+      })
+    } else {
+      this.uploadTask(null);
+    }
+
+    // 发布成功 进入任务详情页面
+  },
+
+  // TODO:
+  uploadTask: function(imgUrl) {
+    const data = {
+      sender_name: 'Virgil',
+      title: "代练", //this.data.title,
+      content: "kda达到5", //this.data.content
+      location: "上海市浦东新区世纪大道2001号", //this.data.address,
+      start_time: "2018-12-14 12:09:00", // now
+      end_time: "2018-12-14 15:09:00", // `${this.date} ${this.time}:00`,
+      reward: 10, //this.data.money,
+      tag: 3,
+      picture: imgUrl,
+      target_person_name: "null"
+    }
+
     wx.request({
       url: 'http://129.204.29.200:8080/help/addTask',
       method: "POST",
       header: {
         "content-type": "application/x-www-form-urlencoded"
       },
-      data: {
-        sender_name: '',
-        title: '',
-        content: '',
-        location: '',
-        start_time: '',
-        end_time: '',
-        reward: 0,
-        tag: 0,
-        picture: '',
-        target_person_name: ''
-      },
-      success: function(res) {
+      data: data,
+      success: res => {
+        // TODO:return ID
         console.log(res);
+        app.refreshTasks(() => {
+          wx.reLaunch({
+            url: '/pages/index/index',
+          })
+        });
+      },
+      failed: function(res) {
+        console.log("upload failed!")
       }
-    })
-
-    // 发布成功 进入任务详情页面
-
-
-    wx.navigateBack({
-      delta: 1
     })
   },
 

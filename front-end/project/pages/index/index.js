@@ -18,7 +18,26 @@ Page({
       "timeup": 6,
       "timedown": 7,
     }),
-    filter: 1
+    filter: 1,
+    leftTaskIds: [],
+    rightTaskIds: []
+  },
+
+  onLoad: function() {
+    const keys = Object.keys(app.globalData.tasks);
+    const leftTaskIds = []
+    const rightTaskIds = []
+    keys.forEach((value, index) => {
+      if (index % 2) {
+        rightTaskIds.push(value)
+      } else {
+        leftTaskIds.push(value)
+      }
+    })
+    this.setData({
+      leftTaskIds: leftTaskIds,
+      rightTaskIds: rightTaskIds
+    })
   },
 
   //====================================

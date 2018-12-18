@@ -20,12 +20,10 @@
 
 <view class="container">
   <view class='task-column'>
-    <task></task>
-    <task title="带饭" account="3" username="boc" pictureUrl="/img/test/bd.png"></task>
+    <task wx:for='{{leftTaskIds}}' wx:key='*this' taskId='{{item}}'></task>
   </view>
   <view class='task-column'>
-    <task></task>
-    <task></task>
+    <task wx:for='{{rightTaskIds}}' wx:key='*this' taskId='{{item}}'></task>
   </view>
 </view>
 

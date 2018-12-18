@@ -8,8 +8,8 @@ App({
           wx.getUserInfo({
             success: res => {
               this.globalData.userInfo = res.userInfo;
-
               console.log(this.globalData.userInfo);
+
               // login
               wx.request({
                 url: `http://129.204.29.200:8080/help/login`,
@@ -36,19 +36,30 @@ App({
     });
 
     // get tasks
+    this.refreshTasks(null);
+  },
+
+  refreshTasks: function(f) {
     wx.request({
       url: 'http://129.204.29.200:8080/help/getTasks',
       method: 'GET',
-      success: function(res) {
-        console.log(res.data);
-        // let data = JSON.parse(res.data.replace(/'/g, "\"")); // ok => res.data
-        // console.log(data);
+      dataType: 'json',
+      success: res => {
+        if (res.data != "()") {
+          res.data.forEach(ele => {
+            this.globalData.tasks[ele.task_id] = ele
+          });
+          console.log("Get tasks successfully!", this.globalData.tasks);
+        }
+        if (f)
+          f()
       }
     });
   },
+
   globalData: {
     userInfo: null,
-    tasks: null
+    tasks: {}
   },
 
 })

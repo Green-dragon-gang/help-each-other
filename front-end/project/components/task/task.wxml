@@ -1,5 +1,6 @@
 <!--components/task/task.wxml-->
 <view class='container' bindtap='click'>
+  <!-- lazy load abandoned -->
   <image class='img' mode='widthFix' src='{{pictureUrl}}'></image>
   <view class='textview'>
     <view class='firstRow'>
@@ -12,7 +13,7 @@
       </view>
       <view class='account'>
         <image class='icon' src='/img/task/coin.png'></image>
-        <text>{{account}}</text>
+        <text>{{rewards}}</text>
       </view>
     </view>
   </view>

@@ -1,28 +1,34 @@
 // components/task/task.js
+
+const app = getApp();
+
 Component({
-  properties: { // TODO: 用一个大属性来整合小属性
-    title: {
-      type: String,
-      value: '代练' // 'Loading...'
-    },
-    pictureUrl: {
-      type: String,
-      value: '/img/test/cj.jpg' // no pic
-    },
-    account: {
+  properties: {
+    taskId: {
       type: Number,
-      value: 10
-    },
-    username: {
-      type: String,
-      value: '无名氏'
+      value: -1
     }
+  },
+
+  ready: function(){
+    const task = app.globalData.tasks[this.properties.taskId];
+    this.setData({
+      title: task.title,
+      pictureUrl: task.picture,
+      rewards: task.reward,
+      username: task.sender_name,
+    })
   },
 
   /**
    * 组件的初始数据
    */
-  data: {},
+  data: {
+    title: '代练',
+    pictureUrl: '/img/test/cj.jpg',
+    rewards: 10,
+    username: '无名氏'
+  },
 
   /**
    * 组件的方法列表
