@@ -8,10 +8,12 @@ Page({
     friends: [{
       name: "Jack",
       avatarUrl: '/img/test/t1.png'
-    }, {
+    }
+    , {
       name: "Rose",
       avatarUrl: '/img/test/t3.png'
-    }]
+    }
+    ]
   },
 
   /**

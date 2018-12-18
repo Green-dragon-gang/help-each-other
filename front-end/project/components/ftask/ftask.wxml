@@ -1,19 +1,27 @@
 <!--components/ftask/ftask.wxml-->
-<view class='container' bindtap='click'>
-  <image class='img' mode='aspectFill' src='{{pictureUrl}}'></image>
-  <view class='textview'>
-    <view class='firstRow'>
+<view class='container'>
+
+  <view class='firstRow'>
+    <image class='avatar' src='/img/test/boss.png'></image>
+    <view>
+      <text class='username'>{{username}}\n</text>
+      <text class='timehint'>{{deltaTime}} | 发布了</text>
+    </view>
+  </view>
+
+  <view class='secondRow' bindtap='click'>
+    <image class='img' mode='aspectFill' src='{{pictureUrl}}'></image>
+    <view class='textView'>
       <text class='title'>{{title}}</text>
-    </view>
-    <view class='secondRow'>
-      <view class='username'>
-        <image class='icon' src='/img/test/boss.png'></image>
-        <text>{{username}}</text>
+      <view class='address'>
+        <image class='icon' src='/img/task/position.png'></image>
+        <text>{{address}}</text>
       </view>
-      <view class='account'>
-        <image class='icon' src='/img/task/coin.png'></image>
-        <text>{{account}}</text>
+      <view class='end_time'>
+        <image class='icon' src='/img/task/time.png'></image>
+        <text> {{endTime}}</text>
       </view>
     </view>
+
   </view>
 </view>
