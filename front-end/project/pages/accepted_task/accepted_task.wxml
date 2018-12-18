@@ -2,8 +2,15 @@
 
 <view id='container'>
   <view wx:for='{{tasks}}' wx:key='task_id' class='task'>
-    <text class='title'>{{item.title}}</text>
-    <image src='{{item.sender_avatar}}' class='avatar'></image>
-    <text class='sender_name'>{{item.sender_name}}</text>
+    <image src='{{item.picture}}' class='picture'></image>
+    <view class='textView'>
+      <text class='title'>{{item.title}}\n</text>
+
+    </view>
+    <view class="accepted-line"></view>
+    <view class='textView'>
+      <text>LEFT TIME: \n</text>
+      <text>{{item.left_time}}</text>
+    </view>
   </view>
 </view>

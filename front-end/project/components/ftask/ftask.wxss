@@ -10,13 +10,13 @@
 }
 
 .firstRow {
-  margin-bottom: 20rpx;
+  margin-bottom: 30rpx;
   display: flex;
 }
 
 .avatar {
-  width: 100rpx;
-  height: 100rpx;
+  width: 80rpx;
+  height: 80rpx;
   border-radius: 100rpx;
   margin: 0 10rpx;
 }
@@ -34,6 +34,8 @@
   display: flex;
   flex-flow: row unwrap;
   border: solid lightgray 1rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
   height: 200rpx;
 }
 
@@ -43,7 +45,7 @@
 }
 
 .textView {
-  width: 400rpx;
+  width: 350rpx;
   padding: 15rpx 30rpx;
 }
 
@@ -55,12 +57,12 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  font-size: 0.9em;
+  font-size: 0.8em;
   color: #808080;
-  margin-top: 15rpx;
+  margin-top: 10rpx;
 }
 
 .icon {
-  width: 30rpx;
-  height: 30rpx;
+  width: 20rpx;
+  height: 20rpx;
 }

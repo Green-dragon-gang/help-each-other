@@ -22,6 +22,11 @@
         <text> {{endTime}}</text>
       </view>
     </view>
-
   </view>
+
+  <view class='thirdRow'>
+  
+  
+  </view>
+
 </view>

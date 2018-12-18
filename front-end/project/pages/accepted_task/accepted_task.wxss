@@ -1,7 +1,40 @@
 /* pages/rcv_task/rcv_task.wxss */
 
-.avatar{
+#container {
+  margin: 0 15rpx;
+}
+
+.task {
+  margin: 15rpx 0;
+  height: 250rpx;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.picture {
+  width: 170rpx;
+  height: 100%;
+  border-radius: 10rpx;
+}
+
+.textView {
+  padding: 35rpx 20rpx;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.avatar {
   height: 50rpx;
   width: 50rpx;
   border-radius: 100rpx;
+}
+
+.accepted-line {
+  margin-top: 10px; 
+  height: 220rpx;
+  width: 2rpx;
+  background-color: lightgray;
+  float: right;
 }
