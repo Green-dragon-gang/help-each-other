@@ -6,7 +6,6 @@
     "pages/person/person",
     "pages/friends/friends",
     "pages/upload_task/upload_task",
-    "pages/logs/logs",
     "pages/task_detail/task_detail",
     "pages/notification/notification"
   ],
