@@ -1,1 +1,7 @@
 /* pages/rcv_task/rcv_task.wxss */
+
+.avatar{
+  height: 50rpx;
+  width: 50rpx;
+  border-radius: 100rpx;
+}

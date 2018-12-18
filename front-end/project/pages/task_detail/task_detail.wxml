@@ -17,7 +17,7 @@
   </view>
   <view class='textView'>
     <text class='label'>赏金:  </text>
-    <image class='icon' src='/img/coin.png'></image>
+    <image class='icon' src='/img/task/coin.png'></image>
     <text>{{task.reward}}</text>
   </view>
   <view class='smallTextView'>
@@ -36,8 +36,16 @@
     <text class='label'>标签:  </text>
     <text>{{tagString}}</text>
   </view>
+  <view class='textView'>
+    <text class='label'>任务状态:  </text>
+    <text>{{statusString}}</text>
+  </view>
+  <form wx:if="{{task.status === 2 && task.sender_name === this.app.globalData.userInfo.nickName}}">
+    <view class='section_title'>输入您的评论</view>
+    <input name="input" placeholder="输入您的评论" />
+  </form>
   <view>
-    <button class="{{task.status === 0 ? 'enabledButton' : 'disabledButton'}}" bindtap="acceptTask">{{statusString}}</button>
+    <button class="{{buttonEnabled ? 'enabledButton' : 'disabledButton'}}" bindtap="getTask">{{buttonLabel}}</button>
   </view>
 </view>
 

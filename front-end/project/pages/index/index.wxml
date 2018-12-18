@@ -1,4 +1,6 @@
 <!--index.wxml-->
+<view id='fun'></view>
+
 <view class='filter-row' style='top:{{filterTop}}'>
   <text wx:if="{{filter == filterState.default}}" class='filter-tag filter-focus' bindtap='filterDefaultClick'>默认排序</text>
   <text wx:else class='filter-tag' bindtap='filterDefaultClick'>默认排序</text>

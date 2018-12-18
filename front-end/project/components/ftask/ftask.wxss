@@ -1,0 +1,66 @@
+/* components/ftask/ftask.wxss */
+
+/* components/task/task.wxss */
+
+.container {
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 10rpx 1rpx rgba(51, 51, 51, 0.062);
+  padding: 30rpx;
+}
+
+.firstRow {
+  margin-bottom: 20rpx;
+  display: flex;
+}
+
+.avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 100rpx;
+  margin: 0 10rpx;
+}
+
+.username {
+  font-weight: bold;
+}
+
+.timehint {
+  font-size: 0.9em;
+  color: #808080;
+}
+
+.secondRow {
+  display: flex;
+  flex-flow: row unwrap;
+  border: solid lightgray 1rpx;
+  height: 200rpx;
+}
+
+.img {
+  width: 350rpx;
+  height: 100%;
+}
+
+.textView {
+  width: 400rpx;
+  padding: 15rpx 30rpx;
+}
+
+.title {
+  font-size: 1.1em;
+}
+
+.end_time, .address {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 0.9em;
+  color: #808080;
+  margin-top: 15rpx;
+}
+
+.icon {
+  width: 30rpx;
+  height: 30rpx;
+}

@@ -7,7 +7,7 @@
     </view>
     <view class='secondRow'>
       <view class='username'>
-        <image class='icon' src='/img/task/boss.png'></image>
+        <image class='icon' src='/img/test/boss.png'></image>
         <text>{{username}}</text>
       </view>
       <view class='account'>

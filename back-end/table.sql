@@ -1,7 +1,8 @@
 create table User (
 user_name varchar(63) primary key,
 user_account int default 100 not null,
-new_message int default 0 not null
+new_message int default 0 not null,
+avatar varchar(255) default '/help/getPicture/home/ubuntu/help/picture/defaultAvatar.png'
 ) character set = utf8;
 
 create table Follow (

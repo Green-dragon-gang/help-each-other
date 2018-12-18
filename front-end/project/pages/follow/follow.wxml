@@ -1,0 +1,11 @@
+<!--pages/focus_task/focus_task.wxml-->
+<view id='friendsView' bindtap='friendsClick'>
+  <image id='friendsImg' src='/img/follow/friends.png'></image>
+</view>
+
+<view class='container'>
+  <ftask></ftask>
+  <ftask></ftask>
+  <ftask></ftask>
+  <ftask></ftask>
+</view>

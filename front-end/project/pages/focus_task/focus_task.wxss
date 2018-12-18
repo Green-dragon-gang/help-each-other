@@ -1,9 +1,0 @@
-/* pages/focus_task/focus_task.wxss */
-
-.container {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: flex-start;
-  align-content: flex-start;
-}
