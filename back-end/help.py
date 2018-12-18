@@ -180,7 +180,7 @@ def get_self_info(user_name):
         db.save_user(user_name)
     res = db.find_user(user_name)
     db.close_db()
-    return res
+    return str(res)
 
 
 @app.route("/help/addTask", methods=['POST'])
