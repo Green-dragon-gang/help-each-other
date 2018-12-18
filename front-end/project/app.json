@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/person/person",
     "pages/index/index",
     "pages/upload_task/upload_task",
-    "pages/person/person",
     "pages/focus_task/focus_task", 
     "pages/logs/logs",
     "pages/task_detail/task_detail",

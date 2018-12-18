@@ -1,40 +1,3 @@
-/* .content{
-  background-color: white;
-}
-
-.header{
-  margin-left: 100rpx;
-  margin-top: 100rpx;
-  margin-bottom: 100rpx;
-}
-
-
-.avatarWrap{
-  float: left;
-}
-
-.avatar{
-  border-radius: 50%;
-  overflow: hidden;
-  height: 200rpx;
-  width: 200rpx;
-}
-
-.nickName{
-  float: right;
-  width: 400rpx;
-  margin-top: 40rpx;
-}
-
-.textView{
-  font-family: Ayuthaya;
-  font-size: 60rpx;
-}
-
-.items{
-  margin-top: 200rpx;
-} */
-
 .userinfo {
   display: flex;
   flex-direction: column;
@@ -46,18 +9,19 @@
   height: 150rpx;
 }
 .userinfo-avatar {
-  width: 108rpx;
-  height: 108rpx;
+  width: 158rpx;
+  height: 158rpx;
   margin: 20rpx;
-  margin-top: 80rpx;
+  margin-top: 110rpx;
   border-radius: 50%;
   overflow: hidden;
 }
 .userinfo-nickname {
   color: #fff;
-  margin-bottom: 80rpx;
+  margin-bottom: 110rpx;
 }
-/* 订单 */
+
+
 .order {
   display: flex;
   flex-direction: row;
@@ -73,7 +37,7 @@
 }
 .myorderlook-text {
   font-size: 30rpx;
-  color: gray;
+  color: black;
   position: relative;
   right: 20rpx;
   width: 60%;
@@ -89,7 +53,7 @@
   display: flex;
 }
 .nav-item {
-  width: 25%;
+  width: 50%;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -103,7 +67,7 @@
 .nav-item text {
   margin-top: 20rpx;
   font-size: 25rpx;
-  color: gray;
+  color: black;
 }
 /* 列表 */
 .person-list {
@@ -115,17 +79,22 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  height: 80rpx;
+  height: 100rpx;
 }
 .item-image {
-  width: 40rpx;
-  height: 40rpx;
-  margin: 20rpx;
+  width: 60rpx;
+  height: 60rpx;
+  margin: 40rpx;
 }
 .item-text {
-  color: gray;
-  font-size: 25rpx;
-  margin-left: 20rpx;
+  color: black;
+  font-size: 35rpx;
+  margin-left: 0rpx;
+}
+.account {
+  color: grey;
+  font-size: 35rpx;
+  margin-left: 250rpx;
 }
 .person-line {
   width: 100%;
