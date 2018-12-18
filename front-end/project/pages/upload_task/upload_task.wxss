@@ -38,9 +38,13 @@ textarea {
 }
 
 #releaseBtn {
-  margin-top: 50rpx;
   background: #e22d2d;
   color: white;
+  border-radius: 100rpx;
+  position: absolute;
+  bottom: 70rpx;
+  right: 50rpx;
+  width: 200rpx;
 }
 
 #releaseBtn::after {

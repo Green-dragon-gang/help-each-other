@@ -1,5 +1,5 @@
 <!--pages/focus_task/focus_task.wxml-->
-<view id='friendsView' bindtap='friendsClick'>
+<view id='friendsView' class='{{show && "floatBtn" || "hide"}}' bindtap='friendsClick'>
   <image id='friendsImg' src='/img/follow/friends.png'></image>
 </view>
 
