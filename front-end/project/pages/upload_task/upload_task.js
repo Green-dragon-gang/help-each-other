@@ -82,19 +82,37 @@ Page({
   },
 
   release: function() {
-    wx.navigateBack({
-      delta: 1
-    })
-
     // 发布
+    wx.request({
+      url: 'http://129.204.29.200:8080/help/addTask',
+      method: "POST",
+      header: {
+        "content-type": "application/x-www-form-urlencoded"
+      },
+      data: {
+        sender_name: '',
+        title: '',
+        content: '',
+        location: '',
+        start_time: '',
+        end_time: '',
+        reward: 0,
+        tag: 0,
+        picture: '',
+        target_person_name: ''
+      },
+      success: function(res) {
+        console.log(res);
+      }
+    })
 
     // 发布成功 进入任务详情页面
-  },
 
-  cancel: function() {
+
     wx.navigateBack({
       delta: 1
     })
   },
+
 
 })

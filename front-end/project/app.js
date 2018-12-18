@@ -10,16 +10,20 @@ App({
               this.globalData.userInfo = res.userInfo;
 
               console.log(this.globalData.userInfo);
-
-              const url = `http://129.204.29.200:8080/help/login/${this.globalData.userInfo.nickName}/${this.globalData.userInfo.avatarUrl}`
-              console.log(url);
-
               // login
               wx.request({
-                url: url,
-                method: "GET",
+                url: `http://129.204.29.200:8080/help/login`,
+                method: "POST",
+                header: {
+                  "content-type": "application/x-www-form-urlencoded"
+                },
+                data: {
+                  user_name: res.userInfo.nickName,
+                  avatar: res.userInfo.avatarUrl
+                },
                 success: res => {
-                  console.log("Login successfully!");
+                  if (res.statusCode != 400)
+                    console.log("Login successfully!");
                 }
               });
             },
@@ -31,11 +35,11 @@ App({
       },
     });
 
+    // get tasks
     wx.request({
       url: 'http://129.204.29.200:8080/help/getTasks',
       method: 'GET',
       success: function(res) {
-        console.log
         console.log(res.data);
         // let data = JSON.parse(res.data.replace(/'/g, "\"")); // ok => res.data
         // console.log(data);
