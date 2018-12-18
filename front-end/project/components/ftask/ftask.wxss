@@ -18,7 +18,8 @@
   width: 80rpx;
   height: 80rpx;
   border-radius: 100rpx;
-  margin: 0 10rpx;
+  margin-left: 10rpx;
+  margin-right: 30rpx;
 }
 
 .username {
@@ -26,7 +27,7 @@
 }
 
 .timehint {
-  font-size: 0.9em;
+  font-size: 0.8em;
   color: #808080;
 }
 

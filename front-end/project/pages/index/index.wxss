@@ -5,30 +5,28 @@
   border-radius: 1000rpx;
   right: 60rpx;
   bottom: 70rpx;
-
   height: 0rpx;
   width: 0rpx;
   margin-bottom: -100rpx;
   margin-right: -100rpx;
-
   background-color: #ccc;
   z-index: 4;
-  animation: fun 0.5s;
+  /* animation: fun 0.5s; */
 }
 
 @keyframes fun {
   from {
-  height: 3000rpx;
-  width: 3000rpx;
-  margin-bottom: -1500rpx;
-  margin-right: -1500rpx;
+    height: 3000rpx;
+    width: 3000rpx;
+    margin-bottom: -1500rpx;
+    margin-right: -1500rpx;
   }
 
   to {
-  height: 0rpx;
-  width: 0rpx;
-  margin-bottom: 0rpx;
-  margin-right: 0rpx;
+    height: 0rpx;
+    width: 0rpx;
+    margin-bottom: 0rpx;
+    margin-right: 0rpx;
   }
 }
 
@@ -83,6 +81,7 @@
   justify-content: space-around;
   align-items: center;
   transition: bottom 0.7s;
+
 }
 
 .uploadImg {

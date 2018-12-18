@@ -26,6 +26,7 @@ ftask {
   position: fixed;
   top: 30rpx;
   right: 30rpx;
+  
 }
 
 #friendsImg {

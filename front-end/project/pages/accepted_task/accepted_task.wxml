@@ -1,16 +1,14 @@
 <!--pages/rcv_task/rcv_task.wxml-->
 
 <view id='container'>
-  <view wx:for='{{tasks}}' wx:key='task_id' class='task'>
-    <image src='{{item.picture}}' class='picture'></image>
+  <view wx:for='{{tasks}}' wx:key='task_id' class='task' bindtap='taskClick'>
+    <image src='{{item.picture}}' class='picture' mode='aspectFill' ></image>
     <view class='textView'>
       <text class='title'>{{item.title}}\n</text>
-
-    </view>
-    <view class="accepted-line"></view>
-    <view class='textView'>
-      <text>LEFT TIME: \n</text>
-      <text>{{item.left_time}}</text>
+      <view class='sender'>
+        <text>{{item.sender_name}}</text>
+      </view>
+      <text class='time'>剩余时间：{{item.left_time}}</text>
     </view>
   </view>
 </view>
