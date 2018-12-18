@@ -15,3 +15,35 @@ page {
 task {
   padding: 10rpx;
 }
+
+@keyframes showDraw {
+  from {
+    transform: scale(0.0);
+  }
+
+  to {
+    transform: scale(1.0);
+  }
+}
+
+@keyframes hideDraw {
+  from {
+    opacity: 1.0;
+    transform: scale(1.0);
+  }
+
+  to {
+    opacity: 0.0;
+    transform: scale(0.0);
+  }
+}
+
+.floatBtn {
+  animation: showDraw 0.5s;
+  box-shadow: 0 0 10rpx 2rpx rgba(51, 51, 51, 0.281);
+}
+
+.hide {
+  animation: hideDraw 1.0s;
+  opacity: 0.0;
+}

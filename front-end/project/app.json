@@ -1,13 +1,14 @@
 {
   "pages": [
-    "pages/person/person",
+    "pages/index/index",
     "pages/accepted_task/accepted_task",
     "pages/follow/follow",
-    "pages/index/index",
+    "pages/person/person",
     "pages/friends/friends",
     "pages/upload_task/upload_task",
     "pages/logs/logs",
-    "pages/task_detail/task_detail"
+    "pages/task_detail/task_detail",
+    "pages/notification/notification"
   ],
   "window": {
     "backgroundTextStyle": "light",

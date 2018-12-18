@@ -6,6 +6,7 @@ const app = getApp()
 Page({
 
   data: {
+    show: false,
     filterTop: '0rpx',
     addBottom: '30rpx',
     filterState: Object.freeze({
@@ -100,7 +101,7 @@ Page({
         console.log('hide filter');
         this.setData({
           filterTop: '-72rpx',
-          addBottom: '-100rpx'
+          addBottom: '-110rpx'
         })
       } else if (this.hide && (newPos <= this.topShow || delta < 0)) { // show filter
         this.hide = false;
@@ -111,6 +112,24 @@ Page({
         })
       }
     }
+  },
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function() {
+    this.setData({
+      show: true
+    })
+  },
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function() {
+    this.setData({
+      show: false
+    })
   },
 
   onUploadBtnClick: function() {

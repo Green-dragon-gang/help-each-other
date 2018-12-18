@@ -23,7 +23,7 @@
     <view id='imgView'>
       <image class='uploadImg' src='{{imgUrl}}' bindtap='chooseImg' mode='aspectFill'></image>
     </view>
-    <button id='releaseBtn' bindtap='release'>发布</button>
+    <button class='{{show && "floatBtn" || "hide"}}' id='releaseBtn' bindtap='release'>发布</button>
   </form>
 
 </view>

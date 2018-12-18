@@ -29,7 +29,7 @@
   </view>
 </view>
 
-<view class='uploadView' style='bottom:{{addBottom}}' bindtap='onUploadBtnClick'>
+<view class='uploadView {{show && "floatBtn" || "hide"}}' style='bottom:{{addBottom}}' bindtap='onUploadBtnClick'>
   <image src='/img/home/uploadTask.png' class='uploadImg'></image>
   <text class='uploadText'>发布任务</text>
 </view>
