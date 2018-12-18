@@ -1,6 +1,16 @@
 //app.js
 App({
   onLaunch: function () {
+    wx.request({
+      url: `http://129.204.29.200:8080/help/login/mmm`,
+      method: 'GET',
+      complete: function(res) {
+        console.log(res);
+      }
+    })
+
+
+
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
