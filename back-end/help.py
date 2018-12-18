@@ -150,6 +150,12 @@ class Database:
 
         return result
 
+    def is_follow(self, user_name, follow_name):
+        self.cur.execute("select * from Follow where user_name = '%s' and follow_name = '%s'" % user_name, follow_name)
+        result = self.cur.fetchall()
+
+        return result
+
 
 @app.route("/")
 def hello():
@@ -418,6 +424,17 @@ def get_receiver(task_id):
         return '{\'receiver_name\': \'null\'}'
     else:
         return res
+
+
+@app.route("/help/isFollow/<user_name>/<follow_name>")
+def is_follow(user_name, follow_name):
+    db = Database()
+    res = db.is_follow(user_name, follow_name)
+    db.close_db()
+    if res:
+        return '{\'success\': \'true\'}'
+    else:
+        return '{\'success\': \'false\'}'
 
 
 if __name__ == "__main__":
