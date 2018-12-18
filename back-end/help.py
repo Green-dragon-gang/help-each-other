@@ -1,6 +1,5 @@
 import pymysql
 from flask import Flask, request, make_response
-import datetime
 
 app = Flask(__name__)
 
@@ -138,6 +137,18 @@ class Database:
     def set_task_status(self, task_id, status):
         self.cur.execute("update Task set status = %d where task_id = %d" % status, task_id)
         self.con.commit()
+
+    def get_avatar(self, user_name):
+        self.cur.execute("select (avatar) from User where user_name = '%s'" % user_name)
+        result = self.cur.fetchall()
+
+        return result
+
+    def get_receiver(self, task_id):
+        self.cur.execute("select (receiver_name) from Receiver where task_id = %d" % task_id)
+        result = self.cur.fetchall()
+
+        return result
 
 
 @app.route("/")
@@ -382,6 +393,31 @@ def get_picture(relative_path):
     response = make_response(image_data)
     response.headers['Content-Type'] = 'image/png'
     return response
+
+
+@app.route("/help/getAvatar/<user_name>")
+def get_avatar(user_name):
+    db = Database()
+    res = db.get_avatar(user_name)
+    db.close_db()
+    relative_path = '/help/getPicture/home/ubuntu/help/picture/defaultAvatar.png'
+    if res:
+        relative_path = res[0]['avatar']
+    image_data = open(relative_path, "rb").read()
+    response = make_response(image_data)
+    response.headers['Content-Type'] = 'image/png'
+    return response
+
+
+@app.route("/help/getReceiver/<task_id>")
+def get_receiver(task_id):
+    db = Database()
+    res = db.get_receiver(task_id)
+    db.close_db()
+    if not res:
+        return '{\'receiver_name\': \'null\'}'
+    else:
+        return res
 
 
 if __name__ == "__main__":
