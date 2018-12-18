@@ -11,6 +11,19 @@ Page({
     longitude: -1,
   },
 
+  onShow: function() {
+    console.log('show');
+    this.setData({
+      show: true
+    })
+  },
+
+  onUnload: function() {
+    this.setData({
+      show: false
+    })
+  },
+
   bindDateChange: function(e) {
     console.log('date change:', e.detail.value)
     this.setData({
