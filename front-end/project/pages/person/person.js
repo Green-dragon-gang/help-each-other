@@ -44,13 +44,14 @@ Page({
 
   onReady: function() {
     let that = this;
-    let username = 'test1';
+    let username = app.globalData.userInfo.nickName;
     let url = `http://129.204.29.200:8080/help/getSelfInfo/${username}`;
     wx.request({
       url: url,
       method: "GET",
       success: res => {
-        let data = JSON.parse(res.data.replace(/'/g, "\"")); // ok => res.data
+        console.log('Get my information successfully!');
+        let data = res.data
         that.setData({
           balance: data.user_account,
           info_count: data.new_message,

@@ -11,21 +11,24 @@ App({
 
               console.log(this.globalData.userInfo);
 
+              const url = `http://129.204.29.200:8080/help/login/${this.globalData.userInfo.nickName}/${this.globalData.userInfo.avatarUrl}`
+              console.log(url);
+
               // login
               wx.request({
-                url: `http://129.204.29.200:8080/help/login/${this.globalData.userInfo.nickName}`,
+                url: url,
                 method: "GET",
                 success: res => {
-                  console.log("login successfully!");
+                  console.log("Login successfully!");
                 }
               });
             },
+            fail: res => {
+              console.log('Login failed!');
+            }
           })
         }
       },
-      fail: res => {
-        console.log('login failed!');
-      }
     });
 
     wx.request({
