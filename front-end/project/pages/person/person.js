@@ -4,7 +4,6 @@ const app = getApp()
 Page({
   data: {
     userInfo: {},
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
     nickName: "dasd",
     balance: 0,
     info_count: 0,
@@ -26,32 +25,19 @@ Page({
   },
 
   onLoad: function() {
-
     if (app.globalData.userInfo) {
       this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true,
-      })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true,
-        })
-      }
+        userInfo: app.globalData.userInfo
+      });
     } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
-          app.globalData.userInfo = res.userInfo
+          app.globalData.userInfo = res.userInfo;
           this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true,
-          })
+            userInfo: res.userInfo
+          });
         }
-      })
+      });
     }
 
   },
@@ -65,7 +51,7 @@ Page({
       method: "GET",
       dataType: "json",
       success: res => {
-        let data = JSON.parse(res.data.replace(/'/g, "\""));
+        let data = JSON.parse(res.data.replace(/'/g, "\"")); // ok => res.data
         that.setData({
           balance: data.user_account,
           info_count: data.new_message,
