@@ -35,7 +35,6 @@ App({
       }
     })
 
-    console.log(this.globalData.userInfo);
 
     //全局login
     //todo 把test1改成用户名

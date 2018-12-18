@@ -1,5 +1,4 @@
 // pages/person.js
-//获取应用实例
 const app = getApp()
 
 Page({
@@ -9,8 +8,7 @@ Page({
     nickName: "dasd",
     balance: 0,
     info_count: 0,
-    orderItems: [
-      {
+    orderItems: [{
         typeId: 0,
         name: '发布的任务',
         url: 'bill',
@@ -24,23 +22,11 @@ Page({
         imageurl: '../../img/person/fahuo.png',
         tap: "onAccepted"
       },
-      // {
-      //   typeId: 2,
-      //   name: '待收货',
-      //   url: 'bill',
-      //   imageurl: '../../img/person/shouhuo.png'
-      // },
-      // {
-      //   typeId: 3,
-      //   name: '待评价',
-      //   url: 'bill',
-      //   imageurl: '../../img/person/pingjia.png'
-      // }
     ],
   },
 
   onLoad: function() {
-    
+
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -70,38 +56,29 @@ Page({
 
   },
 
-  onReady: function(){
+  onReady: function() {
     let that = this;
+    let username = 'test1';
+    let url = `http://129.204.29.200:8080/help/getSelfInfo/${username}`;
     wx.request({
-      url: 'http://129.204.29.200:8080/help/getSelfInfo/test1',
+      url: url,
       method: "GET",
       dataType: "json",
       success: res => {
-        console.log(res.data);
-        let ddata = res.data.replace("'",'"');
-        ddata = ddata.replace(" ", "");
-
-        console.log(JSON.parse(ddata));
+        let data = JSON.parse(res.data.replace(/'/g, "\""));
         that.setData({
-          balance: res.data.user_account,
-          info_count: res.data.new_message,
+          balance: data.user_account,
+          info_count: data.new_message,
         })
-      }
+      },
     })
   },
 
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
-  },
-  onRelease: function () {
+  onRelease: function() {
 
   },
-  onAccepted: function (){
+
+  onAccepted: function() {
     wx.switchTab({
       url: '/pages/accepted_task/accepted_task',
     })
