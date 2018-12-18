@@ -3,6 +3,7 @@ Page({
     imgUrl: '/img/uploadTask/imgAdd.png',
     title: '',
     date: '',
+    time: '',
     address: '',
     money: 0,
 
@@ -10,10 +11,16 @@ Page({
     longitude: -1,
   },
 
-  bindTimeChange: function(e) {
+  bindDateChange: function(e) {
     console.log('date change:', e.detail.value)
     this.setData({
       date: e.detail.value
+    })
+  },
+  bindTimeChange: function(e) {
+    console.log('time change:', e.detail.value)
+    this.setData({
+      time: e.detail.value
     })
   },
 

@@ -3,9 +3,12 @@
 <view id='container'>
   <form>
     <input class='input' placeholder='标题' type='text' confirm-type='done' bindinput="bindTitleChange"></input>
-    <view class="input">
-      <picker mode="date" value="{{date}}" bindchange="bindTimeChange">
-        <input placeholder='期限时间' value='{{date}}' disabled='true'> </input>
+    <view class="input timeinput">
+      <picker mode="date" value="{{date}}" bindchange="bindDateChange"  id='date'>
+        <input placeholder='期限日期' value='{{date}}' disabled='true'> </input>
+      </picker>
+      <picker mode="time" value='{{time}}' bindchange='bindTimeChange' id='time'>
+        <input placeholder='时间' value='{{time}}' disabled='true'> </input>
       </picker>
     </view>
     <view class="input">

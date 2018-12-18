@@ -1,66 +1,20 @@
 // pages/rcv_task/rcv_task.js
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-
+    tasks: [{
+      task_id: 1,
+      title: '打败拿破仑',
+      picture: '/img/test/cj.jpg',
+      end_time: 'Dec-15-2018 15:09:00',
+      sender_name: '亚历山大一世',
+      sender_avatar: '/img/test/boss.png',
+      status: 1,
+      left_time: '3 小时',
+    }]
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  onLoad: function() {
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

@@ -10,6 +10,15 @@
   border-bottom: solid #ccc 1rpx;
 }
 
+.timeinput {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+picker#time, picker#date {
+  width: 50%;
+}
+
 textarea {
   padding: 10rpx 10rpx;
   width: 100%;
@@ -23,7 +32,7 @@ textarea {
 .uploadImg {
   width: 200rpx;
   height: 200rpx;
-  background-color: #eeeeee;
+  background-color: #eee;
   /* border-radius: 10rpx;
   border: solid #ccc 4rpx; */
 }
