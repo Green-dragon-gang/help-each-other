@@ -1,5 +1,37 @@
 /**index.wxss**/
 
+#fun {
+  position: fixed;
+  border-radius: 1000rpx;
+  right: 60rpx;
+  bottom: 70rpx;
+
+  height: 0rpx;
+  width: 0rpx;
+  margin-bottom: -100rpx;
+  margin-right: -100rpx;
+
+  background-color: #ccc;
+  z-index: 4;
+  animation: fun 0.8s;
+}
+
+@keyframes fun {
+  from {
+  height: 3000rpx;
+  width: 3000rpx;
+  margin-bottom: -1500rpx;
+  margin-right: -1500rpx;
+  }
+
+  to {
+  height: 0rpx;
+  width: 0rpx;
+  margin-bottom: 0rpx;
+  margin-right: 0rpx;
+  }
+}
+
 .container {
   margin-top: 70rpx;
   overflow: hidden;
@@ -37,7 +69,7 @@
 }
 
 .uploadView {
-  z-index: 1;
+  z-index: 3;
   position: fixed;
   right: 30rpx;
   bottom: 20rpx;

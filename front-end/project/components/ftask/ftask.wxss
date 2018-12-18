@@ -1,0 +1,54 @@
+/* components/ftask/ftask.wxss */
+/* components/task/task.wxss */
+
+.container {
+  border-radius: 10rpx;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 0 10rpx 2rpx rgba(51, 51, 51, 0.281);
+}
+
+.img {
+  width: 100%;
+  height: 400rpx;
+}
+
+.textview {
+  font-family: "Microsoft YaHei";
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}
+
+.firstRow {
+  margin-bottom: 10rpx;
+  width: 100%;
+}
+
+.secondRow {
+  height: 50rpx;
+}
+
+.title {
+  font-size: 1.0em;
+  font-weight: bold;
+}
+
+.username {
+  float: left;
+  font-size: 0.75em;
+  width: 60%;
+  overflow: hidden;
+}
+
+.icon {
+  width: 25rpx;
+  height: 25rpx;
+  margin: 0 10rpx;
+}
+
+.account {
+  float: right;
+  font-size: 0.75em;
+  overflow: hidden;
+  margin-right: 10rpx;
+}

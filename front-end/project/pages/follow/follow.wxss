@@ -1,0 +1,35 @@
+/* pages/focus_task/focus_task.wxss */
+
+.container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+  padding: 10rpx 20rpx
+}
+
+ftask {
+  width: 100%;
+  margin-bottom: 20rpx;
+}
+
+#friendsView {
+  border: solid #325d79 5rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #325d79;
+
+  position: fixed;
+  top: 30rpx;
+  right: 30rpx;
+}
+
+#friendsImg {
+  height: 50rpx;
+  width: 50rpx;
+}

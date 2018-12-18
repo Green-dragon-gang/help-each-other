@@ -1,0 +1,21 @@
+/* pages/friends/friends.wxss */
+
+.container {
+  margin-top: 1rpx;
+}
+
+.friendView {
+  background-color: white;
+  border-bottom: solid #ccc 1rpx;
+  display: flex;
+  align-items: center;
+  height: 150rpx;
+}
+
+.friendImg {
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 100rpx;
+  border: solid #ccc 2rpx;
+  margin: 0 20rpx;
+}

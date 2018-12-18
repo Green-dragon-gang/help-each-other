@@ -1,9 +1,10 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/friends/friends",
+    "pages/follow/follow",
     "pages/upload_task/upload_task",
     "pages/person/person",
-    "pages/focus_task/focus_task", 
     "pages/logs/logs",
     "pages/task_detail/task_detail",
     "pages/accepted_task/accepted_task"
@@ -29,7 +30,7 @@
         "selectedIconPath": "/img/tabbar/clipboard-s.png"
       },
       {
-        "pagePath": "pages/focus_task/focus_task",
+        "pagePath": "pages/follow/follow",
         "text": "Follow",
         "iconPath": "/img/tabbar/friendTask-us.png",
         "selectedIconPath": "/img/tabbar/friendTask-s.png"
