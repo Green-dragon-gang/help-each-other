@@ -7,19 +7,22 @@ Page({
     userInfo: {},
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     nickName: "dasd",
-    account: 0,
+    balance: 0,
+    info_count: 0,
     orderItems: [
       {
         typeId: 0,
         name: '发布的任务',
         url: 'bill',
         imageurl: '../../img/person/fukuan.png',
+        tap: "onRelease"
       },
       {
         typeId: 2,
         name: '接受的任务',
         url: 'bill',
         imageurl: '../../img/person/fahuo.png',
+        tap: "onAccepted"
       },
       // {
       //   typeId: 2,
@@ -35,8 +38,6 @@ Page({
       // }
     ],
   },
-
-
 
   onLoad: function() {
     
@@ -68,17 +69,27 @@ Page({
     }
 
   },
+
   onReady: function(){
-    wx.getSetting({
-      success: res=>{
-        wx.getUserInfo({
-          success: res =>{
-            console.log(res.userInfo)
-          }
+    let that = this;
+    wx.request({
+      url: 'http://129.204.29.200:8080/help/getSelfInfo/test1',
+      method: "GET",
+      dataType: "json",
+      success: res => {
+        console.log(res.data);
+        let ddata = res.data.replace("'",'"');
+        ddata = ddata.replace(" ", "");
+
+        console.log(JSON.parse(ddata));
+        that.setData({
+          balance: res.data.user_account,
+          info_count: res.data.new_message,
         })
       }
     })
   },
+
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
@@ -87,9 +98,12 @@ Page({
       hasUserInfo: true
     })
   },
-  toOrder: function () {
+  onRelease: function () {
+
+  },
+  onAccepted: function (){
     wx.switchTab({
       url: '/pages/accepted_task/accepted_task',
     })
-  },
+  }
 })

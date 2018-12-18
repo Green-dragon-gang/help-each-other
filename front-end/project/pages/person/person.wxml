@@ -3,7 +3,7 @@
 <view class="container">
   <view class="userinfo">
     <view class="userinfo-avatar" background-size="cover">
-      <open-data  type="userAvatarUrl"></open-data>
+      <open-data type="userAvatarUrl"></open-data>
     </view>
     
     <view class="userinfo-nickname">
@@ -22,7 +22,7 @@
 
   <view class="navs">
     <block wx:for-items="{{orderItems}}" wx:key="name">
-      <view class="nav-item" catchtap="toOrder" data-type="{{item.name}}" data-typeid="{{item.typeId}}">
+      <view class="nav-item" bindtap="{{item.tap}}" data-type="{{item.name}}" data-typeid="{{item.typeId}}">
         <image src="{{item.imageurl}}" class="nav-image" />
         <text>{{item.name}}</text>
       </view>
@@ -34,7 +34,7 @@
     <view class="list-item">
       <image class="item-image" src="../../img/person/ic_collection.png"></image>
       <text class="item-text">我的余额</text>
-      <text class="account">{{nickName}}</text>
+      <text class="account">{{balance}}</text>
     </view>
     <view class="person-line"></view>
     <view class="list-item">
@@ -56,7 +56,6 @@
       <image class="item-image" src="../../img/person/ic_more_move.png"></image>
       <text class="item-text">推广邀请</text>
     </view> -->
-
   </view>
   <view class="separate"></view>
 </view>
