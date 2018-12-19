@@ -1,6 +1,6 @@
 // pages/task_detail/task_detail.js
 let app = getApp();
-let nickName = "zfm"
+let nickName = "hyzzzzzz"
 
 Page({
 
@@ -13,7 +13,8 @@ Page({
     buttonEnabled: false,
     buttonLabel: "",
     receiver_name: "",
-    sender_avatar: ""
+    sender_avatar: "",
+    task_id: -1,
   },
 
   follow: function (event) {
@@ -25,11 +26,11 @@ Page({
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
-      data: {user_name: this.data.task.sender_name, follow_name: nickName},
+      data: {user_name: nickName, follow_name: this.data.task.sender_name},
       success: res => {
         if (res.data.success) {
           wx.showToast({
-            title: that.data.isFollow ? '关注成功' : '取消关注成功',
+            title: that.data.isFollow ? '取消关注成功' : '关注成功',
             duration: 1000,
           })
           that.setData({
@@ -41,70 +42,82 @@ Page({
   },
 
   handleTask: function (event) {
+    if (!this.data.buttonEnabled)
+      return
     let that = this
-    if (this.data.buttonEnabled) {
-      if (this.data.task.status === 0)
-        wx.request({
-          url: 'http://129.204.29.200:8080/help/acceptTask',
-          method: "POST",
-          header: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
-          data: {task_id: this.data.task.task_id, receiver_name: nickName},
-          success: res => {
-            if (res.data.success) {
-              wx.request({
-                url: `http://129.204.29.200:8080/help/getReceiver/${task_id}`,
-                method: "GET",
-                dataType: "json",
-                success: res => {
-                  that.setData({
-                    receiver_name: res.data.receiver_name
-                  })
-                },
-              })
-              wx.request({
-                url: `http://129.204.29.200:8080/help/getTaskById/${task_id}`,
-                method: "GET",
-                dataType: "json",
-                success: res => {
-                  that.setData({
-                    task: res.data.task[0]
-                  })
-                  app.globalData.tasks[task_id] = res.data.task[0]
-                  that.handelStatus()
-                }
-              })
-            }
-          },
-        }) 
-      else
-        wx.request({
-          url: 'http://129.204.29.200:8080/help/finishTask',
-          method: "POST",
-          header: {
-            "Content-Type": "application/x-www-form-urlencoded"
-          },
-          data: { task_id: this.data.task.task_id},
-          success: res => {
-            if (res.data.success) {
-              wx.request({
-                url: `http://129.204.29.200:8080/help/getTaskById/${task_id}`,
-                method: "GET",
-                dataType: "json",
-                success: res => {
-                  that.setData({
-                    task: res.data.task[0]
-                  })
-                  app.globalData.tasks[task_id] = res.data.task[0]
-                  that.handelStatus()
-                }
-              })
-            }
-          },
-        }) 
-          
-    }
+    if (this.data.task.status === 0)
+      wx.request({
+        url: 'http://129.204.29.200:8080/help/acceptTask',
+        method: "POST",
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        data: {task_id: this.data.task.task_id, receiver_name: nickName},
+        success: res => {
+          if (res.data.success) {
+            wx.request({
+              url: `http://129.204.29.200:8080/help/getReceiver/${that.data.task_id}`,
+              method: "GET",
+              dataType: "json",
+              success: res => {
+                that.setData({
+                  receiver_name: res.data.receiver_name
+                })
+                that.handelStatus()
+              },
+            })
+            wx.request({
+              url: `http://129.204.29.200:8080/help/getTaskById/${that.data.task_id}`,
+              method: "GET",
+              dataType: "json",
+              success: res => {
+                console.log(res)
+                that.setData({
+                  task: res.data
+                })
+                app.globalData.tasks[that.data.task_id] = res.data
+                that.handelStatus()
+              }
+            })
+          }
+        },
+      })
+    else
+      wx.request({
+        url: 'http://129.204.29.200:8080/help/finishTask',
+        method: "POST",
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        data: {task_id: this.data.task.task_id},
+        success: res => {
+          if (res.data.success) {
+            wx.request({
+              url: `http://129.204.29.200:8080/help/getReceiver/${that.data.task_id}`,
+              method: "GET",
+              dataType: "json",
+              success: res => {
+                that.setData({
+                  receiver_name: res.data.receiver_name
+                })
+                that.handelStatus()
+              },
+            })
+            wx.request({
+              url: `http://129.204.29.200:8080/help/getTaskById/${that.data.task_id}`,
+              method: "GET",
+              dataType: "json",
+              success: res => {
+                that.setData({
+                  task: res.data
+                })
+                app.globalData.tasks[that.data.task_id] = res.data
+                that.handelStatus()
+              }
+            })
+          }
+        },
+      })
   },
 
   comment: function (event) {
@@ -139,7 +152,6 @@ Page({
   },
 
   handelStatus() {
-    console.log("nickName", app.globalData.userInfo);
     switch (this.data.task.status) {
       case 0:
         // if (this.data.task.sender_name === app.globalData.userInfo.nickName)
@@ -157,8 +169,11 @@ Page({
           })
         break
       case 1:
+        console.log("receiver_name", this.data.receiver_name)
+        console.log("nickName", nickName)
+        console.log("isTrue", this.data.receiver_name === nickName)
         // if (this.data.task.receiver_name === app.globalData.userInfo.nickName)
-        if (this.data.task.receiver_name === nickName)
+        if (this.data.receiver_name === nickName)
           this.setData({
             statusString: "进行中",
             buttonEnabled: true,
@@ -188,14 +203,14 @@ Page({
   },
 
   onLoad: function (options) {
-    let task_id = options.task_id
     this.setData({
-      task: app.globalData.tasks[task_id],
+      task_id: options.task_id,
+      task: app.globalData.tasks[options.task_id],
     })
 
     let that = this
     wx.request({
-      url: `http://129.204.29.200:8080/help/isFollow/${this.data.task.receiver_name}/${ this.data.task.sender_name}`,
+      url: `http://129.204.29.200:8080/help/isFollow/${nickName}/${ this.data.task.sender_name}`,
       method: "GET",
       dataType: "json",
       success: res => {
@@ -207,13 +222,14 @@ Page({
     })
 
     wx.request({
-      url: `http://129.204.29.200:8080/help/getReceiver/${task_id}`,
+      url: `http://129.204.29.200:8080/help/getReceiver/${this.data.task_id}`,
       method: "GET",
       dataType: "json",
       success: res => {
         that.setData({
           receiver_name: res.data.receiver_name
         })
+        that.handelStatus()
       },
     })
     wx.request({
