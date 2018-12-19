@@ -27,16 +27,15 @@ Page({
     app.refreshTasks(() => {
       const keys = Object.keys(app.globalData.tasks);
       const tasks = this.data.tasks;
-      keys.forEach(id => {
+      keys.forEach((id, index) => {
         tasks.push({
           id: id,
-          show: false
+          show: index < 6 ? true : false
         })
       })
       this.setData({
         tasks
       })
-      console.log(this.data.tasks);
     })
   },
 
@@ -154,7 +153,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.loadPictures()
     this.setData({
       show: true
     })

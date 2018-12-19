@@ -20,7 +20,7 @@ Component({
       if (task)
         this.setData({
           title: task.title,
-          pictureUrl: task.picture,
+          pictureUrl: task.picture == "null" ? this.data.defaultUrl : task.picture,
           rewards: task.reward,
           username: task.sender_name,
         })
@@ -42,12 +42,13 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    click: function() {
+    click: function () {
+      console.log(`../task_detail/task_detail?task_id=${this.properties.taskId}`)
       wx.navigateTo({
         url: `../task_detail/task_detail?task_id=${this.properties.taskId}`,
-        success: function(res) {},
-        fail: function(res) {},
-        complete: function(res) {},
+        success: function (res) {},
+        fail: function (res) {},
+        complete: function (res) {},
       })
     }
   },
