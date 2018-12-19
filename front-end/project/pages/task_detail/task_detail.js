@@ -165,13 +165,10 @@ Page({
           this.setData({
             statusString: "待完成",
             buttonEnabled: true,
-            buttonLabel: "抢单"
+            buttonLabel: "接受委托"
           })
         break
       case 1:
-        console.log("receiver_name", this.data.receiver_name)
-        console.log("nickName", nickName)
-        console.log("isTrue", this.data.receiver_name === nickName)
         // if (this.data.task.receiver_name === app.globalData.userInfo.nickName)
         if (this.data.receiver_name === nickName)
           this.setData({
