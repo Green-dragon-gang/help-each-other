@@ -11,7 +11,7 @@
         <image class='avatar' src='{{avatar}}'></image>
         <text>{{username}}</text>
       </view>
-      <view class='account'>
+      <view class='rewards'>
         <image class='icon' src='/img/task/coin.png'></image>
         <text>{{rewards}}</text>
       </view>
