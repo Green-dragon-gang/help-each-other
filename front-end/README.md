@@ -8,19 +8,15 @@
 
 ### TODO
 
-- Friends
-  - 删除按钮
-  - 交互逻辑
 - UploadTask
   - 填写逻辑
 - Accepted
-  - 显示逻辑
-- Follow
   - 显示逻辑
 
 
 
 - Me
-
-
+  - UI 更新
+- task detail
+  - UI 美化
 

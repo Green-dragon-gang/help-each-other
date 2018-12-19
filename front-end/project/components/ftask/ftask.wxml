@@ -2,10 +2,10 @@
 <view class='container'>
 
   <view class='firstRow'>
-    <image class='avatar' src='/img/test/boss.png'></image>
+    <image class='avatar' src='{{avatar}}'></image>
     <view>
       <text class='username'>{{username}}\n</text>
-      <text class='timehint'>{{deltaTime}} | 发布了</text>
+      <text class='timehint'>{{deltaTime}}前 | 发布了</text>
     </view>
   </view>
 

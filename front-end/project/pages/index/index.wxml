@@ -9,9 +9,9 @@
   <!-- <text wx:if="{{filter == filterState.distanceup}}" class='filter-tag filter-focus' bindtap='filterDistanceClick'>距离↑</text>
   <text wx:elif="{{filter == filterState.distancedown}}" class='filter-tag filter-focus' bindtap='filterDistanceClick'>距离↓</text>
   <text wx:else class='filter-tag' bindtap='filterDistanceClick'>距离</text> -->
-  <text wx:if="{{filter == filterState.timeup}}" class='filter-tag filter-focus' bindtap='filterTimeClick'>时间↑</text>
-  <text wx:elif="{{filter == filterState.timedown}}" class='filter-tag filter-focus' bindtap='filterTimeClick'>时间↓</text>
-  <text wx:else class='filter-tag' bindtap='filterTimeClick'>时间</text>
+  <text wx:if="{{filter == filterState.timeup}}" class='filter-tag filter-focus' bindtap='filterTimeClick'>剩余时间↑</text>
+  <text wx:elif="{{filter == filterState.timedown}}" class='filter-tag filter-focus' bindtap='filterTimeClick'>剩余时间↓</text>
+  <text wx:else class='filter-tag' bindtap='filterTimeClick'>剩余时间</text>
 </view>
 
 

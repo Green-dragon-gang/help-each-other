@@ -8,11 +8,8 @@ Page({
    */
   data: {
     friends: [{
-      name: "Jack",
+      name: "TestName",
       avatarUrl: '/img/test/t1.png'
-    }, {
-      name: "Rose",
-      avatarUrl: '/img/test/t3.png'
     }]
   },
 
@@ -57,6 +54,7 @@ Page({
     })
   },
 
+  // refresh follows from host, fetch avatar urls, and put them into data
   refreshFollows: function() {
     if (app.globalData.userInfo) {
       const nickName = app.globalData.userInfo.nickName

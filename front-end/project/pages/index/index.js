@@ -21,7 +21,7 @@ Page({
   },
 
   // init ids
-  onLoad: function () {
+  onLoad: function() {
     app.refreshTasks(() => {
       const keys = Object.keys(app.globalData.tasks);
       const taskIds = this.data.taskIds;
@@ -41,45 +41,42 @@ Page({
   //====================================
   // methods to handle filter click
   //====================================
-  filterDefaultClick: function () {
+  filterDefaultClick: function() {
     console.log('default');
     wx.vibrateShort()
     this.setData({
       filter: this.data.filterState.default
     })
-    this.tasksSort('task_id', 'down')
+    this.tasksSort((a, b) => app.globalData.tasks[a.id].task_id - app.globalData.tasks[b.id].task_id)
   },
 
-  tasksSort: function (attr, order) {
+  tasksSort: function(compare) {
     const taskIds = this.data.taskIds;
-    taskIds.sort((a, b) => {
-      let t1 = app.globalData.tasks[a.id]
-      let t2 = app.globalData.tasks[b.id]
-      return order == 'up' ? t2[attr] - t1[attr] : t1[attr] - t2[attr]
-    })
+    taskIds.sort(compare)
     for (let i = 0; i < 6; i++) taskIds[i].show = true;
     this.setData({
       taskIds
     })
+    console.log(this.data.taskIds)
   },
 
-  filterMoneyClick: function () {
+  filterMoneyClick: function() {
     console.log('reward');
     wx.vibrateShort()
     if (this.data.filter == this.data.filterState.moneyup) {
-      this.tasksSort('reward', 'down')
+      this.tasksSort((a, b) => app.globalData.tasks[a.id].reward - app.globalData.tasks[b.id].reward)
       this.setData({
         filter: this.data.filterState.moneydown
       });
     } else {
-      this.tasksSort('reward', 'up')
+      this.tasksSort((a, b) => app.globalData.tasks[b.id].reward - app.globalData.tasks[a.id].reward)
       this.setData({
         filter: this.data.filterState.moneyup
       });
     }
   },
 
-  filterDistanceClick: function () {
+  filterDistanceClick: function() {
     console.log('distance');
     wx.vibrateShort()
     if (this.data.filter == this.data.filterState.distanceup)
@@ -92,16 +89,17 @@ Page({
       });
   },
 
-  filterTimeClick: function () {
+  filterTimeClick: function() {
     console.log('time');
     wx.vibrateShort()
+    const currentDate = new Date()
     if (this.data.filter == this.data.filterState.timeup) {
-      this.tasksSort('end_time', 'down')
+      this.tasksSort((a, b) => new Date(app.globalData.tasks[a.id].end_time) - new Date(app.globalData.tasks[b.id].end_time))
       this.setData({
         filter: this.data.filterState.timedown
       });
     } else {
-      this.tasksSort('end_time', 'up')
+      this.tasksSort((a, b) => new Date(app.globalData.tasks[b.id].end_time) - new Date(app.globalData.tasks[a.id].end_time))
       this.setData({
         filter: this.data.filterState.timeup
       });
@@ -115,7 +113,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
     //refresh
     console.log('pull down');
   },
@@ -123,7 +121,7 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     console.log('reach bottom');
   },
 
@@ -132,7 +130,7 @@ Page({
   thred: 50,
   topShow: 50,
   hide: false,
-  onPageScroll: function (o) {
+  onPageScroll: function(o) {
     let newPos = o.scrollTop;
     let delta = newPos - this.lastPos
 
@@ -158,7 +156,7 @@ Page({
     this.loadPictures()
   },
 
-  loadPictures: function () {
+  loadPictures: function() {
     const taskIds = this.data.taskIds;
     taskIds.forEach(item => {
       wx.createIntersectionObserver().relativeToViewport().observe(`#task-${item.id}`, (result) => {
@@ -174,7 +172,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     this.setData({
       show: true
     })
@@ -183,13 +181,13 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
     this.setData({
       show: false
     })
   },
 
-  onUploadBtnClick: function () {
+  onUploadBtnClick: function() {
     wx.vibrateShort()
     wx.navigateTo({
       url: '/pages/upload_task/upload_task',
