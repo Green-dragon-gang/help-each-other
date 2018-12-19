@@ -19,38 +19,39 @@ Page({
       "timedown": 7,
     }),
     filter: 1,
-    leftTaskIds: [],
-    rightTaskIds: []
+    tasks: []
   },
 
-  onLoad: function() {
-    const keys = Object.keys(app.globalData.tasks);
-    const leftTaskIds = []
-    const rightTaskIds = []
-    keys.forEach((value, index) => {
-      if (index % 2) {
-        rightTaskIds.push(value)
-      } else {
-        leftTaskIds.push(value)
-      }
-    })
-    this.setData({
-      leftTaskIds: leftTaskIds,
-      rightTaskIds: rightTaskIds
+  // init ids
+  onLoad: function () {
+    app.refreshTasks(() => {
+      const keys = Object.keys(app.globalData.tasks);
+      const tasks = this.data.tasks;
+      keys.forEach(id => {
+        tasks.push({
+          id: id,
+          show: false
+        })
+      })
+      this.setData({
+        tasks
+      })
+      console.log(this.data.tasks);
     })
   },
+
 
   //====================================
   // methods to handle filter click
   //====================================
-  filterDefaultClick: function() {
+  filterDefaultClick: function () {
     console.log('default');
     this.setData({
       filter: this.data.filterState.default
     })
   },
 
-  filterMoneyClick: function() {
+  filterMoneyClick: function () {
     console.log('money');
     if (this.data.filter == this.data.filterState.moneyup)
       this.setData({
@@ -62,7 +63,7 @@ Page({
       });
   },
 
-  filterDistanceClick: function() {
+  filterDistanceClick: function () {
     console.log('distance');
     if (this.data.filter == this.data.filterState.distanceup)
       this.setData({
@@ -74,7 +75,7 @@ Page({
       });
   },
 
-  filterTimeClick: function() {
+  filterTimeClick: function () {
     console.log('time');
     if (this.data.filter == this.data.filterState.timeup)
       this.setData({
@@ -93,7 +94,7 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
     //refresh
     console.log('pull down');
   },
@@ -101,18 +102,20 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
     console.log('reach bottom');
   },
 
-  // handle hiding and showing event for filter and add-button during scrolling 
+  //
   lastPos: 0,
   thred: 50,
   topShow: 50,
   hide: false,
-  onPageScroll: function(o) {
+  onPageScroll: function (o) {
     let newPos = o.scrollTop;
     let delta = newPos - this.lastPos
+
+    // handle hiding and showing event for filter and add-button during scrolling 
     if (delta > this.thred || delta < -this.thred) {
       this.lastPos = newPos;
       if (!this.hide && newPos > this.topShow && delta > 0) { // hide filter
@@ -131,12 +134,27 @@ Page({
         })
       }
     }
+    this.loadPictures()
+  },
+
+  loadPictures: function () {
+    const tasks = this.data.tasks;
+    tasks.forEach(item => {
+      wx.createIntersectionObserver().relativeToViewport().observe(`#task-${item.id}`, (result) => {
+        if (result.intersectionRatio > 0)
+          item.show = true
+      })
+    })
+    this.setData({
+      tasks
+    })
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
+    this.loadPictures()
     this.setData({
       show: true
     })
@@ -145,13 +163,13 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
     this.setData({
       show: false
     })
   },
 
-  onUploadBtnClick: function() {
+  onUploadBtnClick: function () {
     wx.navigateTo({
       url: '/pages/upload_task/upload_task',
     })

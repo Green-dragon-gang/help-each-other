@@ -36,10 +36,10 @@ App({
     });
 
     // get tasks
-    this.refreshTasks(null);
+    // this.refreshTasks(null);
   },
 
-  refreshTasks: function(f) {
+  refreshTasks: function(callback) {
     wx.request({
       url: 'http://129.204.29.200:8080/help/getTasks',
       method: 'GET',
@@ -51,8 +51,8 @@ App({
           });
           console.log("Get tasks successfully!", this.globalData.tasks);
         }
-        if (f)
-          f()
+        if (callback)
+          callback()
       }
     });
   },
