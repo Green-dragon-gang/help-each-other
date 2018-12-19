@@ -1,11 +1,9 @@
 /* components/ftask/ftask.wxss */
 
-/* components/task/task.wxss */
-
 .container {
   overflow: hidden;
   background: white;
-  box-shadow: 0 0 10rpx 1rpx rgba(51, 51, 51, 0.062);
+  box-shadow: 0 0 5rpx 5rpx rgba(51, 51, 51, 0.062);
   padding: 30rpx;
 }
 
@@ -34,10 +32,9 @@
 .secondRow {
   display: flex;
   flex-flow: row unwrap;
-  border: solid lightgray 1rpx;
   border-radius: 10rpx;
   overflow: hidden;
-  box-shadow: 0 0 10rpx 2rpx rgba(51, 51, 51, 0.281);
+  box-shadow: 0 0 4rpx 1rpx rgba(51, 51, 51, 0.281);
   height: 200rpx;
 }
 

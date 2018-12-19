@@ -8,7 +8,7 @@ Page({
    */
   data: {
     show: false,
-    taskIds: [20, 21]
+    taskIds: []
   },
 
   friendsClick: function() {
@@ -35,7 +35,7 @@ Page({
     })
   },
 
-  onReady: function() {
+  onLoad: function() {
     this.refreshFollows();
   },
 
