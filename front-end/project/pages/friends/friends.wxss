@@ -7,10 +7,16 @@
 .friendView {
   background-color: white;
   border-bottom: solid #ccc 1rpx;
-  display: flex;
-  align-items: center;
   width: 100%;
   height: 150rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nameAvatarWrapper {
+  display: flex;
+  align-items: center;
 }
 
 .friendImg {
@@ -19,4 +25,11 @@
   border-radius: 100rpx;
   border: solid #ccc 2rpx;
   margin: 0 20rpx;
+}
+
+.deleteBtn {
+  height: 50rpx;
+  width: 50rpx;
+  margin-right: 50rpx;
+  /* background-color: red; */
 }

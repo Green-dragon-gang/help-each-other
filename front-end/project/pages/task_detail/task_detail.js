@@ -30,7 +30,7 @@ Page({
       },
       data: {user_name: nickName, follow_name: this.data.task.sender_name},
       success: res => {
-        if (res.data.success) {
+        if (res.data.success == "true") {
           wx.showToast({
             title: that.data.isFollow ? '取消关注成功' : '关注成功',
             duration: 1000,

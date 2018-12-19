@@ -1,7 +1,10 @@
-<!--pages/friends/friends.wxml-->
+<!-- pages/friends/friends.wxml -->
 <view class='container'>
-    <view class='friendView' wx:for="{{friends}}" wx:for-item='friend' wx:key="name">
+  <view class='friendView' wx:for="{{friends}}" wx:for-item='friend' wx:key="name">
+    <view class="nameAvatarWrapper">
       <image class='friendImg' src='{{friend.avatarUrl}}'></image>
       <text>{{friend.name}}</text>
     </view>
+    <image class="deleteBtn" src="/img/follow/delete.png" bindtap='onDeleteClick' id='{{friend.name}}'></image>
+  </view>
 </view>

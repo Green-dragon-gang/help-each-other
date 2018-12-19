@@ -43,11 +43,11 @@ Page({
   //====================================
   filterDefaultClick: function () {
     console.log('default');
+    wx.vibrateShort()
     this.setData({
       filter: this.data.filterState.default
     })
     this.tasksSort('task_id', 'down')
-    console.log(this.data.taskIds);
   },
 
   tasksSort: function (attr, order) {
@@ -65,6 +65,7 @@ Page({
 
   filterMoneyClick: function () {
     console.log('reward');
+    wx.vibrateShort()
     if (this.data.filter == this.data.filterState.moneyup) {
       this.tasksSort('reward', 'down')
       this.setData({
@@ -80,6 +81,7 @@ Page({
 
   filterDistanceClick: function () {
     console.log('distance');
+    wx.vibrateShort()
     if (this.data.filter == this.data.filterState.distanceup)
       this.setData({
         filter: this.data.filterState.distancedown
@@ -92,6 +94,7 @@ Page({
 
   filterTimeClick: function () {
     console.log('time');
+    wx.vibrateShort()
     if (this.data.filter == this.data.filterState.timeup) {
       this.tasksSort('end_time', 'down')
       this.setData({
@@ -187,6 +190,7 @@ Page({
   },
 
   onUploadBtnClick: function () {
+    wx.vibrateShort()
     wx.navigateTo({
       url: '/pages/upload_task/upload_task',
     })

@@ -1,6 +1,6 @@
 //app.js
 App({
-  onLaunch: function () {
+  onLaunch: function() {
     // get userinfo
     wx.getSetting({
       success: res => {
@@ -10,7 +10,7 @@ App({
     });
   },
 
-  login: function () {
+  login: function() {
     wx.getUserInfo({
       success: res => {
         this.globalData.userInfo = res.userInfo;
@@ -31,12 +31,13 @@ App({
             if (res.statusCode != 400)
               console.log("Login successfully!");
           }
+
         });
       }
     })
   },
 
-  refreshTasks: function (callback) {
+  refreshTasks: function(callback) {
     wx.request({
       url: 'http://129.204.29.200:8080/help/getTasks',
       method: 'GET',
@@ -54,10 +55,9 @@ App({
     });
   },
 
-
   globalData: {
     userInfo: null,
-    tasks: {}
+    tasks: {},
   },
 
 })
