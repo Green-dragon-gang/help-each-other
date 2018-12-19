@@ -55,12 +55,8 @@ Component({
    */
   methods: {
     click: function () {
-      console.log(`../task_detail/task_detail?task_id=${this.properties.taskId}`)
       wx.navigateTo({
-        url: `../task_detail/task_detail?task_id=${this.properties.taskId}`,
-        success: function (res) {},
-        fail: function (res) {},
-        complete: function (res) {},
+        url: `/pages/task_detail/task_detail?task_id=${this.properties.taskId}`
       })
     }
   },

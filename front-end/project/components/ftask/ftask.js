@@ -28,12 +28,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    click: function() {
+    click: function () {
       wx.navigateTo({
-        url: '../task_detail/task_detail',
-        success: function(res) {},
-        fail: function(res) {},
-        complete: function(res) {},
+        url: `/pages/task_detail/task_detail?task_id=${this.properties.taskId}`
       })
     }
   },
