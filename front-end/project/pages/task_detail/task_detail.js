@@ -1,6 +1,6 @@
 // pages/task_detail/task_detail.js
 let app = getApp();
-let nickName = "hyzzzzzz"
+let nickName = "Virgil"
 
 Page({
 
@@ -15,6 +15,8 @@ Page({
     receiver_name: "",
     sender_avatar: "",
     task_id: -1,
+    isShown: false,
+    comment: null
   },
 
   follow: function (event) {
@@ -129,11 +131,24 @@ Page({
       },
       data: {task_id: this.data.task.task_id, comment: event.detail.value.input},
       success: res => {
-        if (res.data.success)
+        if (res.data.success) {
           wx.showToast({
             title: '评论成功',
             duration: 1000,
           })
+          wx.request({
+            url: `http://129.204.29.200:8080/help/getTaskById/${that.data.task_id}`,
+            method: "GET",
+            dataType: "json",
+            success: res => {
+              that.setData({
+                task: res.data
+              })
+              app.globalData.tasks[that.data.task_id] = res.data
+              that.handelStatus()
+            }
+          })
+        }
       }
     })
   },
@@ -196,6 +211,11 @@ Page({
           buttonEnabled: false,
           buttonLabel: "已过期"
         })
+
+      this.setData({
+        tagString: this.getTagString(),
+        isShown: this.data.task.status === 2 && this.data.task.sender_name === nickName && this.data.comment === null
+      })
     }
   },
 
@@ -229,6 +249,20 @@ Page({
         that.handelStatus()
       },
     })
+
+    wx.request({
+      url: `http://129.204.29.200:8080/help/getComment/${this.data.task_id}`,
+      method: "GET",
+      dataType: "json",
+      success: res => {
+        if (Object.keys(res.data).length !== 0)
+          that.setData({
+            comment: res.data.comment
+          })
+        that.handelStatus()
+      },
+    })
+
     wx.request({
       url: `http://129.204.29.200:8080/help/getAvatar/${that.data.task.sender_name}`,
       method: "GET",
@@ -238,9 +272,6 @@ Page({
           sender_avatar: res.data.avatar
         })
       },
-    })
-    this.setData({
-      tagString: this.getTagString()
     })
     this.handelStatus()
   }
