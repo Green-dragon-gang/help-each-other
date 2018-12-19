@@ -6,7 +6,7 @@
   </view>
   <view class='textView'>
     <view>
-      <image class='icon' src='{{task.sender_avatar}}'></image>
+      <image class='icon' src='{{sender_avatar}}'></image>
       <text>{{task.sender_name}}</text>
       <button class='followButton' bindtap='follow'>{{isFollow ? '已关注' : '关注ta'}}</button>
     </view>  
@@ -40,7 +40,7 @@
     <text class='label'>任务状态:  </text>
     <text>{{statusString}}</text>
   </view>
-  <form wx:if="{{task.status === 2 /*&& task.sender_name === this.app.globalData.userInfo.nickName*/}}" bindsubmit='comment'>
+  <form wx:if="{{task.status === 2 && task.sender_name === this.app.globalData.userInfo.nickName}}" bindsubmit='comment'>
     <view class='section_title'>输入您的评论</view>
     <input name="input" placeholder="输入您的评论" />
     <view class="btn-area">
@@ -48,7 +48,7 @@
     </view>
   </form>
   <view>
-  <button wx:if="{{task.status !== 2 || task.sender_name !== this.app.globalData.userInfo.nickName}}" class="{{buttonEnabled ? 'enabledButton' : 'disabledButton'}}" bindtap="getTask">{{buttonLabel}}</button>
+  <button wx:if="{{task.status !== 2 || task.sender_name !== this.app.globalData.userInfo.nickName}}" class="{{buttonEnabled ? 'enabledButton' : 'disabledButton'}}" bindtap="handleTask">{{buttonLabel}}</button>
   </view>
 </view>
 
