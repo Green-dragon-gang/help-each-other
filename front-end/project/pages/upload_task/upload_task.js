@@ -13,25 +13,25 @@ Page({
     longitude: -1,
   },
 
-  onShow: function() {
+  onShow: function () {
     this.setData({
       show: true
     })
   },
 
-  onUnload: function() {
+  onUnload: function () {
     this.setData({
       show: false
     })
   },
 
-  bindDateChange: function(e) {
+  bindDateChange: function (e) {
     console.log('date change:', e.detail.value)
     this.setData({
       date: e.detail.value
     })
   },
-  bindTimeChange: function(e) {
+  bindTimeChange: function (e) {
     console.log('time change:', e.detail.value)
     this.setData({
       time: e.detail.value
@@ -39,28 +39,35 @@ Page({
     console.log()
   },
 
-  bindTitleChange: function(e) {
+  bindTitleChange: function (e) {
     console.log('title change:', e.detail.value)
     this.setData({
       title: e.detail.value
     });
   },
 
-  bindMoneyChange: function(e) {
+  bindMoneyChange: function (e) {
     console.log('money change:', e.detail.value)
     this.setData({
       money: e.detail.value
     });
   },
 
-  chooseImg: function() {
+  bindContentChange: function (e) {
+    console.log('content change:', e.detail.value)
+    this.setData({
+      content: e.detail.value
+    });
+  },
+
+  chooseImg: function () {
     console.log('chooseImg');
     let that = this;
     wx.chooseImage({
       count: 1,
       sizeType: ['original'],
       sourceType: ['album'],
-      success: function(res) {
+      success: function (res) {
         console.log(res);
         that.setData({
           imgUrl: res.tempFilePaths[0]
@@ -69,10 +76,10 @@ Page({
     })
   },
 
-  chooseLocation: function() {
+  chooseLocation: function () {
     let that = this;
     wx.chooseLocation({
-      success: function(res) {
+      success: function (res) {
         console.log('location changed:', res);
         that.setData({
           address: res.address,
@@ -83,14 +90,14 @@ Page({
     });
   },
 
-  release: function() {
+  release: function () {
     let that = this;
     if (this.data.imgUrl != '/img/uploadTask/imgAdd.png') {
       wx.uploadFile({
         url: 'http://129.204.29.200:8080/help/uploadPicture',
         filePath: this.data.imgUrl,
         name: 'picture',
-        success: function(res) {
+        success: function (res) {
           console.log("Upload picture succesfully!", res);
           let imgUrl = JSON.parse(res.data).url;
           that.uploadTask(imgUrl);
@@ -104,7 +111,7 @@ Page({
   },
 
   // TODO:
-  uploadTask: function(imgUrl) {
+  uploadTask: function (imgUrl) {
     const data = {
       sender_name: 'Virgil',
       title: "代练", //this.data.title,
@@ -112,7 +119,7 @@ Page({
       location: "上海市浦东新区世纪大道2001号", //this.data.address,
       start_time: "2018-12-14 12:09:00", // now
       end_time: "2018-12-14 15:09:00", // `${this.date} ${this.time}:00`,
-      reward: 10, //this.data.money,
+      reward: 100, //this.data.money,
       tag: 3,
       picture: imgUrl,
       target_person_name: "null"
@@ -134,7 +141,7 @@ Page({
           })
         });
       },
-      failed: function(res) {
+      failed: function (res) {
         console.log("upload failed!")
       }
     })

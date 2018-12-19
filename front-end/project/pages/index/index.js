@@ -1,6 +1,4 @@
 //index.js
-// pages/person.js
-//获取应用实例
 const app = getApp()
 
 Page({
@@ -19,22 +17,22 @@ Page({
       "timedown": 7,
     }),
     filter: 1,
-    tasks: []
+    taskIds: []
   },
 
   // init ids
   onLoad: function () {
     app.refreshTasks(() => {
       const keys = Object.keys(app.globalData.tasks);
-      const tasks = this.data.tasks;
+      const taskIds = this.data.taskIds;
       keys.forEach((id, index) => {
-        tasks.push({
+        taskIds.push({
           id: id,
           show: index < 6 ? true : false
         })
       })
       this.setData({
-        tasks
+        taskIds
       })
     })
   },
@@ -48,18 +46,36 @@ Page({
     this.setData({
       filter: this.data.filterState.default
     })
+    this.tasksSort('task_id', 'down')
+    console.log(this.data.taskIds);
+  },
+
+  tasksSort: function (attr, order) {
+    const taskIds = this.data.taskIds;
+    taskIds.sort((a, b) => {
+      let t1 = app.globalData.tasks[a.id]
+      let t2 = app.globalData.tasks[b.id]
+      return order == 'up' ? t2[attr] - t1[attr] : t1[attr] - t2[attr]
+    })
+    for (let i = 0; i < 6; i++) taskIds[i].show = true;
+    this.setData({
+      taskIds
+    })
   },
 
   filterMoneyClick: function () {
-    console.log('money');
-    if (this.data.filter == this.data.filterState.moneyup)
+    console.log('reward');
+    if (this.data.filter == this.data.filterState.moneyup) {
+      this.tasksSort('reward', 'down')
       this.setData({
         filter: this.data.filterState.moneydown
       });
-    else
+    } else {
+      this.tasksSort('reward', 'up')
       this.setData({
         filter: this.data.filterState.moneyup
       });
+    }
   },
 
   filterDistanceClick: function () {
@@ -76,14 +92,17 @@ Page({
 
   filterTimeClick: function () {
     console.log('time');
-    if (this.data.filter == this.data.filterState.timeup)
+    if (this.data.filter == this.data.filterState.timeup) {
+      this.tasksSort('end_time', 'down')
       this.setData({
         filter: this.data.filterState.timedown
       });
-    else
+    } else {
+      this.tasksSort('end_time', 'up')
       this.setData({
         filter: this.data.filterState.timeup
       });
+    }
   },
   //====================================
   // end
@@ -137,15 +156,15 @@ Page({
   },
 
   loadPictures: function () {
-    const tasks = this.data.tasks;
-    tasks.forEach(item => {
+    const taskIds = this.data.taskIds;
+    taskIds.forEach(item => {
       wx.createIntersectionObserver().relativeToViewport().observe(`#task-${item.id}`, (result) => {
         if (result.intersectionRatio > 0)
           item.show = true
       })
     })
     this.setData({
-      tasks
+      taskIds
     })
   },
 

@@ -4,22 +4,10 @@ App({
     // get userinfo
     wx.getSetting({
       success: res => {
-        console.log(res);
-        if (!res.authSetting['scope.userInfo']) {
-          this.requestAuth(this.login, this.requestAuth)
-        } else {
+        if (res.authSetting['scope.userInfo'])
           this.login()
-        }
       },
     });
-  },
-
-  requestAuth: function (success, fail) {
-    wx.authorize({
-      scope: 'scope.userInfo',
-      success: success,
-      fail: fail
-    })
   },
 
   login: function () {
@@ -44,9 +32,6 @@ App({
               console.log("Login successfully!");
           }
         });
-      },
-      fail: res => {
-        console.log('Login failed!');
       }
     })
   },
