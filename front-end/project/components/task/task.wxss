@@ -32,11 +32,23 @@
   font-weight: bold;
 }
 
+
+/* TODO: */
+.avatar {
+  width: 35rpx;
+  height: 35rpx;
+  border-radius: 8rpx;
+  margin: 0 10rpx;
+}
+
 .username {
   float: left;
   font-size: 0.75em;
   width: 60%;
   overflow: hidden;
+  display: flex;
+  flex-flow: row unwrap;
+  align-items: center;
 }
 
 .icon {
@@ -45,16 +57,7 @@
   margin: 0 10rpx;
 }
 
-.avatar {
-  width: 35rpx;
-  height: 35rpx;
-  border-radius: 3rpx;
-  margin: 0 10rpx;
-}
-
-
-/* TODO: */
-.account {
+.rewards {
   float: right;
   display: flex;
   flex-flow: row unwrap;
