@@ -8,7 +8,7 @@
     </view>
     <view class='secondRow'>
       <view class='username'>
-        <image class='icon' src='/img/test/boss.png'></image>
+        <image class='avatar' src='{{avatar}}'></image>
         <text>{{username}}</text>
       </view>
       <view class='account'>

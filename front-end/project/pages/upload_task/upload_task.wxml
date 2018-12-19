@@ -2,7 +2,7 @@
 
 <view id='container'>
   <form>
-    <input class='input' placeholder='标题' type='text' confirm-type='done' bindinput="bindTitleChange"></input>
+    <input class='input' placeholder='标题' type='text' confirm-type='done' auto-focus bindinput="bindTitleChange"></input>
     <view class="input timeinput">
       <picker mode="date" value="{{date}}" bindchange="bindDateChange"  id='date'>
         <input placeholder='期限日期' value='{{date}}' disabled='true'> </input>
