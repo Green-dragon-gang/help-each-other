@@ -1,0 +1,33 @@
+/* components/atask/atask.wxss */
+
+.task {
+  margin: 15rpx 0;
+  height: 200rpx;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.picture {
+  width: 150rpx;
+  height: 100%;
+  border-radius: 10rpx;
+  box-shadow: 0 0 10rpx 2rpx rgba(51, 51, 51, 0.281);
+
+}
+
+.textView {
+  padding: 25rpx 20rpx;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+.time, .sender {
+  margin-top: 10rpx;
+  margin-bottom: 5rpx;
+  font-size: 0.8em;
+  color: gray;
+}

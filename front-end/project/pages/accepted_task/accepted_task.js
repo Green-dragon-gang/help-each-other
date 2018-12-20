@@ -3,26 +3,10 @@ const app = getApp()
 
 Page({
   data: {
-    tasks: [{
-      task_id: 1,
-      title: '打败拿破仑',
-      picture: '/img/test/cj.jpg',
-      end_time: 'Dec-15-2018 15:09:00',
-      sender_name: '亚历山大一世',
-      status: 1,
-      left_time: '3 小时',
-    }, {
-      task_id: 2,
-      title: '打尼玛拿破仑',
-      picture: '/img/test/cj.jpg',
-      end_time: 'Dec-15-2018 15:09:00',
-      sender_name: '亚历山大二世',
-      status: 1,
-      left_time: '4 小时',
-    }]
+    taskIds: []
   },
 
-  // TODO:
+  // TODO: sort by left_time
   onLoad: function() {
     if (app.globalData.userInfo) {
       const nickName = app.globalData.userInfo.nickName
@@ -30,15 +14,19 @@ Page({
         url: `http://129.204.29.200:8080/help/getTasksByReceiver/${nickName}`,
         method: "GET",
         success: res => {
-          console.log(res)
+          this.setData({
+            taskIds: []
+          })
+          const taskIds = this.data.taskIds
+          for (let task of res.data) {
+            taskIds.push(task.task_id)
+          }
+          this.setData({
+            taskIds
+          })
         }
       })
     }
   },
 
-  taskClick: function() {
-    wx.navigateTo({
-      url: '/pages/task_detail/task_detail',
-    })
-  }
 })

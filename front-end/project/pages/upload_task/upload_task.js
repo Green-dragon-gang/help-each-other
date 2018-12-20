@@ -173,12 +173,12 @@ Page({
   uploadTask: function(imgUrl) {
     const dataTest = {
       sender_name: 'Virgil',
-      title: "代练", //this.data.title,
-      content: "kda达到5", //this.data.content
-      location: "上海市浦东新区世纪大道2001号", //this.data.address,
-      start_time: "2018-12-14 12:09:00", // now
-      end_time: "2018-12-14 15:09:00", // `${this.date} ${this.time}:00`,
-      reward: 100, //this.data.reward,
+      title: "代练",
+      content: "kda达到5",
+      location: "上海市浦东新区世纪大道2001号",
+      start_time: util.formatTime(new Date()),
+      end_time: "2018-12-14 15:09:00",
+      reward: 100,
       tag: 3,
       picture: imgUrl,
       target_person_name: "null"

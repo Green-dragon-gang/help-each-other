@@ -1,0 +1,11 @@
+<!--components/atask/atask.wxml-->
+<view bindtap='taskTap' class='task'>
+    <image src='{{picture}}' class='picture' mode='aspectFill' ></image>
+    <view class='textView'>
+      <text class='title'>{{title}}\n</text>
+      <view class='sender'>
+        <text>{{sender_name}}</text>
+      </view>
+      <text class='time'>剩余时间：{{left_time}}</text>
+    </view>
+  </view>
