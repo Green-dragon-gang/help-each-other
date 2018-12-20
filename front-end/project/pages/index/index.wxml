@@ -1,4 +1,5 @@
 <!-- index.wxml -->
+<block wx:if='{{canIuse}}'>
 <view id='fun'></view>
 <view class='filter-row' style='top:{{filterTop}}'>
   <text wx:if="{{filter == filterState.default}}" class='filter-tag filter-focus' bindtap='filterDefaultClick'>默认排序</text>
@@ -27,3 +28,7 @@
   <image src='/img/home/uploadTask.png' class='uploadImg'></image>
   <text class='uploadText'>发布任务</text>
 </view>
+</block>
+<block wx:if='{{!canIuse}}'>
+  <button open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">获取用户信息</button>
+</block>

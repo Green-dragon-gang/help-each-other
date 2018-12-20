@@ -1,7 +1,5 @@
 // pages/task_detail/task_detail.js
 let app = getApp();
-// let nickName = "hyzzzzzz"
-let nickName = "Virgil"
 
 Page({
 
@@ -30,7 +28,7 @@ Page({
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
-      data: {user_name: nickName, follow_name: this.data.task.sender_name},
+      data: {user_name: app.globalData.userInfo.nickName, follow_name: this.data.task.sender_name},
       success: res => {
         if (res.data.success == "true") {
           wx.showToast({
@@ -77,14 +75,14 @@ Page({
       return
     let that = this
     if (this.data.task.status === 0) {
-      if (this.data.task.sender_name !== nickName)
+      if (this.data.task.sender_name !== app.globalData.userInfo.nickName)
         wx.request({
           url: 'http://129.204.29.200:8080/help/acceptTask',
           method: "POST",
           header: {
             "Content-Type": "application/x-www-form-urlencoded"
           },
-          data: {task_id: this.data.task.task_id, receiver_name: nickName},
+          data: {task_id: this.data.task.task_id, receiver_name: app.globalData.userInfo.nickName},
           success: res => {
             if (res.data.success) {
               wx.showToast({
@@ -105,7 +103,7 @@ Page({
           data: {task_id: this.data.task.task_id},
           success: res => {
             if (res.data.success)
-              app.refreshTasks(() =>{
+              app.refreshTasks(() => {
                 wx.reLaunch({
                   url: '/pages/index/index',
                 })
@@ -170,8 +168,7 @@ Page({
   handelStatus() {
     switch (this.data.task.status) {
       case 0:
-        // if (this.data.task.sender_name === app.globalData.userInfo.nickName)
-        if (this.data.task.sender_name === nickName)
+        if (this.data.task.sender_name === app.globalData.userInfo.nickName)
           this.setData({
             statusString: "待完成",
             buttonEnabled: true,
@@ -187,8 +184,7 @@ Page({
           })
         break
       case 1:
-        // if (this.data.task.receiver_name === app.globalData.userInfo.nickName)
-        if (this.data.receiver_name === nickName)
+        if (this.data.receiver_name === app.globalData.userInfo.nickName)
           this.setData({
             statusString: "进行中",
             buttonEnabled: true,
@@ -221,7 +217,7 @@ Page({
 
         this.setData({
           tagString: this.getTagString(),
-          isShown: this.data.task.status === 2 && this.data.task.sender_name === nickName && this.data.comment === null
+          isShown: this.data.task.status === 2 && this.data.task.sender_name === app.globalData.userInfo.nickName && this.data.comment === null
         })
     }
   },
@@ -250,11 +246,9 @@ Page({
       task: app.globalData.tasks[options.task_id],
     })
 
-    console.log("task id", this.data.task_id)
-
     let that = this
     wx.request({
-      url: `http://129.204.29.200:8080/help/isFollow/${nickName}/${ this.data.task.sender_name}`,
+      url: `http://129.204.29.200:8080/help/isFollow/${app.globalData.userInfo.nickName}/${ this.data.task.sender_name}`,
       method: "GET",
       dataType: "json",
       success: res => {

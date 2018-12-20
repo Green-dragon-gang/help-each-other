@@ -16,11 +16,22 @@ Page({
       "timedown": 7,
     }),
     filter: 1,
-    taskIds: []
+    taskIds: [],
+    canIuse: false
+  },
+
+  onGotUserInfo: function (e) {
+    app.login()
+    this.setData({
+      canIuse: app.globalData.canIuse
+    })
   },
 
   // init ids
   onLoad: function() {
+    this.setData({
+      canIuse: app.globalData.canIuse
+    })
     app.refreshTasks(() => {
       const keys = Object.keys(app.globalData.tasks);
       const taskIds = this.data.taskIds;
