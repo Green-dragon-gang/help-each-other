@@ -28,7 +28,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    click: function () {
+    click: function() {
       wx.navigateTo({
         url: `/pages/task_detail/task_detail?task_id=${this.properties.taskId}`
       })
@@ -51,9 +51,10 @@ Component({
         wx.request({
           url: `http://129.204.29.200:8080/help/getAvatar/${task.sender_name}`,
           success: res => {
-            this.setData({
-              avatar: res.data.avatar
-            })
+            if (res.data.avatar)
+              this.setData({
+                avatar: res.data.avatar
+              })
           }
 
         })

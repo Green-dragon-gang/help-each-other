@@ -1,7 +1,7 @@
 <!--components/task/task.wxml-->
 <view class='container' bindtap='click'>
   <!-- lazy load abandoned -->
-  <image class='img' mode='widthFix' src='{{show ? pictureUrl : defaultUrl}}' lazy-load="{{true}}"></image>
+  <image class='img' mode='widthFix' src='{{show ? pictureUrl : defaultUrl}}' lazy-load='true'></image>
   <view class='textview'>
     <view class='firstRow'>
       <text class='title'>{{title}}</text>
