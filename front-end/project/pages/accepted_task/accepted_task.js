@@ -6,8 +6,12 @@ Page({
     taskIds: []
   },
 
+  onShow: function() {
+    this.refreshAccepted()
+  },
+
   // TODO: sort by left_time
-  onLoad: function() {
+  refreshAccepted: function() {
     if (app.globalData.userInfo) {
       const nickName = app.globalData.userInfo.nickName
       wx.request({

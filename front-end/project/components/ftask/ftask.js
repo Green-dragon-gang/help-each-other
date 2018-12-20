@@ -38,7 +38,6 @@ Component({
   lifetimes: {
     attached() {
       const task = app.globalData.tasks[this.properties.taskId];
-      console.log(this.properties.taskId)
       if (task) {
         this.setData({
           title: task.title,

@@ -3,6 +3,6 @@
   <image id='friendsImg' src='/img/follow/friends.png'></image>
 </view>
 
-<view class='container' bindtap='testclick'>
+<view class='container'>
   <ftask wx:for="{{taskIds}}" wx:key='*this' taskId="{{item}}"></ftask>
 </view>

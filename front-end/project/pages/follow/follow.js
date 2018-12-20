@@ -19,6 +19,7 @@ Page({
   },
 
   onShow: function() {
+    this.refreshFollows();
     this.setData({
       show: true
     })
@@ -28,10 +29,6 @@ Page({
     this.setData({
       show: false
     })
-  },
-
-  onLoad: function() {
-    this.refreshFollows();
   },
 
   refreshFollows: function() {
@@ -66,8 +63,6 @@ Page({
                 this.setData({
                   taskIds
                 })
-                console.log(name) // TODO: to detele
-                console.log(this.data.taskIds) // TODO: to detele
               }
             })
           }

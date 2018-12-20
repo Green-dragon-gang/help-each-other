@@ -10,7 +10,7 @@ App({
     });
   },
 
-  login: function() {
+  login: function(callback) {
     wx.getUserInfo({
       success: res => {
         this.globalData.userInfo = res.userInfo;
@@ -30,6 +30,8 @@ App({
           success: res => {
             if (res.statusCode != 400)
               console.log("Login successfully!");
+            if (callback)
+              callback()
           }
 
         });
