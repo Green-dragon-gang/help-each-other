@@ -39,6 +39,7 @@ App({
   },
 
   refreshTasks: function(callback) {
+    this.globalData.tasks = {}
     wx.request({
       url: 'http://129.204.29.200:8080/help/getTasks',
       method: 'GET',
