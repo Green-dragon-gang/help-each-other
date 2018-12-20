@@ -5,13 +5,9 @@ App({
     // get userinfo
     wx.getSetting({
       success: res => {
-        this.globalData.canIuse = true
         if (res.authSetting['scope.userInfo'])
           this.login()
       },
-      fail: res => {
-        this.globalData.canIuse = false
-      }
     });
   },
 
@@ -64,7 +60,6 @@ App({
   globalData: {
     userInfo: null,
     tasks: {},
-    canIuse: false
   },
 
 })
