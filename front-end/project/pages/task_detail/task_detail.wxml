@@ -44,18 +44,14 @@
     <text class='label'>评论:  </text> 
     <text>{{comment}}</text>
   </block>
-  <block wx:if="{{isShown}}">
-    <form bindsubmit='comment'>
-      <view class='section_title'>输入您的评论</view>
-      <input name="input" placeholder="输入您的评论" />
-      <view class="btn-area">
-        <button form-type="submit">提交</button>
-      </view>
-    </form>
-  </block>
-  <block wx:if="{{!isShown}}">
-    <button class="{{buttonEnabled ? 'enabledButton' : 'disabledButton'}}" bindtap="handleTask">{{buttonLabel}}</button>
-  </block>
+  <form wx:if="{{isShown}}" bindsubmit='comment'>
+    <view class='section_title'>输入您的评论</view>
+    <input name="input" placeholder="输入您的评论" />
+    <view class="btn-area">
+      <button form-type="submit">提交</button>
+    </view>
+  </form>
+  <button wx:if="{{!isShown}}" class="{{buttonEnabled ? 'enabledButton' : 'disabledButton'}}" bindtap="handleTask">{{buttonLabel}}</button>
   <button wx:if="{{canAbandon}}" bindtap='abandonTask'>放弃任务</button>
 </view>
 

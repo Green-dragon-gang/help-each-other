@@ -68,6 +68,17 @@ Page({
         that.handelStatus()
       }
     })
+    wx.request({
+      url: `http://129.204.29.200:8080/help/getComment/${this.data.task_id}`,
+      method: "GET",
+      dataType: "json",
+      success: res => {
+        that.setData({
+          comment: Object.keys(res.data).length === 0 ? null: res.data.comment
+        })
+        that.handelStatus()
+      },
+    })
   },
 
   handleTask: function (event) {
@@ -214,12 +225,12 @@ Page({
           buttonLabel: "已过期",
           canAbandon: false
         })
-
-        this.setData({
-          tagString: this.getTagString(),
-          isShown: this.data.task.status === 2 && this.data.task.sender_name === app.globalData.userInfo.nickName && this.data.comment === null
-        })
     }
+
+    this.setData({
+      tagString: this.getTagString(),
+      isShown: this.data.task.status === 2 && this.data.task.sender_name === app.globalData.userInfo.nickName && this.data.comment === null
+    })
   },
 
   abandonTask() {
