@@ -1,5 +1,6 @@
 // pages/task_detail/task_detail.js
 let app = getApp();
+// let nickName = "hyzzzzzz"
 let nickName = "Virgil"
 
 Page({
@@ -16,7 +17,8 @@ Page({
     sender_avatar: "",
     task_id: -1,
     isShown: false,
-    comment: null
+    comment: null,
+    canAbandon: false
   },
 
   follow: function (event) {
@@ -43,47 +45,74 @@ Page({
     })
   },
 
+  refreshTask() {
+    let that = this
+    wx.request({
+      url: `http://129.204.29.200:8080/help/getReceiver/${that.data.task_id}`,
+      method: "GET",
+      dataType: "json",
+      success: res => {
+        that.setData({
+          receiver_name: res.data.receiver_name
+        })
+        that.handelStatus()
+      },
+    })
+    wx.request({
+      url: `http://129.204.29.200:8080/help/getTaskById/${that.data.task_id}`,
+      method: "GET",
+      dataType: "json",
+      success: res => {
+        that.setData({
+          task: res.data
+        })
+        app.globalData.tasks[that.data.task_id] = res.data
+        that.handelStatus()
+      }
+    })
+  },
+
   handleTask: function (event) {
     if (!this.data.buttonEnabled)
       return
     let that = this
-    if (this.data.task.status === 0)
-      wx.request({
-        url: 'http://129.204.29.200:8080/help/acceptTask',
-        method: "POST",
-        header: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        data: {task_id: this.data.task.task_id, receiver_name: nickName},
-        success: res => {
-          if (res.data.success) {
-            wx.request({
-              url: `http://129.204.29.200:8080/help/getReceiver/${that.data.task_id}`,
-              method: "GET",
-              dataType: "json",
-              success: res => {
-                that.setData({
-                  receiver_name: res.data.receiver_name
+    if (this.data.task.status === 0) {
+      if (this.data.task.sender_name !== nickName)
+        wx.request({
+          url: 'http://129.204.29.200:8080/help/acceptTask',
+          method: "POST",
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          data: {task_id: this.data.task.task_id, receiver_name: nickName},
+          success: res => {
+            if (res.data.success) {
+              wx.showToast({
+                title: '接任务成功',
+                duration: 1000,
+              })
+              that.refreshTask()
+            }
+          },
+        })
+      else
+        wx.request({
+          url: 'http://129.204.29.200:8080/help/deleteTask',
+          method: "POST",
+          header: {
+            "Content-Type": "application/x-www-form-urlencoded"
+          },
+          data: {task_id: this.data.task.task_id},
+          success: res => {
+            if (res.data.success)
+              app.refreshTasks(() =>{
+                wx.reLaunch({
+                  url: '/pages/index/index',
                 })
-                that.handelStatus()
-              },
-            })
-            wx.request({
-              url: `http://129.204.29.200:8080/help/getTaskById/${that.data.task_id}`,
-              method: "GET",
-              dataType: "json",
-              success: res => {
-                console.log(res)
-                that.setData({
-                  task: res.data
-                })
-                app.globalData.tasks[that.data.task_id] = res.data
-                that.handelStatus()
-              }
-            })
-          }
-        },
-      })
+              })
+          },
+        })
+    }
     else
       wx.request({
         url: 'http://129.204.29.200:8080/help/finishTask',
@@ -94,35 +123,18 @@ Page({
         data: {task_id: this.data.task.task_id},
         success: res => {
           if (res.data.success) {
-            wx.request({
-              url: `http://129.204.29.200:8080/help/getReceiver/${that.data.task_id}`,
-              method: "GET",
-              dataType: "json",
-              success: res => {
-                that.setData({
-                  receiver_name: res.data.receiver_name
-                })
-                that.handelStatus()
-              },
+            wx.showToast({
+              title: '完成任务成功',
+              duration: 1000,
             })
-            wx.request({
-              url: `http://129.204.29.200:8080/help/getTaskById/${that.data.task_id}`,
-              method: "GET",
-              dataType: "json",
-              success: res => {
-                that.setData({
-                  task: res.data
-                })
-                app.globalData.tasks[that.data.task_id] = res.data
-                that.handelStatus()
-              }
-            })
+            that.refreshTask()
           }
         },
       })
   },
 
   comment: function (event) {
+    let that = this
     wx.request({
       url: 'http://129.204.29.200:8080/help/addComment',
       method: "POST",
@@ -136,18 +148,7 @@ Page({
             title: '评论成功',
             duration: 1000,
           })
-          wx.request({
-            url: `http://129.204.29.200:8080/help/getTaskById/${that.data.task_id}`,
-            method: "GET",
-            dataType: "json",
-            success: res => {
-              that.setData({
-                task: res.data
-              })
-              app.globalData.tasks[that.data.task_id] = res.data
-              that.handelStatus()
-            }
-          })
+          that.refreshTask()
         }
       }
     })
@@ -173,14 +174,16 @@ Page({
         if (this.data.task.sender_name === nickName)
           this.setData({
             statusString: "待完成",
-            buttonEnabled: false,
-            buttonLabel: "等待接单"
+            buttonEnabled: true,
+            buttonLabel: "删除任务",
+            canAbandon: false
           })
         else
           this.setData({
             statusString: "待完成",
             buttonEnabled: true,
-            buttonLabel: "接受委托"
+            buttonLabel: "接受委托",
+            canAbandon: false
           })
         break
       case 1:
@@ -189,34 +192,56 @@ Page({
           this.setData({
             statusString: "进行中",
             buttonEnabled: true,
-            buttonLabel: "任务已完成"
+            buttonLabel: "任务已完成",
+            canAbandon: true
           })
         else
           this.setData({
             statusString: "进行中",
             buttonEnabled: false,
-            buttonLabel: "任务进行中"
+            buttonLabel: "任务进行中",
+            canAbandon: false
           })
         break
       case 2:
         this.setData({
           statusString: "已完成",
           buttonEnabled: false,
-          buttonLabel: "已完成"
+          buttonLabel: "已完成",
+          canAbandon: false
         })
         break
       case 3:
         this.setData({
           statusString: "已过期",
           buttonEnabled: false,
-          buttonLabel: "已过期"
+          buttonLabel: "已过期",
+          canAbandon: false
         })
 
-      this.setData({
-        tagString: this.getTagString(),
-        isShown: this.data.task.status === 2 && this.data.task.sender_name === nickName && this.data.comment === null
-      })
+        this.setData({
+          tagString: this.getTagString(),
+          isShown: this.data.task.status === 2 && this.data.task.sender_name === nickName && this.data.comment === null
+        })
     }
+  },
+
+  abandonTask() {
+    let that = this
+    wx.request({
+      url: `http://129.204.29.200:8080/help/abandonTask/${this.data.task_id}`,
+      method: "GET",
+      dataType: "json",
+      success: res => {
+        if (res.data.success == "true") {
+          wx.showToast({
+            title: '放弃任务成功',
+            duration: 1000,
+          })
+          that.refreshTask()
+        }
+      },
+    })
   },
 
   onLoad: function (options) {
@@ -224,6 +249,8 @@ Page({
       task_id: options.task_id,
       task: app.globalData.tasks[options.task_id],
     })
+
+    console.log("task id", this.data.task_id)
 
     let that = this
     wx.request({

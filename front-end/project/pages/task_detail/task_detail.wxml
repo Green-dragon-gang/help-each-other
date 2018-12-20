@@ -56,5 +56,6 @@
   <block wx:if="{{!isShown}}">
     <button class="{{buttonEnabled ? 'enabledButton' : 'disabledButton'}}" bindtap="handleTask">{{buttonLabel}}</button>
   </block>
+  <button wx:if="{{canAbandon}}" bindtap='abandonTask'>放弃任务</button>
 </view>
 
