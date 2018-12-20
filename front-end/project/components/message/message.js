@@ -47,11 +47,12 @@ Component({
         data: {message_id: this.properties.messageId},
         success: res => {
           if (res.data.success) {
-            app.globalData.messages[this.properties.messageId].status = 1,
-            wx.showToast({
-              title: '消息已读',
-              duration: 1000,
-            })
+            app.globalData.messages[this.properties.messageId].status = 1
+            if (!this.data.isReaded)
+              wx.showToast({
+                title: '消息已读',
+                duration: 1000,
+              })
             this.setData({
               isReaded: true
             })
