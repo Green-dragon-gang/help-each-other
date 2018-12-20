@@ -6,7 +6,7 @@ Page({
 
   },
 
-  onLoad: function(options) {
+  onLoad: function (options) {
     wx.getSetting({
       success: res => {
         if (res.authSetting['scope.userInfo'])

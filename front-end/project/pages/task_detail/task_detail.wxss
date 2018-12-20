@@ -1,30 +1,16 @@
 /* pages/task_detail/task_detail.wxss */
-.img {
-  width: 100%
+
+page {
+  background-color: white;
+  margin-bottom: 20rpx;
 }
 
-.textView {
-  font-family: "Microsoft YaHei";
-  padding-left: 20rpx;
-  padding-right: 20rpx;
-  border-radius: 10rpx;
-  overflow: hidden;
-  background: white;
-  margin-bottom: 10px;
+button {
+  border-radius: 100rpx;
 }
 
-.smallTextView {
-  font-family: "Microsoft YaHei";
-  padding-left: 20rpx;
-  padding-right: 20rpx;
-  font-size: small;
-}
-
-.title {
-  padding-left: 20rpx;
-  padding-right: 20rpx;
-  font-size: 1.5em;
-  font-weight: bold;
+button::after {
+  border: none;
 }
 
 .icon {
@@ -33,28 +19,83 @@
   margin: 0 10rpx;
 }
 
-.followButton {
-  float: right;
-  line-height: normal;
-  width: 100px;
-  height: 26px;
-  overflow: hidden;
+.img {
+  width: 100%;
 }
 
-.label {
-  font-weight: bold;
+/* person info part */
+
+#firstRow {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 10rpx;
+  border-radius: 10rpx;
+  box-shadow: 0 0 5rpx 3rpx rgba(51, 51, 51, 0.1);
+}
+
+#userWrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: left;
+  align-items: center;
+  font-weight: 600;
+  font-size: 13pt;
+}
+
+.avatar {
+  margin: 10rpx 20rpx;
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 20rpx;
+}
+
+.followBtn {
+  margin-right: 20rpx;
+  font-size: 11pt;
+  line-height: normal;
+  height: 55rpx;
+  padding: 5rpx 22rpx;
+  color: #fc6b6b;
+  border: solid #fc6b6b 3rpx;
+}
+
+/* text part */
+
+.textWrapper {
+  padding: 0 20rpx;
+  margin-bottom: 40rpx;
+}
+
+.title {
+  font-size: 20pt;
+  margin: 15rpx 0;
+  font-weight: 700;
+}
+
+.content {
+  margin-bottom: 30rpx;
+}
+
+.commentForm {
+  margin-top: 20rpx;
+}
+
+.commentInput {
+  margin: 20rpx 40rpx;
+}
+
+.bottomBtn {
+  margin: 10rpx 30rpx;
 }
 
 .enabledButton {
-  margin-top: 10px;
-  background: greenyellow;
+  background: lightgray;
+  color: white;
+  font-weight: 600;
 }
 
-.disabledButton {
-  margin-top: 10px;
-  background: gray
-}
-
-input {
-  background: white
+.bold {
+  font-weight: 600;
 }

@@ -22,6 +22,12 @@ Page({
   // init ids
   onLoad: function() {
     app.refreshTasks(() => {
+      //====================TODO: to delete
+      // wx.navigateTo({
+      //   url: `/pages/task_detail/task_detail?task_id=21`
+      // })
+      // return
+      //====================TODO: to delete
       const keys = Object.keys(app.globalData.tasks);
       const taskIds = this.data.taskIds;
       keys.forEach((id, index) => {

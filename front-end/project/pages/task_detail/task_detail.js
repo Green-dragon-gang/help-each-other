@@ -19,7 +19,7 @@ Page({
     canAbandon: false
   },
 
-  follow: function (event) {
+  follow: function(event) {
     let url = `http://129.204.29.200:8080/help/${this.data.isFollow ? "unfollow" : "follow"}`
     let that = this
     wx.request({
@@ -28,7 +28,10 @@ Page({
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
-      data: {user_name: app.globalData.userInfo.nickName, follow_name: this.data.task.sender_name},
+      data: {
+        user_name: app.globalData.userInfo.nickName,
+        follow_name: this.data.task.sender_name
+      },
       success: res => {
         if (res.data.success == "true") {
           wx.showToast({
@@ -74,16 +77,17 @@ Page({
       dataType: "json",
       success: res => {
         that.setData({
-          comment: Object.keys(res.data).length === 0 ? null: res.data.comment
+          comment: Object.keys(res.data).length === 0 ? null : res.data.comment
         })
         that.handelStatus()
       },
     })
   },
 
-  handleTask: function (event) {
+  handleTask: function(event) {
     if (!this.data.buttonEnabled)
       return
+    wx.vibrateShort()
     let that = this
     if (this.data.task.status === 0) {
       if (this.data.task.sender_name !== app.globalData.userInfo.nickName)
@@ -93,7 +97,10 @@ Page({
           header: {
             "Content-Type": "application/x-www-form-urlencoded"
           },
-          data: {task_id: this.data.task.task_id, receiver_name: app.globalData.userInfo.nickName},
+          data: {
+            task_id: this.data.task.task_id,
+            receiver_name: app.globalData.userInfo.nickName
+          },
           success: res => {
             if (res.data.success) {
               wx.showToast({
@@ -111,7 +118,9 @@ Page({
           header: {
             "Content-Type": "application/x-www-form-urlencoded"
           },
-          data: {task_id: this.data.task.task_id},
+          data: {
+            task_id: this.data.task.task_id
+          },
           success: res => {
             if (res.data.success)
               app.refreshTasks(() => {
@@ -121,15 +130,16 @@ Page({
               })
           },
         })
-    }
-    else
+    } else
       wx.request({
         url: 'http://129.204.29.200:8080/help/finishTask',
         method: "POST",
         header: {
           "Content-Type": "application/x-www-form-urlencoded"
         },
-        data: {task_id: this.data.task.task_id},
+        data: {
+          task_id: this.data.task.task_id
+        },
         success: res => {
           if (res.data.success) {
             wx.showToast({
@@ -142,7 +152,7 @@ Page({
       })
   },
 
-  comment: function (event) {
+  comment: function(event) {
     let that = this
     wx.request({
       url: 'http://129.204.29.200:8080/help/addComment',
@@ -150,7 +160,10 @@ Page({
       header: {
         "Content-Type": "application/x-www-form-urlencoded"
       },
-      data: {task_id: this.data.task.task_id, comment: event.detail.value.input},
+      data: {
+        task_id: this.data.task.task_id,
+        comment: event.detail.value.input
+      },
       success: res => {
         if (res.data.success) {
           wx.showToast({
@@ -163,7 +176,7 @@ Page({
     })
   },
 
-  getTagString: function () {
+  getTagString: function() {
     switch (this.data.task.tag) {
       case 0:
         return "外卖"
@@ -251,11 +264,12 @@ Page({
     })
   },
 
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.setData({
       task_id: options.task_id,
       task: app.globalData.tasks[options.task_id],
     })
+    console.log(this.data.task_id)
 
     let that = this
     wx.request({

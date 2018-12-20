@@ -1,57 +1,66 @@
 <!--pages/task_detail/task_detail.wxml-->
 <view>
   <image class='img' mode='widthFix' src='{{task.picture}}'></image>
-  <view>
-    <text class='title'>{{task.title}}</text>
-  </view>
-  <view class='textView'>
-    <view>
-      <image class='icon' src='{{sender_avatar}}'></image>
-      <text>{{task.sender_name}}</text>
-      <button class='followButton' bindtap='follow'>{{isFollow ? '已关注' : '关注ta'}}</button>
-    </view>  
-  </view>
-  <view class='textView'>
-    <text class='label'>任务详情:  </text>
-    <text>{{task.content}}</text>
-  </view>
-  <view class='textView'>
-    <text class='label'>赏金:  </text>
-    <image class='icon' src='/img/task/coin.png'></image>
-    <text>{{task.reward}}</text>
-  </view>
-  <view class='smallTextView'>
-    <text class='label'>地点:  </text>
-    <text>{{task.location}}</text>
-  </view>
-  <view class='smallTextView'>
-    <text class='label'>开始时间:  </text>
-    <text>{{task.start_time}}</text>
-  </view>
-  <view class='smallTextView'>
-    <text class='label'>结束时间:  </text>
-    <text>{{task.end_time}}</text>
-  </view>
-  <view class='smallTextView'>
-    <text class='label'>标签:  </text>
-    <text>{{tagString}}</text>
-  </view>
-  <view class='textView'>
-    <text class='label'>任务状态:  </text>
-    <text>{{statusString}}</text>
-  </view>
-  <block wx:if='{{comment !== null}}'>
-    <text class='label'>评论:  </text> 
-    <text>{{comment}}</text>
-  </block>
-  <form wx:if="{{isShown}}" bindsubmit='comment'>
-    <view class='section_title'>输入您的评论</view>
-    <input name="input" placeholder="输入您的评论" />
-    <view class="btn-area">
-      <button form-type="submit">提交</button>
+  <view id='firstRow'>
+    <view id='userWrapper'>
+      <image class='avatar' src='{{sender_avatar}}'></image>
+      <text class='username'>{{task.sender_name}}</text>
     </view>
-  </form>
-  <button wx:if="{{!isShown}}" class="{{buttonEnabled ? 'enabledButton' : 'disabledButton'}}" bindtap="handleTask">{{buttonLabel}}</button>
-  <button wx:if="{{canAbandon}}" bindtap='abandonTask'>放弃任务</button>
-</view>
+    <view>
+      <button class='followBtn' bindtap='follow'>{{isFollow ? '已关注' : '关注ta'}}</button>
+    </view>
+  </view>
+  <view class='textWrapper'>
 
+    <view class='title'>
+      <text>{{task.title}}</text>
+    </view>
+
+    <view class='content'>
+      <text>{{task.content}}</text>
+    </view>
+
+    <view class='details'>
+      <view class='textView'>
+        <text class='label'>赏金:  </text>
+        <image class='icon' src='/img/task/coin.png'></image>
+        <text>{{task.reward}}</text>
+      </view>
+      <view class='smallTextView'>
+        <text class='label'>地点:  </text>
+        <text>{{task.location}}</text>
+      </view>
+      <view class='smallTextView'>
+        <text class='label'>开始时间:  </text>
+        <text>{{task.start_time}}</text>
+      </view>
+      <view class='smallTextView'>
+        <text class='label'>结束时间:  </text>
+        <text>{{task.end_time}}</text>
+      </view>
+      <view class='smallTextView'>
+        <text class='label'>标签:  </text>
+        <text>{{tagString}}</text>
+      </view>
+      <view class='textView'>
+        <text class='label'>任务状态:  </text>
+        <text class='bold'>{{statusString}}</text>
+      </view>
+      <block wx:if='{{comment !== null}}'>
+        <text class='label'>评论:  </text>
+        <text>{{comment}}</text>
+      </block>
+    </view>
+
+    <view class='commentForm'>
+      <form wx:if="{{isShown}}" bindsubmit='comment'>
+        <input class='commentInput' name="input" placeholder="请输入您的评论" />
+        <button class='bottomBtn enabledButton' form-type="submit">提交</button>
+      </form>
+    </view>
+
+  </view>
+
+  <button wx:if="{{!isShown && buttonEnabled}}" class="bottomBtn enabledButton}}" bindtap="handleTask">{{buttonLabel}}</button>
+  <button wx:if="{{canAbandon}}" bindtap='bottomBtn abandonTask'>放弃任务</button>
+</view>
