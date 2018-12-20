@@ -1,13 +1,33 @@
+#notificationView {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 1000rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #325d79;
+  position: fixed;
+  top: 30rpx;
+  right: 30rpx;
+}
+
+#notificationImg {
+  height: 60rpx;
+  width: 60rpx;
+}
+
 .userinfo {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #f0145a;
+  /* background: yellow; */
 }
+
 .account-bg {
   width: 100%;
   height: 150rpx;
 }
+
 .userinfo-avatar {
   width: 158rpx;
   height: 158rpx;
@@ -16,11 +36,12 @@
   border-radius: 50%;
   overflow: hidden;
 }
+
 .userinfo-nickname {
-  color: #fff;
+  /* color: #; */
+  font-weight: 600;
   margin-bottom: 110rpx;
 }
-
 
 .order {
   display: flex;
@@ -29,12 +50,14 @@
   width: 100%;
   height: 90rpx;
 }
+
 .myorder-text {
   font-size: 30rpx;
   color: gray;
   margin: 20rpx;
   width: 40%;
 }
+
 .myorderlook-text {
   font-size: 30rpx;
   color: black;
@@ -43,15 +66,18 @@
   width: 60%;
   text-align: right;
 }
+
 .next-image {
   width: 20rpx;
   height: 25rpx;
   position: relative;
   right: 10rpx;
 }
+
 .navs {
   display: flex;
 }
+
 .nav-item {
   width: 50%;
   display: flex;
@@ -59,43 +85,52 @@
   flex-direction: column;
   padding: 20rpx;
 }
+
 .nav-item .nav-image {
   width: 40rpx;
   height: 40rpx;
   margin: 5rpx;
 }
+
 .nav-item text {
   margin-top: 20rpx;
   font-size: 25rpx;
   color: black;
 }
+
 /* 列表 */
+
 .person-list {
   display: flex;
   flex-direction: column;
   align-items: left;
 }
+
 .list-item {
   display: flex;
   flex-direction: row;
   align-items: center;
   height: 100rpx;
 }
+
 .item-image {
   width: 60rpx;
   height: 60rpx;
   margin: 40rpx;
 }
+
 .item-text {
   color: black;
   font-size: 35rpx;
   margin-left: 0rpx;
 }
+
 .account {
   color: grey;
   font-size: 35rpx;
   margin-left: 250rpx;
 }
+
 .person-line {
   width: 100%;
   height: 2rpx;

@@ -1,11 +1,13 @@
-
+<view id='notificationView' class='{{show ? "floatBtn" : "hide"}}' bindtap='notificationTap'>
+  <image id='notificationImg' src='/img/person/notification.png'></image>
+</view>
 
 <view class="container">
   <view class="userinfo">
     <view class="userinfo-avatar" background-size="cover">
       <open-data type="userAvatarUrl"></open-data>
     </view>
-    
+
     <view class="userinfo-nickname">
       <open-data type="userNickName"></open-data>
     </view>

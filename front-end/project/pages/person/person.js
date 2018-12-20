@@ -3,6 +3,7 @@ const app = getApp()
 
 Page({
   data: {
+    show:true,
     userInfo: {},
     nickName: "dasd",
     balance: 0,
@@ -67,6 +68,12 @@ Page({
   onAccepted: function() {
     wx.switchTab({
       url: '/pages/accepted_task/accepted_task',
+    })
+  },
+
+  notificationTap: function() {
+    wx.navigateTo({
+      url: '/pages/notification/notification',
     })
   }
 })
