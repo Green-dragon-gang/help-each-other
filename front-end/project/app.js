@@ -58,9 +58,29 @@ App({
     });
   },
 
+  refreshMessages: function(callback) {
+    this.globalData.messages = {}
+    wx.request({
+      url: `http://129.204.29.200:8080/help/getMessage/${this.globalData.userInfo.nickName}`,
+      method: 'GET',
+      dataType: 'json',
+      success: res => {
+        if (res.data != "()") {
+          res.data.forEach(ele => {
+            this.globalData.messages[ele.message_id] = ele
+          });
+          console.log("Get messages successfully!", this.globalData.messages);
+        }
+        if (callback)
+          callback()
+      }
+    });
+  },
+
   globalData: {
     userInfo: null,
     tasks: {},
+    messages: {},
   },
 
 })

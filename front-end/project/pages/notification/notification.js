@@ -1,18 +1,31 @@
 // pages/notification/notification.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    messageIds: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    app.refreshMessages(() => {
+      const keys = Object.keys(app.globalData.messages);
+      const messageIds = [];
+      keys.forEach((id, index) => {
+        messageIds.push({
+          id: id
+        })
+      })
+      this.setData({
+        messageIds
+      })
+    })
   },
 
   /**
