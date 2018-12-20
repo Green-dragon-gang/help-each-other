@@ -2,7 +2,6 @@
 const app = getApp()
 
 Page({
-
   data: {
     show: false,
     filterTop: '0rpx',
@@ -28,28 +27,19 @@ Page({
       keys.forEach((id, index) => {
         taskIds.push({
           id: id,
-          show: index < 6 ? true : false
+          show: false
         })
       })
+      this.tasksSort((a, b) => new Date(app.globalData.tasks[b.id].start_time) - new Date(app.globalData.tasks[a.id].start_time))
       this.setData({
         taskIds
       })
     })
   },
 
-
   //====================================
   // methods to handle filter click
   //====================================
-  filterDefaultClick: function() {
-    console.log('default');
-    wx.vibrateShort()
-    this.setData({
-      filter: this.data.filterState.default
-    })
-    this.tasksSort((a, b) => app.globalData.tasks[a.id].task_id - app.globalData.tasks[b.id].task_id)
-  },
-
   tasksSort: function(compare) {
     const taskIds = this.data.taskIds;
     taskIds.sort(compare)
@@ -58,6 +48,15 @@ Page({
       taskIds
     })
     console.log(this.data.taskIds)
+  },
+
+  filterDefaultClick: function() {
+    console.log('default');
+    wx.vibrateShort()
+    this.setData({
+      filter: this.data.filterState.default
+    })
+    this.tasksSort((a, b) => new Date(app.globalData.tasks[b.id].start_time) - new Date(app.globalData.tasks[a.id].start_time))
   },
 
   filterMoneyClick: function() {
