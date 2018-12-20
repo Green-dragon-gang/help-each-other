@@ -1,73 +1,95 @@
 const app = getApp();
+const util = require('../../utils/util.js')
 
 Page({
   data: {
+    tags: [{
+      tag: '外卖',
+      value: 0
+    }, {
+      tag: '取快递',
+      value: 1
+    }, {
+      tag: '占座',
+      value: 2
+    }, {
+      tag: '其他',
+      value: 3
+    }],
+    tag: {
+      tag: '',
+      value: -1
+    },
     imgUrl: '/img/uploadTask/imgAdd.png',
     title: '',
     date: '',
     time: '',
     address: '',
-    money: 0,
-
-    latitude: -1,
-    longitude: -1,
+    reward: 0,
+    content: '',
   },
 
-  onShow: function () {
+  onShow: function() {
     this.setData({
       show: true
     })
   },
 
-  onUnload: function () {
+  onUnload: function() {
     this.setData({
       show: false
     })
   },
 
-  bindDateChange: function (e) {
+  bindDateChange: function(e) {
     console.log('date change:', e.detail.value)
     this.setData({
       date: e.detail.value
     })
   },
-  bindTimeChange: function (e) {
+  bindTimeChange: function(e) {
     console.log('time change:', e.detail.value)
     this.setData({
       time: e.detail.value
     })
-    console.log()
   },
 
-  bindTitleChange: function (e) {
+  bindTitleChange: function(e) {
     console.log('title change:', e.detail.value)
     this.setData({
       title: e.detail.value
     });
   },
 
-  bindMoneyChange: function (e) {
-    console.log('money change:', e.detail.value)
+  bindRewardChange: function(e) {
+    console.log('reward change:', e.detail.value)
     this.setData({
-      money: e.detail.value
+      reward: e.detail.value
     });
   },
 
-  bindContentChange: function (e) {
+  bindContentChange: function(e) {
     console.log('content change:', e.detail.value)
     this.setData({
       content: e.detail.value
     });
   },
 
-  chooseImg: function () {
+  bindTagChange: function(e) {
+    console.log('tag change:', e.detail.value)
+    this.setData({
+      tag: this.data.tags[e.detail.value]
+    })
+  },
+
+  chooseImg: function() {
     console.log('chooseImg');
     let that = this;
     wx.chooseImage({
       count: 1,
       sizeType: ['original'],
       sourceType: ['album'],
-      success: function (res) {
+      success: function(res) {
         console.log(res);
         that.setData({
           imgUrl: res.tempFilePaths[0]
@@ -76,32 +98,69 @@ Page({
     })
   },
 
-  chooseLocation: function () {
+  chooseLocation: function() {
     let that = this;
     wx.chooseLocation({
-      success: function (res) {
+      success: function(res) {
         console.log('location changed:', res);
         that.setData({
           address: res.address,
-          latitude: res.latitude,
-          longitude: res.longitude,
         })
       }
     });
   },
 
-  release: function () {
-    let that = this;
+  checkInput: function() {
+    let attr = null;
+
+    if (this.data.title == '') attr = '标题不能为空'
+    else if (this.data.date == '') attr = '期限日期不能为空'
+    else if (this.data.time == '') attr = '期限时间不能为空'
+    else if (this.data.address == '') attr = '地点不能为空'
+    else if (this.data.reward == '') attr = '赏金不能为空'
+    else if (parseInt(this.data.reward) == NaN) attr = '赏金格式不正确'
+    else if (this.data.tag.value == -1) attr = '标签不能为空'
+    else if (this.data.content == '') attr = '任务详情不能为空'
+
+    if (attr) {
+      wx.showToast({
+        icon: 'none',
+        title: `${attr}`,
+        duration: 1000,
+      })
+      return false;
+    } else
+      return true
+  },
+
+  release: function() {
+    if (!app.globalData.userInfo) { // 登陆校验
+      wx.showToast({
+        icon: 'none',
+        title: '请先登陆',
+        duration: 1000,
+      })
+      return;
+    }
+
+    if (!this.checkInput()) return
+
+    // 显示 loading 提示
+    wx.showLoading({
+      title: '发布中',
+    })
+
     if (this.data.imgUrl != '/img/uploadTask/imgAdd.png') {
       wx.uploadFile({
         url: 'http://129.204.29.200:8080/help/uploadPicture',
         filePath: this.data.imgUrl,
         name: 'picture',
-        success: function (res) {
+        success: res => {
           console.log("Upload picture succesfully!", res);
-          let imgUrl = JSON.parse(res.data).url;
-          that.uploadTask(imgUrl);
-        }
+          let imgUrl = JSON.parse(res.data).url; // 由于 uploadFile 无法自动解析 json
+          this.uploadTask(imgUrl);
+        },
+        fail: this.uploadFailed
       })
     } else {
       this.uploadTask(null);
@@ -111,18 +170,30 @@ Page({
   },
 
   // TODO:
-  uploadTask: function (imgUrl) {
-    const data = {
+  uploadTask: function(imgUrl) {
+    const dataTest = {
       sender_name: 'Virgil',
       title: "代练", //this.data.title,
       content: "kda达到5", //this.data.content
       location: "上海市浦东新区世纪大道2001号", //this.data.address,
       start_time: "2018-12-14 12:09:00", // now
       end_time: "2018-12-14 15:09:00", // `${this.date} ${this.time}:00`,
-      reward: 100, //this.data.money,
+      reward: 100, //this.data.reward,
       tag: 3,
       picture: imgUrl,
       target_person_name: "null"
+    }
+    const data = {
+      sender_name: app.globalData.userInfo.nickName,
+      title: this.data.title,
+      content: this.data.content,
+      location: this.data.address,
+      start_time: util.formatTime(new Date()),
+      end_time: `${this.data.date} ${this.data.time}:00`,
+      reward: parseInt(this.data.reward),
+      tag: this.data.tag.value,
+      picture: imgUrl,
+      target_person_name: "null" // TODO
     }
 
     wx.request({
@@ -133,19 +204,32 @@ Page({
       },
       data: data,
       success: res => {
-        // TODO:return ID
-        console.log(res);
+        console.log("add task", res);
         app.refreshTasks(() => {
+          wx.hideLoading()
           wx.reLaunch({
             url: '/pages/index/index',
+            success: () => {
+              wx.showToast({
+                title: '发布成功',
+                duration: 1000,
+              })
+            }
           })
         });
       },
-      failed: function (res) {
-        console.log("upload failed!")
-      }
+      failed: this.uploadFailed
     })
   },
+
+  uploadFailed: function() {
+    wx.hideLoading()
+    wx.showToast({
+      icon: 'none',
+      title: '发布失败',
+      duration: 1000,
+    })
+  }
 
 
 })

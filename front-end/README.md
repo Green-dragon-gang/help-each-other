@@ -8,8 +8,6 @@
 
 ### TODO
 
-- UploadTask
-  - 填写逻辑
 - Accepted
   - 显示逻辑
 
@@ -20,3 +18,6 @@
 - task detail
   - UI 美化
 
+
+
+- 更好的双向绑定

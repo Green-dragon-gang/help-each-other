@@ -2,7 +2,7 @@
 
 <view id='container'>
   <form>
-    <input class='input' placeholder='标题' type='text' confirm-type='done' auto-focus bindinput="bindTitleChange"></input>
+    <input class='input' placeholder='标题' type='text' confirm-type='done' auto-focus bindblur="bindTitleChange"></input>
     <view class="input timeinput">
       <picker mode="date" value="{{date}}" bindchange="bindDateChange"  id='date'>
         <input placeholder='期限日期' value='{{date}}' disabled='true'> </input>
@@ -14,12 +14,14 @@
     <view class="input">
       <input placeholder='地点' bindtap='chooseLocation' value='{{address}}' disabled='true'> </input>
     </view>
-    <input class='input' placeholder='赏金' type='number' confirm-type='done' bindinput='bindMoneyChange'></input>
+    <input class='input reward' placeholder='赏金' type='number' confirm-type='done' bindblur='bindRewardChange'></input>
+    <picker mode="selector" range='{{tags}}' range-key='tag' class='input' bindchange='bindTagChange'  >
+      <input placeholder='标签' disabled='true' value='{{tag.tag}}'> </input>
+    </picker>
 
-    <textarea placeholder='任务详情' confirm-type='done'></textarea>
+    <textarea placeholder='任务详情' confirm-type='done' bindblur='bindContentChange'></textarea>
 
-    <input class='input' placeholder='标签（选填）' type='text' confirm-type='done'></input>
-    <input class='input' placeholder='期望接单人（选填）' type='text' confirm-type='done'></input>
+    <input class='input' placeholder='期望接单人（选填，暂无效用）' type='text' confirm-type='done'></input>
     <view id='imgView'>
       <image class='uploadImg' src='{{imgUrl}}' bindtap='chooseImg' mode='aspectFill'></image>
     </view>

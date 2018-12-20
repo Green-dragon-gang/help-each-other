@@ -19,6 +19,10 @@ picker#time, picker#date {
   width: 50%;
 }
 
+.reward{
+  font-weight: bold
+}
+
 textarea {
   padding: 10rpx 10rpx;
   width: 100%;
