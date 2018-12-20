@@ -10,7 +10,7 @@ const formatTime = date => {
   let second = date.getSeconds()
   if (second < 10)
     second = "0" + second
-  return `${year}-${month}-${day} ${hour}:${minute}:${second}`
+  return `${year}/${month}/${day} ${hour}:${minute}:${second}`
 }
 
 // usedTime is the number of ms

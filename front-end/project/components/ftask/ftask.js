@@ -44,7 +44,7 @@ Component({
           title: task.title,
           pictureUrl: task.picture == "null" ? this.data.defaultUrl : task.picture,
           username: task.sender_name,
-          deltaTime: util.msToString(new Date() - new Date(task.start_time)),
+          deltaTime: util.msToString(new Date() - new Date(task.start_time.replace(/-/g, "/"))),
           address: task.location,
           endTime: task.end_time
         })

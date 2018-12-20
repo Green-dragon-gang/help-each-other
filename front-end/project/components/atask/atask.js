@@ -28,7 +28,7 @@ Component({
     attached() {
       const task = app.globalData.tasks[this.properties.taskId];
       if (task) {
-        const left_seconds = new Date(task.end_time) - new Date()
+        const left_seconds = new Date(task.end_time.replace(/-/g, "/")) - new Date()
         this.setData({
           title: task.title,
           picture: task.picture == "null" ? defaultUrl : task.picture,

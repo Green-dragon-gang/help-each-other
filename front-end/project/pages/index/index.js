@@ -30,7 +30,8 @@ Page({
           show: false
         })
       })
-      this.tasksSort((a, b) => new Date(app.globalData.tasks[b.id].start_time) - new Date(app.globalData.tasks[a.id].start_time))
+      this.tasksSort((a, b) => new Date(app.globalData.tasks[b.id].start_time.replace(/-/g, "/")) -
+        new Date(app.globalData.tasks[a.id].start_time.replace(/-/g, "/")))
       this.setData({
         taskIds
       })
@@ -56,7 +57,8 @@ Page({
     this.setData({
       filter: this.data.filterState.default
     })
-    this.tasksSort((a, b) => new Date(app.globalData.tasks[b.id].start_time) - new Date(app.globalData.tasks[a.id].start_time))
+    this.tasksSort((a, b) => new Date(app.globalData.tasks[b.id].start_time.replace(/-/g, "/")) -
+      new Date(app.globalData.tasks[a.id].start_time).replace(/-/g, "/"))
   },
 
   filterMoneyClick: function() {
@@ -93,12 +95,14 @@ Page({
     wx.vibrateShort()
     const currentDate = new Date()
     if (this.data.filter == this.data.filterState.timeup) {
-      this.tasksSort((a, b) => new Date(app.globalData.tasks[a.id].end_time) - new Date(app.globalData.tasks[b.id].end_time))
+      this.tasksSort((a, b) => new Date(app.globalData.tasks[a.id].end_time.replace(/-/g, "/")) -
+        new Date(app.globalData.tasks[b.id].end_time.replace(/-/g, "/")))
       this.setData({
         filter: this.data.filterState.timedown
       });
     } else {
-      this.tasksSort((a, b) => new Date(app.globalData.tasks[b.id].end_time) - new Date(app.globalData.tasks[a.id].end_time))
+      this.tasksSort((a, b) => new Date(app.globalData.tasks[b.id].end_time.replace(/-/g, "/")) -
+        new Date(app.globalData.tasks[a.id].end_time.replace(/-/g, "/")))
       this.setData({
         filter: this.data.filterState.timeup
       });

@@ -21,7 +21,7 @@
 
     <textarea placeholder='任务详情' confirm-type='done' bindblur='bindContentChange'></textarea>
 
-    <input class='input' placeholder='期望接单人（选填，暂无效用）' type='text' confirm-type='done'></input>
+    <input class='input' placeholder='期望接单人（选填，暂无作用）' type='text' confirm-type='done'></input>
     <view id='imgView'>
       <image class='uploadImg' src='{{imgUrl}}' bindtap='chooseImg' mode='aspectFill'></image>
     </view>

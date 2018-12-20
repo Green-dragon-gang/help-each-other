@@ -42,9 +42,10 @@ Page({
   },
 
   bindDateChange: function(e) {
-    console.log('date change:', e.detail.value)
+    const date = e.detail.value.replace(/-/g, "/")
+    console.log('date change:', date)
     this.setData({
-      date: e.detail.value
+      date: date
     })
   },
   bindTimeChange: function(e) {

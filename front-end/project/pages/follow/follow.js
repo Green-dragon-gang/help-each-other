@@ -12,23 +12,18 @@ Page({
   },
 
   friendsClick: function() {
+    wx.vibrateShort()
     wx.navigateTo({
       url: '/pages/friends/friends',
     })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow: function() {
     this.setData({
       show: true
     })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
   onHide: function() {
     this.setData({
       show: false
@@ -64,8 +59,8 @@ Page({
                   taskIds.push(item.task_id)
                 }
                 taskIds.sort((id1, id2) => {
-                  let t1 = new Date(app.globalData.tasks[id1].start_time)
-                  let t2 = new Date(app.globalData.tasks[id2].start_time)
+                  let t1 = new Date(app.globalData.tasks[id1].start_time.replace(/-/g, "/"))
+                  let t2 = new Date(app.globalData.tasks[id2].start_time.replace(/-/g, "/"))
                   return t2 - t1
                 })
                 this.setData({
@@ -81,8 +76,5 @@ Page({
     }
   },
 
-  testclick: function() {
-    console.log(this.data.taskIds)
-  }
 
 })

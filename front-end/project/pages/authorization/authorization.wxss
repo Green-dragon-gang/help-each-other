@@ -1,0 +1,9 @@
+/* pages/authorization /authorization.wxss */
+
+button {
+  margin: 400rpx 200rpx;
+}
+
+button::after {
+  border: none;
+}
