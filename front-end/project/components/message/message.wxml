@@ -1,0 +1,5 @@
+<!--components/message/message.wxml-->
+<view class='container' bindtap='click'>
+  <text class='{{!isReaded ? "bold" : "normal"}}, title'>{{title}}\n</text>
+  <text class='{{!isReaded ? "bold" : "normal"}}, content'>{{content}}</text>
+</view>
