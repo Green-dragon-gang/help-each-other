@@ -8,14 +8,7 @@
 
 ### TODO
 
-- Accepted
-  - 显示逻辑
-
-
-
 - Me
-  - UI 更新
-- task detail
   - UI 美化
 
 
