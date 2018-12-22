@@ -1,20 +1,20 @@
 /* components/message/message.wxss */
 
 .bold {
-  font-weight: bold
+  font-weight: bold;
 }
 
 .container {
-  border-radius: 10rpx;
+  /* border-radius: 10rpx; */
   overflow: hidden;
   background: white;
-  box-shadow: 0 0 10rpx 2rpx rgba(51, 51, 51, 0.281);
+  box-shadow: 0 0 3rpx 1rpx rgba(51, 51, 51, 0.281);
   word-break: keep-all;
   word-wrap: break-word;
-  margin: 10px;
-  padding: 0 2px;
+  margin: 10px 0;
+  padding: 10px;
 }
 
 .title {
-  font-size: x-large
+  font-size: x-large;
 }

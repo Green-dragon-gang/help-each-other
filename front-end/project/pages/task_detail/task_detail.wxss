@@ -91,7 +91,7 @@ button::after {
 }
 
 .enabledButton {
-  background: lightgray;
+  background: #2E86C1;
   color: white;
   font-weight: 600;
 }

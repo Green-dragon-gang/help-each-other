@@ -21,7 +21,7 @@ ftask {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #325d79;
+  background-color: #2E86C1;
 
   position: fixed;
   top: 30rpx;

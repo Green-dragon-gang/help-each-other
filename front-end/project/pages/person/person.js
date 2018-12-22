@@ -3,26 +3,7 @@ const app = getApp()
 
 Page({
   data: {
-    show:true,
-    userInfo: {},
-    nickName: "dasd",
     balance: 0,
-    info_count: 0,
-    orderItems: [{
-        typeId: 0,
-        name: '发布的任务',
-        url: 'bill',
-        imageurl: '../../img/person/fukuan.png',
-        tap: "onRelease"
-      },
-      {
-        typeId: 2,
-        name: '接受的任务',
-        url: 'bill',
-        imageurl: '../../img/person/fahuo.png',
-        tap: "onAccepted"
-      },
-    ],
   },
 
   onLoad: function() {
@@ -61,19 +42,26 @@ Page({
     })
   },
 
-  onRelease: function() {
-
-  },
 
   onAccepted: function() {
     wx.switchTab({
       url: '/pages/accepted_task/accepted_task',
-    })
+    });
   },
 
-  notificationTap: function() {
+  onNotification: function() {
     wx.navigateTo({
       url: '/pages/notification/notification',
-    })
+    });
+  },
+
+  onDeveloping: function() {
+    wx.showToast({
+      icon: 'none',
+      title: `页面暂未开发`,
+      duration: 1000,
+    });
   }
+
+
 })

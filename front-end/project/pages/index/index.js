@@ -24,9 +24,8 @@ Page({
     app.refreshTasks(() => {
       //====================TODO: to delete
       // wx.navigateTo({
-      //   url: `/pages/task_detail/task_detail?task_id=21`
+      //   url: `/pages/notification/notification`
       // })
-      // return
       //====================TODO: to delete
       const keys = Object.keys(app.globalData.tasks);
       const taskIds = this.data.taskIds;
@@ -54,7 +53,7 @@ Page({
     this.setData({
       taskIds
     })
-    console.log(this.data.taskIds)
+    console.log('index:', this.data.taskIds)
   },
 
   filterDefaultClick: function() {
