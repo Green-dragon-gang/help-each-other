@@ -26,6 +26,7 @@
     <view class="list-item" bindtap='onNotification'>
       <image class="item-image" src="../../img/person/icon_share_home.png"></image>
       <text class="item-text">我的消息</text>
+      <text class="notification" wx:if="{{info_count}}">{{info_count}} 条新消息</text>
     </view>
     <view class="person-line"></view>
     <view class="list-item" bindtap='onDeveloping'>

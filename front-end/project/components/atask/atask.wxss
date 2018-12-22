@@ -21,6 +21,7 @@
 }
 
 .title {
+  color: #2E86C1;
   font-weight: bold;
   font-size: 1.1em;
 }

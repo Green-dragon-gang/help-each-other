@@ -108,7 +108,12 @@
 .account {
   font-size: 10pt;
   margin-left: 300rpx;
-  /* font-weight: 600; */
+}
+
+.notification {
+  font-size: 10pt;
+  color: gray;
+  margin-left: 250rpx;
 }
 
 .person-line {

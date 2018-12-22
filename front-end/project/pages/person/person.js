@@ -4,6 +4,7 @@ const app = getApp()
 Page({
   data: {
     balance: 0,
+    info_count: 0,
   },
 
   onLoad: function() {
@@ -32,8 +33,8 @@ Page({
       url: url,
       method: "GET",
       success: res => {
-        console.log('Get my information successfully!');
         let data = res.data
+        console.log('Get my information successfully! ', data);
         that.setData({
           balance: data.user_account,
           info_count: data.new_message,
