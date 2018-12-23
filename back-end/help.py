@@ -30,13 +30,16 @@ class Database:
         self.cur.execute("insert into User (user_name, avatar) values ('%s', '%s')" % (name, avatar))
         self.con.commit()
 
+    def update_user_account(self, name, account):
+        self.cur.execute("update User set user_account = %d where user_name = '%s'" % (account, name))
+        self.con.commit()
+
     def save_task(self, sender_name, title, content, location, start_time, end_time, reward, tag, picture):
         self.cur.execute("insert into Task "
                          "(sender_name, title, content, location, start_time, end_time, reward, tag, picture)"
                          "values ('%s', '%s', '%s', '%s', '%s', '%s', %s, %s, '%s')"
                          % (sender_name, title, content, location, start_time, end_time, reward, tag, picture))
         self.con.commit()
-        return self.cur.lastrowid
 
     def create_message(self, user_name, title, content):
         self.cur.execute("insert into Message (user_name, title, content) "
@@ -166,6 +169,9 @@ class Database:
         self.cur.execute("delete from Receiver where task_id = %s" % task_id)
         self.con.commit()
 
+    def create_event(self, end_time):
+        pass
+
 
 @app.route("/")
 def hello():
@@ -205,13 +211,29 @@ def add_task():
     picture = request.form['picture']
     target_person_name = request.form['target_person_name']
     db = Database()
-    task_id = db.save_task(sender_name, title, content, location, start_time, end_time, reward, tag, picture)
+    # decline sender's account value when add task
+    res0 = db.find_user(sender_name)
+    if not res0:
+        db.close_db()
+        return '{\"success\": \"false\"}'
+    else:
+        if int(res0[0]['user_account']) < int(reward):
+            db.close_db()
+            return '{\"success\": \"false\"}'
+        else:
+            new_account = int(res0[0]['user_account']) - int(reward)
+            db.update_user_account(sender_name, new_account)
+            start_time = start_time.replace('-', '/')
+            end_time = end_time.replace('-', '/')
+
+    db.save_task(sender_name, title, content, location, start_time, end_time, reward, tag, picture)
+
     if target_person_name != 'null':
         res = db.find_user(target_person_name)
         # 如果不存在这个人返回false
         if res:
-            message_title = 'Invitation'
-            message_content = str("task id: %s" % task_id)
+            message_title = '任务邀请'
+            message_content = str("您的收到 %s 发布的任务 %s 的邀请" % (sender_name, title))
             db.create_message(target_person_name, message_title, message_content)
             db.add_message(target_person_name)
             db.close_db()
@@ -285,9 +307,22 @@ def get_tasks_by_receiver(receiver_name):
 def delete_task():
     task_id = request.form['task_id']
     db = Database()
-    db.delete_task(task_id)
-    db.close_db()
-    return '{\"success\": \"true\"}'
+    res = db.get_task_by_id(task_id)
+    if not res:
+        db.close_db()
+        return '{\"success\": \"false\"}'
+    if res[0]['status'] == 0:
+        # give back money to sender
+        sender_name = res[0]['sender_name']
+        new_account = int(db.find_user(sender_name)[0]['user_account']) + int(res[0]['reward'])
+        db.update_user_account(sender_name, new_account)
+
+        db.delete_task(task_id)
+        db.close_db()
+        return '{\"success\": \"true\"}'
+    else:
+        db.close_db()
+        return '{\"success\": \"false\"}'
 
 
 @app.route("/help/acceptTask", methods=['POST'])
@@ -299,6 +334,16 @@ def accept_task():
     if not res:
         db.save_receive(task_id, receiver_name)
         db.set_task_status(task_id, 1)
+
+        # send message to sender
+        message_title = '有人接受了您的任务'
+        task = db.get_task_by_id(task_id)
+        task_name = task[0]['title']
+        sender_name = task[0]['sender_name']
+        message_content = str("您的任务 %s 被 %s 接受" % (task_name, receiver_name))
+        db.create_message(sender_name, message_title, message_content)
+        db.add_message(sender_name)
+
         db.close_db()
         return '{\"success\": \"true\"}'
     else:
@@ -310,7 +355,28 @@ def accept_task():
 def finish_task():
     task_id = request.form['task_id']
     db = Database()
+    # give reward to receiver
+    res = db.get_task_by_id(task_id)
+    if not res:
+        return '{\"success\": \"false\"}'
+    elif res[0]['status'] != 1:
+        return '{\"success\": \"false\"}'
+    else:
+        receiver_name = db.get_receiver(task_id)[0]['receiver_name']
+        new_account = int(db.find_user(receiver_name)[0]['user_account']) + int(res[0]['reward'])
+        db.update_user_account(receiver_name, new_account)
+
     db.set_task_status(task_id, 2)
+
+    # send message to sender
+    message_title = '有人完成了您的任务'
+    task = db.get_task_by_id(task_id)
+    task_name = task[0]['title']
+    sender_name = task[0]['sender_name']
+    message_content = str("您的任务 %s 被 %s 完成" % (task_name, receiver_name))
+    db.create_message(sender_name, message_title, message_content)
+    db.add_message(sender_name)
+
     db.close_db()
     return '{\"success\": \"true\"}'
 
@@ -326,6 +392,13 @@ def follow():
         return '{\"success\": \"false\"}'
     else:
         db.save_follow(user_name, follow_name)
+
+        # send message to follow
+        message_title = '有人悄悄关注了您哦'
+        message_content = str("您真是魅力四射呢！！")
+        db.create_message(user_name, message_title, message_content)
+        db.add_message(user_name)
+
         db.close_db()
         return '{\"success\": \"true\"}'
 
@@ -355,6 +428,16 @@ def add_comment():
         return '{\"success\": \"false\"}'
     else:
         db.add_comment(task_id, comment)
+        # send message to receiver
+        message_title = '您完成的任务被评论啦'
+        receiver_name = db.get_receiver(task_id)
+        task = db.get_task_by_id(task_id)
+        task_name = task[0]['title']
+        sender_name = task[0]['sender_name']
+        message_content = str("您的完成的任务 %s 被 %s 评论啦，快去查看吧" % (task_name, sender_name))
+        db.create_message(receiver_name, message_title, message_content)
+        db.add_message(receiver_name)
+
         db.close_db()
         return '{\"success\": \"true\"}'
 
@@ -478,6 +561,17 @@ def abandon_task(task_id):
         return '{\"success\": \"false\"}'
     db.set_task_status(task_id, 0)
     db.delete_receiver(task_id)
+
+    # send message to sender
+    message_title = '您的任务被放弃'
+    task = db.get_task_by_id(task_id)
+    task_name = task[0]['title']
+    sender_name = task[0]['sender_name']
+    message_content = str("您的任务 %s 被放弃，重新进入任务列表。" % task_name)
+    db.create_message(sender_name, message_title, message_content)
+    db.add_message(sender_name)
+
+    db.close_db()
     return '{\"success\": \"true\"}'
 
 
