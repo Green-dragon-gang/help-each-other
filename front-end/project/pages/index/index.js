@@ -63,7 +63,7 @@ Page({
       filter: this.data.filterState.default
     })
     this.tasksSort((a, b) => new Date(app.globalData.tasks[b.id].start_time.replace(/-/g, "/")) -
-      new Date(app.globalData.tasks[a.id].start_time).replace(/-/g, "/"))
+      new Date(app.globalData.tasks[a.id].start_time.replace(/-/g, "/")))
   },
 
   filterMoneyClick: function() {

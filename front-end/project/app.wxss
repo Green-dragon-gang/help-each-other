@@ -5,17 +5,6 @@ page {
   font-family: "Microsoft YaHei";
 }
 
-.task-column {
-  display: flex;
-  flex-flow: column;
-  padding: 10rpx 0;
-  width: 50%;
-}
-
-task {
-  padding: 10rpx;
-}
-
 @keyframes showDraw {
   from {
     transform: scale(0.0);

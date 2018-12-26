@@ -25,7 +25,7 @@ Page({
 
   },
 
-  onReady: function() {
+  onShow: function() {
     let that = this;
     let username = app.globalData.userInfo.nickName;
     let url = `http://129.204.29.200:8080/help/getSelfInfo/${username}`;

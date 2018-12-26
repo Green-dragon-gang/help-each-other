@@ -8,6 +8,8 @@
 
 ### TODO
 
+- upload page 对于余额的检验
+- auth page 的动画效果
 - pull down刷新
 - ~~更好的双向绑定~~ 
 

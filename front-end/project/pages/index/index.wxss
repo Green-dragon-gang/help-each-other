@@ -68,6 +68,19 @@
   color: #2E86C1;
 }
 
+
+.task-column {
+  display: flex;
+  flex-flow: column;
+  padding: 10rpx 0;
+  width: 50%;
+}
+
+task {
+  padding: 10rpx;
+}
+
+
 .uploadView {
   z-index: 3;
   position: fixed;

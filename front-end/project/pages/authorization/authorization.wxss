@@ -2,6 +2,12 @@
 
 button {
   margin: 400rpx 200rpx;
+  background-color: #2E86C1;
+  color: white;
+}
+
+.btn-hover {
+  background-color: rgb(36, 108, 156);
 }
 
 button::after {
