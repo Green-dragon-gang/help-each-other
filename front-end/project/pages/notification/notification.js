@@ -22,6 +22,7 @@ Page({
           id: id
         })
       })
+      messageIds.reverse()
       this.setData({
         messageIds
       })
