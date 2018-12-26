@@ -1,2 +1,2 @@
 <!--pages/notification/notification.wxml-->
-<message wx:for='{{messageIds}}' messageId='{{item.id}}' />
+<message wx:for='{{messageIds}}' messageId='{{item.id}}' wx:key='{{item.id}}' />
