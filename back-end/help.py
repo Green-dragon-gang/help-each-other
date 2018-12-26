@@ -233,7 +233,7 @@ def add_task():
         # 如果不存在这个人返回false
         if res:
             message_title = '任务邀请'
-            message_content = str("您的收到 %s 发布的任务 %s 的邀请" % (sender_name, title))
+            message_content = str(" %s 发布的任务 %s 邀请您来完成哦" % (sender_name, title))
             db.create_message(target_person_name, message_title, message_content)
             db.add_message(target_person_name)
             db.close_db()
