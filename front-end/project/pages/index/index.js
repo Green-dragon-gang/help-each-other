@@ -133,7 +133,9 @@ Page({
     console.log('reach bottom');
   },
 
-  //
+  /**
+   * 页面滚动事件
+   */
   lastPos: 0,
   thred: 50,
   topShow: 50,
