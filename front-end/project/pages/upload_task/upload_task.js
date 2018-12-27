@@ -27,91 +27,105 @@ Page({
     address: '',
     reward: 0,
     content: '',
+    balance: -1,
   },
 
-  onShow: function() {
+  onShow: function () {
+    let username = app.globalData.userInfo.nickName;
+    wx.request({
+      url: `http://129.204.29.200:8080/help/getSelfInfo/${username}`,
+      method: "GET",
+      success: res => {
+        let data = res.data
+        console.log('Get my information successfully! ', data);
+        this.setData({
+          balance: data.user_account,
+        })
+      },
+    })
     this.setData({
       show: true
     })
   },
 
-  onUnload: function() {
+  onUnload: function () {
     this.setData({
       show: false
     })
   },
 
-  bindDateChange: function(e) {
+  // ========================
+  // bind change
+  // ========================
+  bindDateChange: function (e) {
     const date = e.detail.value.replace(/-/g, "/")
     console.log('date change:', date)
     this.setData({
       date: date
     })
   },
-  bindTimeChange: function(e) {
+  bindTimeChange: function (e) {
     console.log('time change:', e.detail.value)
     this.setData({
       time: e.detail.value
     })
   },
 
-  bindTitleChange: function(e) {
+  bindTitleChange: function (e) {
     console.log('title change:', e.detail.value)
     this.setData({
       title: e.detail.value
     });
   },
 
-  bindRewardChange: function(e) {
+  bindRewardChange: function (e) {
     console.log('reward change:', e.detail.value)
     this.setData({
       reward: e.detail.value
     });
   },
 
-  bindContentChange: function(e) {
+  bindContentChange: function (e) {
     console.log('content change:', e.detail.value)
     this.setData({
       content: e.detail.value
     });
   },
 
-  bindTagChange: function(e) {
+  bindTagChange: function (e) {
     console.log('tag change:', e.detail.value)
     this.setData({
       tag: this.data.tags[e.detail.value]
     })
   },
 
-  chooseImg: function() {
+  chooseImg: function () {
     console.log('chooseImg');
-    let that = this;
     wx.chooseImage({
       count: 1,
-      sizeType: ['original'],
+      sizeType: ['compressed', 'original'],
       sourceType: ['album'],
-      success: function(res) {
+      success: res => {
         console.log(res);
-        that.setData({
+        this.setData({
           imgUrl: res.tempFilePaths[0]
         });
       },
     })
   },
 
-  chooseLocation: function() {
-    let that = this;
+  chooseLocation: function () {
     wx.chooseLocation({
-      success: function(res) {
+      success: (res) => {
         console.log('location changed:', res);
-        that.setData({
+        this.setData({
           address: res.address,
         })
       }
     });
   },
 
-  checkInput: function() {
+  checkInput: function () {
     let attr = null;
 
     if (this.data.title == '') attr = '标题不能为空'
@@ -119,7 +133,8 @@ Page({
     else if (this.data.time == '') attr = '期限时间不能为空'
     else if (this.data.address == '') attr = '地点不能为空'
     else if (this.data.reward == '') attr = '赏金不能为空'
-    else if (parseInt(this.data.reward) == NaN) attr = '赏金格式不正确'
+    else if (parseInt(this.data.reward) == NaN || parseInt(this.data.reward) < 0) attr = '赏金格式不正确'
+    else if (parseInt(this.data.reward) > this.data.balance) attr = '赏金不能超过您的当前余额'
     else if (this.data.tag.value == -1) attr = '标签不能为空'
     else if (this.data.content == '') attr = '任务详情不能为空'
 
@@ -134,7 +149,7 @@ Page({
       return true
   },
 
-  release: function() {
+  release: function () {
     if (!app.globalData.userInfo) { // 登陆校验
       wx.showToast({
         icon: 'none',
@@ -171,7 +186,7 @@ Page({
   },
 
   // TODO:
-  uploadTask: function(imgUrl) {
+  uploadTask: function (imgUrl) {
     const dataTest = {
       sender_name: 'Virgil',
       title: "代练",
@@ -223,7 +238,7 @@ Page({
     })
   },
 
-  uploadFailed: function() {
+  uploadFailed: function () {
     wx.hideLoading()
     wx.showToast({
       icon: 'none',
