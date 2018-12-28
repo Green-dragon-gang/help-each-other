@@ -212,7 +212,7 @@ Page({
           this.setData({
             statusString: "进行中",
             buttonEnabled: true,
-            buttonLabel: "任务已完成",
+            buttonLabel: "完成任务",
             canAbandon: true
           })
         else
