@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 create table User (
 user_name varchar(63) primary key,
 user_account int default 100 not null,
@@ -101,8 +99,7 @@ task_id int primary key,
 comment varchar(1023) not null,
 FOREIGN KEY (task_id) REFERENCES Task(task_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) character set = utf8;
->>>>>>> 4d5f606678d69458a528b17333322e3a0bcc9e5d
-=======
+
 create table User (
 user_name varchar(63) primary key,
 user_account int default 100 not null,
@@ -153,4 +150,3 @@ task_id int primary key,
 comment varchar(1023) not null,
 FOREIGN KEY (task_id) REFERENCES Task(task_id) ON DELETE CASCADE ON UPDATE CASCADE
 ) character set = utf8;
->>>>>>> 4d5f606678d69458a528b17333322e3a0bcc9e5d
